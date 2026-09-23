@@ -1,0 +1,248 @@
+{
+  "grids": {
+    "zen_atlas": {
+      "3": {
+        "cle_usufruit": 0.14,
+        "cle_np": 0.86
+      },
+      "4": {
+        "cle_usufruit": 0.185,
+        "cle_np": 0.815
+      },
+      "5": {
+        "cle_usufruit": 0.22,
+        "cle_np": 0.78
+      },
+      "6": {
+        "cle_usufruit": 0.255,
+        "cle_np": 0.745
+      },
+      "7": {
+        "cle_usufruit": 0.285,
+        "cle_np": 0.715
+      },
+      "8": {
+        "cle_usufruit": 0.31,
+        "cle_np": 0.69
+      },
+      "9": {
+        "cle_usufruit": 0.335,
+        "cle_np": 0.665
+      },
+      "10": {
+        "cle_usufruit": 0.36,
+        "cle_np": 0.64
+      },
+      "11": {
+        "cle_usufruit": 0.375,
+        "cle_np": 0.625
+      },
+      "12": {
+        "cle_usufruit": 0.39,
+        "cle_np": 0.61
+      },
+      "13": {
+        "cle_usufruit": 0.405,
+        "cle_np": 0.595
+      },
+      "14": {
+        "cle_usufruit": 0.415,
+        "cle_np": 0.585
+      },
+      "15": {
+        "cle_usufruit": 0.425,
+        "cle_np": 0.575
+      },
+      "16": {
+        "cle_usufruit": 0.44,
+        "cle_np": 0.56
+      },
+      "17": {
+        "cle_usufruit": 0.45,
+        "cle_np": 0.55
+      },
+      "18": {
+        "cle_usufruit": 0.46,
+        "cle_np": 0.54
+      },
+      "19": {
+        "cle_usufruit": 0.47,
+        "cle_np": 0.53
+      },
+      "20": {
+        "cle_usufruit": 0.48,
+        "cle_np": 0.52
+      }
+    },
+    "epsicap_2026": {
+      "3": {
+        "cle_usufruit": 0.15,
+        "cle_np": 0.85
+      },
+      "4": {
+        "cle_usufruit": 0.19,
+        "cle_np": 0.81
+      },
+      "5": {
+        "cle_usufruit": 0.23,
+        "cle_np": 0.77
+      },
+      "6": {
+        "cle_usufruit": 0.26,
+        "cle_np": 0.74
+      },
+      "7": {
+        "cle_usufruit": 0.29,
+        "cle_np": 0.71
+      },
+      "8": {
+        "cle_usufruit": 0.32,
+        "cle_np": 0.6799999999999999
+      },
+      "9": {
+        "cle_usufruit": 0.34,
+        "cle_np": 0.6599999999999999
+      },
+      "10": {
+        "cle_usufruit": 0.36,
+        "cle_np": 0.64
+      },
+      "11": {
+        "cle_usufruit": 0.37,
+        "cle_np": 0.63
+      },
+      "12": {
+        "cle_usufruit": 0.39,
+        "cle_np": 0.61
+      },
+      "13": {
+        "cle_usufruit": 0.4,
+        "cle_np": 0.6
+      },
+      "14": {
+        "cle_usufruit": 0.41,
+        "cle_np": 0.5900000000000001
+      },
+      "15": {
+        "cle_usufruit": 0.42,
+        "cle_np": 0.5800000000000001
+      },
+      "16": {
+        "cle_usufruit": 0.43,
+        "cle_np": 0.5700000000000001
+      },
+      "17": {
+        "cle_usufruit": 0.44,
+        "cle_np": 0.56
+      },
+      "18": {
+        "cle_usufruit": 0.45,
+        "cle_np": 0.55
+      },
+      "19": {
+        "cle_usufruit": 0.46,
+        "cle_np": 0.54
+      },
+      "20": {
+        "cle_usufruit": 0.47,
+        "cle_np": 0.53
+      }
+    },
+    "ancienne": {
+      "3": {
+        "cle_usufruit": 0.13,
+        "cle_np": 0.87
+      },
+      "4": {
+        "cle_usufruit": 0.17,
+        "cle_np": 0.83
+      },
+      "5": {
+        "cle_usufruit": 0.21,
+        "cle_np": 0.79
+      },
+      "6": {
+        "cle_usufruit": 0.245,
+        "cle_np": 0.755
+      },
+      "7": {
+        "cle_usufruit": 0.275,
+        "cle_np": 0.725
+      },
+      "8": {
+        "cle_usufruit": 0.3,
+        "cle_np": 0.7
+      },
+      "9": {
+        "cle_usufruit": 0.32,
+        "cle_np": 0.68
+      },
+      "10": {
+        "cle_usufruit": 0.345,
+        "cle_np": 0.655
+      },
+      "11": {
+        "cle_usufruit": 0.36,
+        "cle_np": 0.64
+      },
+      "12": {
+        "cle_usufruit": 0.37,
+        "cle_np": 0.63
+      },
+      "13": {
+        "cle_usufruit": 0.38,
+        "cle_np": 0.62
+      },
+      "14": {
+        "cle_usufruit": 0.39,
+        "cle_np": 0.61
+      },
+      "15": {
+        "cle_usufruit": 0.4,
+        "cle_np": 0.6
+      },
+      "16": {
+        "cle_usufruit": 0.41,
+        "cle_np": 0.59
+      },
+      "17": {
+        "cle_usufruit": 0.42,
+        "cle_np": 0.58
+      },
+      "18": {
+        "cle_usufruit": 0.43,
+        "cle_np": 0.57
+      },
+      "19": {
+        "cle_usufruit": 0.44,
+        "cle_np": 0.56
+      },
+      "20": {
+        "cle_usufruit": 0.45,
+        "cle_np": 0.55
+      }
+    }
+  },
+  "presets": {
+    "Iroko Zen": {
+      "grille": "zen_atlas",
+      "montant_usu": 166000,
+      "duree_annees": 9,
+      "prix_part": 205,
+      "td_net": 0.055,
+      "taux_reemploi": 0.04,
+      "part_usufruit": 1.0,
+      "delai_jouissance_mois": 0
+    },
+    "Iroko Atlas": {
+      "grille": "zen_atlas",
+      "montant_usu": 166000,
+      "duree_annees": 12,
+      "prix_part": 200,
+      "td_net": 0.07,
+      "taux_reemploi": 0.04,
+      "part_usufruit": 1.0,
+      "delai_jouissance_mois": 0
+    }
+  }
+}
