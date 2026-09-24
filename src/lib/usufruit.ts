@@ -1,0 +1,259 @@
+/**
+ * Moteur de calcul de TRI pour les investissements en usufruit (démembrement de parts SCPI).
+ *
+ * Portage fidèle de tri_core.py (onglet "06.3 - USU TRI" du BP Iroko Next) :
+ * - coupon usufruit mensuel = montant_usufruit x TD_net / clé_usufruit / 12
+ * - amortissement comptable linéaire de l'usufruit, capitalisé dans une poche
+ *   "réemploi" au taux_reemploi, restituée à l'échéance
+ * - valeur terminale nue-propriété = montant_np / clé_np
+ * - valeur terminale pleine propriété = parts PP valorisées au prix de part
+ *   (éventuellement revalorisé chaque année)
+ */
+import keyData from '../../data/keys_demembrement.json'
+import { xirr } from './xirr'
+
+export type Montage = 'usu_np' | 'usu_pp'
+export type GrilleId = 'zen_atlas' | 'epsicap_2026' | 'ancienne' | 'manuel'
+
+export interface Investment {
+  id: string
+  nom: string
+  ticketTotal: number
+  dureeAnnees: number
+  /** 0..1 — part du ticket en usufruit ; le reste en NP (ou PP si montage usu_pp) */
+  partUsufruit: number
+  prixPart: number
+  tdNet: number
+  tauxReemploi: number
+  delaiJouissanceMois: number
+  /** Mois d'investissement, format YYYY-MM */
+  moisInvestissement: string
+  grille: GrilleId
+  cleUsufruitManuelle: number
+  montage: Montage
+  croissancePrixPart: number
+}
+
+interface KeyRow {
+  cle_usufruit: number
+  cle_np: number
+}
+type Grid = Record<string, KeyRow>
+
+const GRIDS = keyData.grids as Record<Exclude<GrilleId, 'manuel'>, Grid>
+const PRESETS = keyData.presets
+
+export const GRILLE_LABELS: Record<GrilleId, string> = {
+  zen_atlas: 'Iroko Zen / Atlas',
+  epsicap_2026: 'Epsicap Nano 2026',
+  ancienne: 'Ancienne grille',
+  manuel: 'Clé manuelle',
+}
+
+export const MONTAGE_LABELS: Record<Montage, string> = {
+  usu_np: 'Usufruit / Nue-propriété',
+  usu_pp: 'Usufruit / Pleine propriété',
+}
+
+export function gridDurations(grille: GrilleId): number[] {
+  if (grille === 'manuel') return []
+  return Object.keys(GRIDS[grille]).map(Number).sort((a, b) => a - b)
+}
+
+export function gridRows(grille: Exclude<GrilleId, 'manuel'>) {
+  return gridDurations(grille).map((d) => ({ duree: d, ...GRIDS[grille][String(d)] }))
+}
+
+export function resolveCle(inv: Investment): { cleUsu: number; cleNp: number } {
+  if (inv.grille === 'manuel') {
+    return { cleUsu: inv.cleUsufruitManuelle, cleNp: 1 - inv.cleUsufruitManuelle }
+  }
+  const row = GRIDS[inv.grille][String(inv.dureeAnnees)]
+  if (!row) {
+    const d = gridDurations(inv.grille)
+    throw new Error(`Durée ${inv.dureeAnnees} ans absente du barème (${d[0]}–${d[d.length - 1]} ans).`)
+  }
+  return { cleUsu: row.cle_usufruit, cleNp: row.cle_np }
+}
+
+function monthlyDates(mois: string, nMonths: number): Date[] {
+  const [y, m] = mois.split('-').map(Number)
+  return Array.from({ length: nMonths + 1 }, (_, i) => new Date(Date.UTC(y, m - 1 + i, 1)))
+}
+
+export interface CashflowRow {
+  date: Date
+  /** Flux investisseur (usufruit seul) */
+  usu: number
+  /** Flux nue-propriété ou pleine propriété */
+  np: number
+  /** Flux total blendé (sans réemploi) */
+  blend: number
+  /** Flux total blendé avec réemploi de l'amortissement */
+  blendReemploi: number
+}
+
+export interface Metric {
+  key: string
+  label: string
+  value: number | null
+  /** Métrique principale utilisée pour le classement */
+  headline?: boolean
+}
+
+export interface Result {
+  cleUsu: number
+  cleNp: number
+  metrics: Metric[]
+  headline: Metric
+  cashflows: CashflowRow[]
+  totalInvesti: number
+  totalRecu: number
+  multiple: number
+}
+
+function buildUsuNp(inv: Investment, cleUsu: number, cleNp: number): CashflowRow[] {
+  const dureeMois = inv.dureeAnnees * 12
+  const montantUsu = inv.ticketTotal * inv.partUsufruit
+  const montantNp = inv.ticketTotal * (1 - inv.partUsufruit)
+  const delai = inv.delaiJouissanceMois
+
+  const couponAnnuel = cleUsu ? (montantUsu * inv.tdNet) / cleUsu : 0
+  const amortMensuel = dureeMois ? montantUsu / dureeMois : 0
+  const valeurNpTerme = cleNp ? montantNp / cleNp : 0
+
+  const dates = monthlyDates(inv.moisInvestissement, dureeMois)
+  const rows: CashflowRow[] = []
+  let poche = 0
+  for (let m = 0; m <= dureeMois; m++) {
+    let usu: number, np: number, blendReemploi: number
+    if (m === 0) {
+      usu = -montantUsu
+      np = -montantNp
+      blendReemploi = -(montantUsu + montantNp)
+    } else {
+      const coupon = delai < m && m <= delai + dureeMois ? couponAnnuel / 12 : 0
+      poche = poche * Math.pow(1 + inv.tauxReemploi, 1 / 12) + amortMensuel
+      usu = coupon
+      np = m === dureeMois ? valeurNpTerme : 0
+      blendReemploi = coupon - amortMensuel + np + (m === dureeMois ? poche : 0)
+    }
+    rows.push({ date: dates[m], usu, np, blend: usu + np, blendReemploi })
+  }
+  return rows
+}
+
+function buildUsuPp(inv: Investment, cleUsu: number): CashflowRow[] {
+  const dureeMois = inv.dureeAnnees * 12
+  const montantUsu = inv.ticketTotal * inv.partUsufruit
+  const montantPp = inv.ticketTotal * (1 - inv.partUsufruit)
+  const nbPartsUsu = cleUsu ? montantUsu / (inv.prixPart * cleUsu) : 0
+  const nbPartsPp = montantPp / inv.prixPart
+
+  const dates = monthlyDates(inv.moisInvestissement, dureeMois)
+  const rows: CashflowRow[] = []
+  for (let m = 0; m <= dureeMois; m++) {
+    let usu: number, np: number
+    if (m === 0) {
+      usu = -montantUsu
+      np = -montantPp
+    } else {
+      const annee = Math.floor((m - 1) / 12)
+      const prix = inv.prixPart * Math.pow(1 + inv.croissancePrixPart, annee)
+      usu = (nbPartsUsu * prix * inv.tdNet) / 12
+      np = (nbPartsPp * prix * inv.tdNet) / 12
+      if (m === dureeMois) {
+        np += nbPartsPp * inv.prixPart * Math.pow(1 + inv.croissancePrixPart, inv.dureeAnnees)
+      }
+    }
+    const total = usu + np
+    rows.push({ date: dates[m], usu, np, blend: total, blendReemploi: total })
+  }
+  return rows
+}
+
+const irr = (rows: CashflowRow[], col: keyof Omit<CashflowRow, 'date'>) =>
+  xirr(
+    rows.map((r) => r.date),
+    rows.map((r) => r[col]),
+  )
+
+export function compute(inv: Investment): Result {
+  const { cleUsu, cleNp } = resolveCle(inv)
+  let cashflows: CashflowRow[]
+  let metrics: Metric[]
+
+  if (inv.montage === 'usu_np') {
+    cashflows = buildUsuNp(inv, cleUsu, cleNp)
+    metrics = [
+      { key: 'usu', label: 'TRI usufruit (cash)', value: irr(cashflows, 'usu') },
+      ...(inv.partUsufruit < 1
+        ? [{ key: 'np', label: 'TRI nue-propriété', value: irr(cashflows, 'np') }]
+        : []),
+      { key: 'blend', label: 'TRI blendé', value: irr(cashflows, 'blend') },
+      { key: 'blendReemploi', label: 'TRI blendé + réemploi', value: irr(cashflows, 'blendReemploi'), headline: true },
+    ]
+  } else {
+    cashflows = buildUsuPp(inv, cleUsu)
+    metrics = [{ key: 'blend', label: 'TRI blendé (usu + PP)', value: irr(cashflows, 'blend'), headline: true }]
+  }
+
+  const col: keyof CashflowRow = inv.montage === 'usu_np' ? 'blendReemploi' : 'blend'
+  const totalInvesti = -cashflows[0][col]
+  const totalRecu = cashflows.slice(1).reduce((s, r) => s + r[col], 0)
+
+  return {
+    cleUsu,
+    cleNp,
+    metrics,
+    headline: metrics.find((m) => m.headline)!,
+    cashflows,
+    totalInvesti,
+    totalRecu,
+    multiple: totalInvesti ? totalRecu / totalInvesti : 0,
+  }
+}
+
+let counter = 0
+export const newId = () => `inv-${Date.now().toString(36)}-${(counter++).toString(36)}`
+
+export function presetInvestment(nom: keyof typeof PRESETS): Investment {
+  const p = PRESETS[nom]
+  return {
+    id: newId(),
+    nom,
+    ticketTotal: p.montant_usu,
+    dureeAnnees: p.duree_annees,
+    partUsufruit: p.part_usufruit,
+    prixPart: p.prix_part,
+    tdNet: p.td_net,
+    tauxReemploi: p.taux_reemploi,
+    delaiJouissanceMois: p.delai_jouissance_mois,
+    moisInvestissement: '2027-01',
+    grille: p.grille as GrilleId,
+    cleUsufruitManuelle: 0.2,
+    montage: 'usu_np',
+    croissancePrixPart: 0,
+  }
+}
+
+export const PRESET_NAMES = Object.keys(PRESETS) as (keyof typeof PRESETS)[]
+
+export function blankInvestment(index: number): Investment {
+  return {
+    id: newId(),
+    nom: `Investissement ${index}`,
+    ticketTotal: 1_000_000,
+    dureeAnnees: 5,
+    partUsufruit: 0.5,
+    prixPart: 250,
+    tdNet: 0.055,
+    tauxReemploi: 0.04,
+    delaiJouissanceMois: 0,
+    moisInvestissement: '2027-01',
+    grille: 'epsicap_2026',
+    cleUsufruitManuelle: 0.2,
+    montage: 'usu_np',
+    croissancePrixPart: 0,
+  }
+}

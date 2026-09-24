@@ -1,4 +1,3 @@
-streamlit>=1.40
 pandas>=2.0
 pyxirr>=0.10
 openpyxl>=3.1

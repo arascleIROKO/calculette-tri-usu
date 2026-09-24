@@ -1,29 +1,33 @@
-# Calculette TRI USU
+# FundToolBox
 
-Comparateur de TRI pour des investissements en usufruit (démembrement de parts SCPI),
-sur le modèle de l'onglet `06.3 - USU TRI` du BP Iroko Next.
+Boîte à outils web pour l'analyse de fonds. Premier outil : **comparateur de TRI usufruit**
+(démembrement de parts SCPI), sur le modèle de l'onglet `06.3 - USU TRI` du BP Iroko Next.
 
-Iroko Zen et Iroko Atlas sont toujours proposés comme investissements de référence ;
-n'importe quel autre investissement en usufruit (Epsicap Nano ou autre, montage
-usufruit/nue-propriété ou usufruit/pleine propriété) peut être ajouté à la comparaison.
+Iroko Zen et Iroko Atlas sont proposés comme investissements de référence ; n'importe quel
+autre investissement (Epsicap Nano ou autre, montage usufruit/nue-propriété ou
+usufruit/pleine propriété) peut être ajouté, dupliqué et modifié. Les calculs se font en direct
+dans le navigateur, les investissements sont conservés localement (localStorage).
 
 ## Lancer en local
 
 ```bash
-pip install -r requirements.txt
-streamlit run app.py
+npm install
+npm run dev      # http://localhost:5173
+npm test         # tests de parité avec le moteur Python
+npm run build    # build statique dans dist/
 ```
 
 ## Structure
 
-- `app.py` — application Streamlit (interface de comparaison).
-- `tri_core.py` — moteur de calcul (flux de trésorerie mensuels + XIRR), indépendant de Streamlit.
-- `data/keys_demembrement.json` — barèmes de clés de démembrement (durée → % usufruit) et
-  hypothèses par défaut d'Iroko Zen / Atlas, extraits une fois du BP Excel via
-  `scripts/extract_key_grids.py`.
-- `scripts/extract_key_grids.py` — script de (ré)extraction des barèmes depuis le BP `.xlsm`
-  (à relancer si le BP est mis à jour ; le fichier `.xlsm` n'est jamais versionné).
-- `Calculette_TRI_USU.ipynb` — notebook Jupyter équivalent, pour un usage exploratoire hors app.
+- `src/lib/usufruit.ts` — moteur de calcul (flux mensuels, clés de démembrement, TRI).
+- `src/lib/xirr.ts` — XIRR (Newton + bissection, base Exact/365, identique à pyxirr / Excel).
+- `src/lib/usufruit.test.ts` — tests vérifiant les TRI contre les valeurs de `tri_core.py`.
+- `src/tools/usufruit/` — interface du comparateur.
+- `data/keys_demembrement.json` — barèmes de clés (durée → % usufruit) et hypothèses Zen / Atlas,
+  extraits du BP Excel via `scripts/extract_key_grids.py` (à relancer si le BP change ; le `.xlsm`
+  n'est jamais versionné).
+- `tri_core.py` + `Calculette_TRI_USU.ipynb` — moteur Python de référence et notebook exploratoire
+  (`pip install -r requirements.txt`).
 
 ## Méthodologie
 
@@ -35,14 +39,12 @@ streamlit run app.py
   revalorisé chaque année pour le montage usufruit/pleine propriété).
 - TRI calculés en XIRR sur les flux mensuels datés.
 
-## Déploiement Streamlit Community Cloud
+## Déploiement
 
-1. Pousser ce repo sur GitHub (déjà fait si vous lisez ceci depuis le repo distant).
-2. Aller sur [share.streamlit.io](https://share.streamlit.io), se connecter avec le compte GitHub
-   ayant accès au repo.
-3. "New app" → sélectionner ce repo, la branche `main`, et `app.py` comme fichier principal.
-4. Déployer. Le fichier `requirements.txt` à la racine est détecté automatiquement.
+Application 100 % statique : aucun serveur requis.
 
-> Note : pour un repo **privé**, il faut un compte Streamlit Community Cloud relié à une
-> organisation GitHub autorisée (ou un plan payant Streamlit). Pour un déploiement gratuit
-> sans restriction, passer le repo en public au préalable.
+- **GitHub Pages** (configuré) : le workflow `.github/workflows/deploy.yml` teste, build et publie à
+  chaque push sur `main`. À activer une fois dans *Settings → Pages → Source : GitHub Actions*.
+  Sur un repo privé, GitHub Pages nécessite un plan GitHub payant (Team / Enterprise).
+- **Alternatives** : Vercel, Netlify ou Cloudflare Pages — importer le repo, commande `npm run build`,
+  dossier de sortie `dist`.
