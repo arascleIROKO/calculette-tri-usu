@@ -39,3 +39,15 @@ describe('base SCPI du marché', () => {
     expect(a.headline.value).toBeCloseTo(b.headline.value!, 12)
   })
 })
+
+describe('opportunités usufruit', () => {
+  it('une ligne par SCPI avec TD et par durée de son barème, TRI = compute 100 % usufruit', async () => {
+    const { usufruitOpportunities } = await import('./usufruit')
+    const rows = usufruitOpportunities()
+    const expected = SCPIS.filter((s) => s.td != null).reduce((n, s) => n + Object.keys(s.cles).length, 0)
+    expect(rows.length).toBe(expected)
+    const r = rows[0]
+    const ref = compute({ ...blankInvestment(0), partUsufruit: 1, dureeAnnees: r.duree, grille: `scpi:${r.scpi.id}`, tdNet: r.td })
+    expect(r.tri).toBeCloseTo(ref.headline.value!, 12)
+  })
+})

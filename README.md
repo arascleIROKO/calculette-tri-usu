@@ -6,6 +6,8 @@ Boîte à outils web pour l'analyse de fonds. Premier outil : **comparateur de T
 Outils :
 - **TRI Usufruit** : comparateur d'investissements usufruit / nue-propriété / pleine propriété, TRI par jambe,
   détail par clé, frais d'acquisition et rétrocession sur la NP / PP, classement sur toutes les SCPI du marché.
+- **Meilleurs TRI par clé** : pour chaque durée (donc chaque clé), classement des SCPI du marché par TRI
+  100 % usufruit avec leur TD publié, pour repérer les prochains investissements usufruit potentiels.
 - **Clés d'usufruit** : base des barèmes de clés d'usufruit des SCPI du marché (avec TD et prix de part).
 
 Iroko Zen et Iroko Atlas sont proposés comme investissements de référence ; n'importe quel

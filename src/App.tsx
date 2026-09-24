@@ -2,19 +2,22 @@ import { useEffect, useState } from 'react'
 import { scpiDurations, type Scpi } from './lib/scpi'
 import { blankInvestment } from './lib/usufruit'
 import { ClesTool } from './tools/cles/ClesTool'
+import { TopTool } from './tools/top/TopTool'
 import { useInvestments } from './tools/usufruit/useInvestments'
 import { UsufruitTool } from './tools/usufruit/UsufruitTool'
 
-type ToolId = 'usufruit' | 'cles'
+type ToolId = 'usufruit' | 'top' | 'cles'
 
-const TOOLS: { id: ToolId | string; label: string; ready: boolean }[] = [
-  { id: 'usufruit', label: 'TRI Usufruit', ready: true },
-  { id: 'cles', label: 'Clés d’usufruit', ready: true },
-  { id: 'np', label: 'TRI Nue-propriété', ready: false },
-  { id: 'scpi', label: 'Rendement SCPI', ready: false },
+const TOOLS: { id: ToolId; label: string }[] = [
+  { id: 'usufruit', label: 'TRI Usufruit' },
+  { id: 'top', label: 'Meilleurs TRI par clé' },
+  { id: 'cles', label: 'Clés d’usufruit' },
 ]
 
-const readHash = (): ToolId => (window.location.hash === '#cles' ? 'cles' : 'usufruit')
+const readHash = (): ToolId => {
+  const h = window.location.hash.slice(1)
+  return h === 'cles' || h === 'top' ? h : 'usufruit'
+}
 
 export default function App() {
   const [tool, setTool] = useState<ToolId>(readHash)
@@ -27,19 +30,21 @@ export default function App() {
   }, [])
 
   const go = (t: ToolId) => {
-    window.location.hash = t === 'cles' ? 'cles' : ''
+    window.location.hash = t === 'usufruit' ? '' : t
     setTool(t)
     window.scrollTo({ top: 0 })
   }
 
-  const compareScpi = (s: Scpi) => {
+  /** Ajoute un investissement sur le barème de la SCPI (à la durée donnée, 100 % usufruit) et ouvre le comparateur */
+  const compareScpi = (s: Scpi, duree?: number) => {
     const durations = scpiDurations(s)
     const base = blankInvestment(store.investments.length + 1)
     store.add({
       ...base,
-      nom: s.nom,
+      nom: duree ? `${s.nom} — ${duree} ans` : s.nom,
       grille: `scpi:${s.id}`,
-      dureeAnnees: durations.includes(base.dureeAnnees) ? base.dureeAnnees : durations[0],
+      ...(duree ? { partUsufruit: 1 } : {}),
+      dureeAnnees: duree ?? (durations.includes(base.dureeAnnees) ? base.dureeAnnees : durations[0]),
       tdNet: s.td ?? base.tdNet,
       prixPart: s.prixPart ?? base.prixPart,
     })
@@ -58,30 +63,25 @@ export default function App() {
           </div>
           <nav className="flex gap-1 overflow-x-auto px-3 pb-3 lg:flex-col lg:pb-0">
             <p className="hidden px-2 pb-2 text-[11px] font-medium uppercase tracking-wider text-slate-500 lg:block">Outils</p>
-            {TOOLS.map((t) =>
-              t.ready ? (
-                <button
-                  key={t.id}
-                  onClick={() => go(t.id as ToolId)}
-                  aria-current={tool === t.id ? 'page' : undefined}
-                  className={`flex shrink-0 items-center rounded-lg px-3 py-2 text-left text-sm transition ${
-                    tool === t.id ? 'bg-white/10 font-medium text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
-                  }`}
-                >
-                  {t.label}
-                </button>
-              ) : (
-                <span key={t.id} className="flex shrink-0 cursor-not-allowed items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm text-slate-500">
-                  {t.label}
-                  <span className="rounded bg-white/5 px-1.5 py-0.5 text-[10px] text-slate-500">bientôt</span>
-                </span>
-              ),
-            )}
+            {TOOLS.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => go(t.id)}
+                aria-current={tool === t.id ? 'page' : undefined}
+                className={`flex shrink-0 items-center rounded-lg px-3 py-2 text-left text-sm transition ${
+                  tool === t.id ? 'bg-white/10 font-medium text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
           </nav>
         </div>
       </aside>
       <main className="min-w-0 flex-1">
-        {tool === 'cles' ? <ClesTool onUse={compareScpi} /> : <UsufruitTool store={store} />}
+        {tool === 'cles' && <ClesTool onUse={(s) => compareScpi(s)} />}
+        {tool === 'top' && <TopTool onUse={compareScpi} />}
+        {tool === 'usufruit' && <UsufruitTool store={store} />}
       </main>
     </div>
   )

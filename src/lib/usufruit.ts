@@ -329,3 +329,26 @@ export function scpiScenarios(inv: Investment, { useScpiHypotheses }: { useScpiH
     return { scpi, inv: v, result: compute(v) }
   })
 }
+
+export interface Opportunity {
+  scpi: Scpi
+  duree: number
+  cleUsu: number
+  td: number
+  tri: number | null
+}
+
+/**
+ * Marché de l'usufruit : TRI d'un investissement 100 % usufruit sur chaque SCPI et chaque durée de
+ * son barème, avec le TD publié de la SCPI (SCPI sans TD publié exclues). Le TRI ne dépend ni du
+ * ticket ni du prix de part.
+ */
+export function usufruitOpportunities({ delaiJouissanceMois = 0 } = {}): Opportunity[] {
+  const base = { ...blankInvestment(0), partUsufruit: 1, delaiJouissanceMois }
+  return SCPIS.filter((s) => s.td != null).flatMap((scpi) =>
+    scpiDurations(scpi).map((duree) => {
+      const r = compute({ ...base, dureeAnnees: duree, grille: `scpi:${scpi.id}`, tdNet: scpi.td! })
+      return { scpi, duree, cleUsu: r.cleUsu, td: scpi.td!, tri: r.headline.value }
+    }),
+  )
+}
