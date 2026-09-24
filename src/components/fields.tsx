@@ -134,20 +134,28 @@ export function SelectField<T extends string>({
 }: {
   label: string
   value: T
-  options: { value: T; label: string }[]
+  options: { value: T; label: string; group?: string }[]
   onChange: (v: T) => void
 }) {
+  const groups = [...new Set(options.map((o) => o.group ?? ''))]
+  const render = (o: { value: T; label: string }) => (
+    <option key={o.value} value={o.value}>
+      {o.label}
+    </option>
+  )
   return (
     <Field label={label}>
       {(id) => (
         <select id={id} className={`${inputBase} appearance-none bg-[length:16px] bg-[right_0.6rem_center] bg-no-repeat pr-8`}
           style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2394a3b8'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z'/%3E%3C/svg%3E\")" }}
           value={value} onChange={(e) => onChange(e.target.value as T)}>
-          {options.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
+          {groups.length > 1
+            ? groups.map((g) => (
+                <optgroup key={g} label={g}>
+                  {options.filter((o) => (o.group ?? '') === g).map(render)}
+                </optgroup>
+              ))
+            : options.map(render)}
         </select>
       )}
     </Field>

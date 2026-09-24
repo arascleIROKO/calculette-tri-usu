@@ -1,16 +1,16 @@
 import { useMemo, useState } from 'react'
 import { fmtEur, fmtMultiple, fmtPct, SERIES_COLORS } from '../../lib/format'
-import { compute, GRILLE_LABELS, PRESET_NAMES, type Investment, type Result } from '../../lib/usufruit'
+import { compute, grilleLabel, PRESET_NAMES, type Investment, type Result } from '../../lib/usufruit'
 import { CashflowChart, TriBarChart } from './charts'
 import { InvestmentEditor } from './InvestmentEditor'
 import { KeyDetail } from './KeyDetail'
 import { Methodology } from './Methodology'
-import { useInvestments } from './useInvestments'
+import { ScpiCompare } from './ScpiCompare'
+import type { useInvestments } from './useInvestments'
 
 type Computed = { inv: Investment; color: string; result: Result | null; error: string | null }
 
-export function UsufruitTool() {
-  const store = useInvestments()
+export function UsufruitTool({ store }: { store: ReturnType<typeof useInvestments> }) {
   const { investments, selected } = store
 
   const computed: Computed[] = useMemo(
@@ -123,6 +123,8 @@ export function UsufruitTool() {
 
           {current?.result && <KeyDetail inv={current.inv} onPick={(patch) => store.update(current.inv.id, patch)} />}
 
+          {current && <ScpiCompare inv={current.inv} onPick={(patch) => store.update(current.inv.id, patch)} />}
+
           <Card title="Classement" subtitle="TRI principal : blendé + réemploi (Usu/NP) ou blendé (Usu/PP)">
             <div className="px-3 pb-3">
               {ranked.length ? (
@@ -155,7 +157,7 @@ const METRIC_ROWS: { key: string; label: string }[] = [
 function ComparisonTable({ computed, onSelect, selectedId }: { computed: Computed[]; onSelect: (id: string) => void; selectedId?: string }) {
   const rows: { label: string; render: (c: Computed) => React.ReactNode; strong?: boolean }[] = [
     { label: 'Montage', render: (c) => (c.inv.montage === 'usu_np' ? 'Usu / NP' : 'Usu / PP') },
-    { label: 'Barème', render: (c) => GRILLE_LABELS[c.inv.grille] },
+    { label: 'Barème', render: (c) => grilleLabel(c.inv.grille) },
     { label: 'Ticket', render: (c) => fmtEur(c.inv.ticketTotal) },
     { label: 'Durée', render: (c) => `${c.inv.dureeAnnees} ans` },
     { label: 'Part usufruit', render: (c) => `${Math.round(c.inv.partUsufruit * 100)} %` },

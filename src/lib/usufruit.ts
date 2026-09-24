@@ -8,12 +8,19 @@
  * - valeur terminale nue-propriété = montant_np / clé_np
  * - valeur terminale pleine propriété = parts PP valorisées au prix de part
  *   (éventuellement revalorisé chaque année)
+ *
+ * Frais d'acquisition sur la NP / PP (hors BP, inclus dans le prix comme une commission de
+ * souscription) : sortie à la valeur de retrait = valeur x (1 - frais). La rétrocession, en % du
+ * montant NP / PP, est encaissée à la date d'investissement.
  */
 import keyData from '../../data/keys_demembrement.json'
+import { SCPIS, scpiById, scpiDurations, type Scpi } from './scpi'
 import { xirr } from './xirr'
 
 export type Montage = 'usu_np' | 'usu_pp'
-export type GrilleId = 'zen_atlas' | 'epsicap_2026' | 'ancienne' | 'manuel'
+export type BpGrilleId = 'zen_atlas' | 'epsicap_2026' | 'ancienne'
+/** Barème du BP, clé manuelle, ou barème d'une SCPI du marché (`scpi:<id>`) */
+export type GrilleId = BpGrilleId | 'manuel' | `scpi:${string}`
 
 export interface Investment {
   id: string
@@ -32,6 +39,10 @@ export interface Investment {
   cleUsufruitManuelle: number
   montage: Montage
   croissancePrixPart: number
+  /** Frais d'acquisition sur la NP / PP, inclus dans le prix (0..1) */
+  fraisAcq: number
+  /** Rétrocession en % du montant NP / PP (0..1) */
+  retroFrais: number
 }
 
 interface KeyRow {
@@ -40,14 +51,21 @@ interface KeyRow {
 }
 type Grid = Record<string, KeyRow>
 
-const GRIDS = keyData.grids as Record<Exclude<GrilleId, 'manuel'>, Grid>
+const GRIDS = keyData.grids as Record<BpGrilleId, Grid>
 const PRESETS = keyData.presets
 
-export const GRILLE_LABELS: Record<GrilleId, string> = {
+export const GRILLE_LABELS: Record<BpGrilleId | 'manuel', string> = {
   zen_atlas: 'Iroko Zen / Atlas',
   epsicap_2026: 'Epsicap Nano 2026',
   ancienne: 'Ancienne grille',
   manuel: 'Clé manuelle',
+}
+
+const scpiOf = (grille: GrilleId) => (grille.startsWith('scpi:') ? scpiById(grille.slice(5)) : undefined)
+
+export function grilleLabel(grille: GrilleId): string {
+  if (grille.startsWith('scpi:')) return scpiOf(grille)?.nom ?? 'SCPI inconnue'
+  return GRILLE_LABELS[grille as BpGrilleId | 'manuel']
 }
 
 export const MONTAGE_LABELS: Record<Montage, string> = {
@@ -57,10 +75,14 @@ export const MONTAGE_LABELS: Record<Montage, string> = {
 
 export function gridDurations(grille: GrilleId): number[] {
   if (grille === 'manuel') return []
-  return Object.keys(GRIDS[grille]).map(Number).sort((a, b) => a - b)
+  if (grille.startsWith('scpi:')) {
+    const s = scpiOf(grille)
+    return s ? scpiDurations(s) : []
+  }
+  return Object.keys(GRIDS[grille as BpGrilleId]).map(Number).sort((a, b) => a - b)
 }
 
-export function gridRows(grille: Exclude<GrilleId, 'manuel'>) {
+export function gridRows(grille: BpGrilleId) {
   return gridDurations(grille).map((d) => ({ duree: d, ...GRIDS[grille][String(d)] }))
 }
 
@@ -68,7 +90,15 @@ export function resolveCle(inv: Investment): { cleUsu: number; cleNp: number } {
   if (inv.grille === 'manuel') {
     return { cleUsu: inv.cleUsufruitManuelle, cleNp: 1 - inv.cleUsufruitManuelle }
   }
-  const row = GRIDS[inv.grille][String(inv.dureeAnnees)]
+  let row: KeyRow | undefined
+  if (inv.grille.startsWith('scpi:')) {
+    const s = scpiOf(inv.grille)
+    if (!s) throw new Error(`Barème SCPI introuvable (${inv.grille.slice(5)}).`)
+    const k = s.cles[String(inv.dureeAnnees)]
+    row = k == null ? undefined : { cle_usufruit: k, cle_np: 1 - k }
+  } else {
+    row = GRIDS[inv.grille as BpGrilleId][String(inv.dureeAnnees)]
+  }
   if (!row) {
     const d = gridDurations(inv.grille)
     throw new Error(`Durée ${inv.dureeAnnees} ans absente du barème (${d[0]}–${d[d.length - 1]} ans).`)
@@ -122,7 +152,7 @@ function buildUsuNp(inv: Investment, cleUsu: number, cleNp: number): CashflowRow
 
   const couponAnnuel = cleUsu ? (montantUsu * inv.tdNet) / cleUsu : 0
   const amortMensuel = dureeMois ? montantUsu / dureeMois : 0
-  const valeurNpTerme = cleNp ? montantNp / cleNp : 0
+  const valeurNpTerme = cleNp ? (montantNp * (1 - inv.fraisAcq)) / cleNp : 0
 
   const dates = monthlyDates(inv.moisInvestissement, dureeMois)
   const rows: CashflowRow[] = []
@@ -132,7 +162,7 @@ function buildUsuNp(inv: Investment, cleUsu: number, cleNp: number): CashflowRow
     if (m === 0) {
       usu = -montantUsu
       usuReemploi = -montantUsu
-      np = -montantNp
+      np = -montantNp * (1 - inv.retroFrais)
     } else {
       const coupon = delai < m && m <= delai + dureeMois ? couponAnnuel / 12 : 0
       poche = poche * Math.pow(1 + inv.tauxReemploi, 1 / 12) + amortMensuel
@@ -158,14 +188,14 @@ function buildUsuPp(inv: Investment, cleUsu: number): CashflowRow[] {
     let usu: number, np: number
     if (m === 0) {
       usu = -montantUsu
-      np = -montantPp
+      np = -montantPp * (1 - inv.retroFrais)
     } else {
       const annee = Math.floor((m - 1) / 12)
       const prix = inv.prixPart * Math.pow(1 + inv.croissancePrixPart, annee)
       usu = (nbPartsUsu * prix * inv.tdNet) / 12
       np = (nbPartsPp * prix * inv.tdNet) / 12
       if (m === dureeMois) {
-        np += nbPartsPp * inv.prixPart * Math.pow(1 + inv.croissancePrixPart, inv.dureeAnnees)
+        np += nbPartsPp * inv.prixPart * Math.pow(1 + inv.croissancePrixPart, inv.dureeAnnees) * (1 - inv.fraisAcq)
       }
     }
     const total = usu + np
@@ -244,6 +274,8 @@ export function presetInvestment(nom: keyof typeof PRESETS): Investment {
     cleUsufruitManuelle: 0.2,
     montage: 'usu_np',
     croissancePrixPart: 0,
+    fraisAcq: 0,
+    retroFrais: 0,
   }
 }
 
@@ -265,6 +297,8 @@ export function blankInvestment(index: number): Investment {
     cleUsufruitManuelle: 0.2,
     montage: 'usu_np',
     croissancePrixPart: 0,
+    fraisAcq: 0,
+    retroFrais: 0,
   }
 }
 
@@ -290,5 +324,27 @@ export function keyScenarios(inv: Investment): KeyScenario[] {
   return variants.map((v) => {
     const result = compute(v)
     return { duree: v.dureeAnnees, cleUsu: result.cleUsu, inv: v, result }
+  })
+}
+
+export interface ScpiScenario {
+  scpi: Scpi
+  inv: Investment
+  result: Result
+}
+
+/**
+ * Comparatif marché : l'investissement recalculé avec le barème de chaque SCPI disposant d'une clé à
+ * sa durée. Avec `useScpiHypotheses`, le TD et le prix de part publiés de la SCPI remplacent ceux saisis.
+ */
+export function scpiScenarios(inv: Investment, { useScpiHypotheses }: { useScpiHypotheses: boolean }): ScpiScenario[] {
+  return SCPIS.filter((s) => s.cles[String(inv.dureeAnnees)] != null).map((scpi) => {
+    const v: Investment = {
+      ...inv,
+      grille: `scpi:${scpi.id}`,
+      ...(useScpiHypotheses && scpi.td != null ? { tdNet: scpi.td } : {}),
+      ...(useScpiHypotheses && scpi.prixPart != null ? { prixPart: scpi.prixPart } : {}),
+    }
+    return { scpi, inv: v, result: compute(v) }
   })
 }

@@ -7,6 +7,9 @@ const ITEMS = [
   ['Réemploi', 'L’usufruit est amorti linéairement ; l’amortissement est capitalisé au taux de réemploi et restitué à l’échéance.'],
   ['Nue-propriété', 'Valeur à terme = montant NP ÷ clé NP (reconstitution de la pleine propriété).'],
   ['Pleine propriété', 'Parts valorisées au prix de part, éventuellement revalorisé chaque année ; dividendes sur usufruit + PP.'],
+  ['Frais d’acquisition', 'Sur la NP / PP uniquement, inclus dans le prix comme une commission de souscription : sortie à la valeur de retrait = valeur × (1 − frais). Le TD reste calculé sur le prix de souscription.'],
+  ['Rétrocession', 'En % du montant NP / PP, encaissée à la date d’investissement (réduit le décaissement initial).'],
+  ['SCPI du marché', 'Barèmes de clés, TD et prix de part publics (page « Clés d’usufruit »), collectés sur les sites des SGP et des courtiers : à revérifier avant engagement.'],
   ['TRI', 'XIRR sur flux mensuels datés (base Exact/365), identique au BP Iroko Next, onglet 06.3 – USU TRI.'],
 ] as const
 

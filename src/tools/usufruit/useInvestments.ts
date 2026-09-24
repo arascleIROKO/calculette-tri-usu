@@ -43,6 +43,7 @@ export function useInvestments() {
     select: setSelectedId,
     update: (id: string, patch: Partial<Investment>) =>
       setInvestments((xs) => xs.map((x) => (x.id === id ? { ...x, ...patch } : x))),
+    add,
     addBlank: () => add(blankInvestment(investments.length + 1)),
     addPreset: (name: Parameters<typeof presetInvestment>[0]) => add(presetInvestment(name)),
     duplicate: (id: string) => {

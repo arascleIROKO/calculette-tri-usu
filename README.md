@@ -3,6 +3,11 @@
 Boîte à outils web pour l'analyse de fonds. Premier outil : **comparateur de TRI usufruit**
 (démembrement de parts SCPI), sur le modèle de l'onglet `06.3 - USU TRI` du BP Iroko Next.
 
+Outils :
+- **TRI Usufruit** : comparateur d'investissements usufruit / nue-propriété / pleine propriété, TRI par jambe,
+  détail par clé, frais d'acquisition et rétrocession sur la NP / PP, classement sur toutes les SCPI du marché.
+- **Clés d'usufruit** : base des barèmes de clés d'usufruit des SCPI du marché (avec TD et prix de part).
+
 Iroko Zen et Iroko Atlas sont proposés comme investissements de référence ; n'importe quel
 autre investissement (Epsicap Nano ou autre, montage usufruit/nue-propriété ou
 usufruit/pleine propriété) peut être ajouté, dupliqué et modifié. Les calculs se font en direct
@@ -26,6 +31,10 @@ npm run build    # build statique dans dist/
 - `data/keys_demembrement.json` — barèmes de clés (durée → % usufruit) et hypothèses Zen / Atlas,
   extraits du BP Excel via `scripts/extract_key_grids.py` (à relancer si le BP change ; le `.xlsm`
   n'est jamais versionné).
+- `data/scpi_usufruit.json` — base des SCPI du marché (clés d'usufruit par durée, TD, prix de part, source,
+  fiabilité, statut de souscription), consolidée depuis les collectes brutes `data/raw/*.json` par
+  `python scripts/build_scpi_db.py data/raw/*.json`. Données publiques collectées en 09/2026 sur les sites des
+  SGP et des courtiers : à revérifier avant tout engagement.
 - `tri_core.py` + `Calculette_TRI_USU.ipynb` — moteur Python de référence et notebook exploratoire
   (`pip install -r requirements.txt`).
 

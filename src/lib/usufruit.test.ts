@@ -83,3 +83,30 @@ describe('détail par clé', () => {
     expect(new Set(rows.map((r) => r.duree))).toEqual(new Set([5]))
   })
 })
+
+describe("frais d'acquisition et rétrocession", () => {
+  const frais = { fraisAcq: 0.1, retroFrais: 0.07 }
+
+  it('NP : sortie à la valeur de retrait, rétro encaissée en t0', () => {
+    const inv: Investment = { ...blankInvestment(1), dureeAnnees: 5, ...frais }
+    expect(metric(inv, 'np')).toBeCloseTo(0.046749818655408594, 8)
+    expect(metric(inv, 'blendReemploi')).toBeCloseTo(0.052614376287423575, 8)
+    // la jambe usufruit n'est pas concernée
+    expect(metric(inv, 'usuReemploi')).toBeCloseTo(0.058462975631178145, 8)
+  })
+
+  it('PP : dividendes inchangés, sortie nette de frais', () => {
+    const inv: Investment = {
+      ...blankInvestment(1),
+      dureeAnnees: 7,
+      tdNet: 0.05,
+      grille: 'manuel',
+      cleUsufruitManuelle: 0.3,
+      montage: 'usu_pp',
+      croissancePrixPart: 0.01,
+      ...frais,
+    }
+    expect(metric(inv, 'np')).toBeCloseTo(0.061221605139178806, 8)
+    expect(metric(inv, 'blend')).toBeCloseTo(0.058656036788482954, 8)
+  })
+})

@@ -1,7 +1,15 @@
 import { MonthField, NumberField, Segmented, SelectField, SliderField, TextField } from '../../components/fields'
+import { SCPIS } from '../../lib/scpi'
 import { GRILLE_LABELS, MONTAGE_LABELS, type GrilleId, type Investment, type Montage } from '../../lib/usufruit'
 
-const GRILLE_OPTIONS = (Object.keys(GRILLE_LABELS) as GrilleId[]).map((g) => ({ value: g, label: GRILLE_LABELS[g] }))
+const GRILLE_OPTIONS: { value: GrilleId; label: string; group: string }[] = [
+  ...(Object.keys(GRILLE_LABELS) as (keyof typeof GRILLE_LABELS)[]).map((g) => ({
+    value: g as GrilleId,
+    label: GRILLE_LABELS[g],
+    group: 'Barèmes BP Iroko',
+  })),
+  ...SCPIS.map((s) => ({ value: `scpi:${s.id}` as GrilleId, label: `${s.nom} — ${s.sgp}`, group: 'SCPI du marché' })),
+]
 const MONTAGE_OPTIONS = (Object.keys(MONTAGE_LABELS) as Montage[]).map((m) => ({
   value: m,
   label: m === 'usu_np' ? 'Usu / NP' : 'Usu / PP',
@@ -54,6 +62,15 @@ export function InvestmentEditor({ inv, onChange }: { inv: Investment; onChange:
           <div />
         )}
       </Section>
+
+      {inv.partUsufruit < 1 && (
+        <Section title={`Frais sur la ${isPP ? 'pleine propriété' : 'nue-propriété'}`}>
+          <NumberField label="Frais d'acquisition" value={inv.fraisAcq} onChange={(fraisAcq) => onChange({ fraisAcq })}
+            suffix="%" scale={100} min={0} max={0.5} step={0.5} hint="Inclus dans le prix, sortie à la valeur de retrait" />
+          <NumberField label="Rétrocession" value={inv.retroFrais} onChange={(retroFrais) => onChange({ retroFrais })}
+            suffix="%" scale={100} min={0} max={0.5} step={0.5} hint={`En % du montant ${isPP ? 'PP' : 'NP'}, encaissée à l'investissement`} />
+        </Section>
+      )}
 
       <Section title="Hypothèses">
         <NumberField label="TD net" value={inv.tdNet} onChange={(tdNet) => onChange({ tdNet })} suffix="%" scale={100} min={0} step={0.1} />
