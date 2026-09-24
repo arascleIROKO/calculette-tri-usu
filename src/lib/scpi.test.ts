@@ -21,7 +21,7 @@ describe('base SCPI du marché', () => {
   it('comparatif marché : SCPI au TD comparable ayant une clé à la durée, hypothèses conservées', () => {
     const inv = { ...blankInvestment(1), dureeAnnees: 5 }
     const rows = scpiScenarios(inv)
-    const expected = SCPIS.filter((s) => s.cles['5'] != null && s.td != null && Math.abs(s.td - inv.tdNet) <= 0.01 + 1e-9)
+    const expected = SCPIS.filter((s) => s.cles['5'] != null && (s.tdCible ?? s.td) != null && Math.abs((s.tdCible ?? s.td)! - inv.tdNet) <= 0.01 + 1e-9)
     expect(rows.length).toBe(expected.length)
     for (const r of rows) {
       expect(r.inv.tdNet).toBe(inv.tdNet)
@@ -44,10 +44,10 @@ describe('opportunités usufruit (base Zen / Atlas)', () => {
     const { usufruitOpportunities, presetInvestment } = await import('./usufruit')
     const zen = presetInvestment('Iroko Zen')
     const rows = usufruitOpportunities(zen)
-    const comparable = SCPIS.filter((s) => s.td != null && Math.abs(s.td - zen.tdNet) <= 0.01 + 1e-9)
+    const comparable = SCPIS.filter((s) => (s.tdCible ?? s.td) != null && Math.abs((s.tdCible ?? s.td)! - zen.tdNet) <= 0.01 + 1e-9)
     expect(comparable.length).toBeGreaterThan(0)
     expect(rows.length).toBe(comparable.reduce((n, s) => n + Object.keys(s.cles).length, 0))
-    expect(rows.every((r) => Math.abs(r.scpi.td! - zen.tdNet) <= 0.01 + 1e-9)).toBe(true)
+    expect(rows.every((r) => Math.abs((r.scpi.tdCible ?? r.scpi.td)! - zen.tdNet) <= 0.01 + 1e-9)).toBe(true)
     const r = rows[0]
     const ref = compute({ ...zen, dureeAnnees: r.duree, grille: 'manuel', cleUsufruitManuelle: r.cleUsu })
     expect(r.tri).toBeCloseTo(ref.headline.value!, 12)
@@ -68,5 +68,24 @@ describe('clés atypiques', () => {
     expect(MEDIAN_KEYS.get(5)).toBeGreaterThan(0.15)
     for (const r of usufruitOpportunities(presetInvestment('Iroko Zen')))
       expect(r.cleAtypique).toBe(r.cleUsu < CLE_ATYPIQUE_RATIO * MEDIAN_KEYS.get(r.duree)!)
+  })
+})
+
+describe('pré-remplissage depuis une SCPI', () => {
+  it('scpiInvestment reprend barème, prix, TD cible (sinon réalisé), frais et délai', async () => {
+    const { scpiInvestment } = await import('./usufruit')
+    const s = SCPIS.find((x) => x.cles['5'] != null)!
+    const inv = scpiInvestment({ ...s, tdCible: 0.061, td: 0.05, prixPart: 187, commission: 0.1, delaiJouissance: 5 }, { partUsufruit: 1 })
+    expect(inv).toMatchObject({ grille: `scpi:${s.id}`, tdNet: 0.061, prixPart: 187, fraisAcq: 0.1, delaiJouissanceMois: 5, partUsufruit: 1, dureeAnnees: 5 })
+    expect(scpiInvestment({ ...s, tdCible: null, td: 0.05 }).tdNet).toBe(0.05)
+    expect(scpiInvestment({ ...s, commission: null, delaiJouissance: null })).toMatchObject({ fraisAcq: 0, delaiJouissanceMois: 0 })
+  })
+
+  it('paramètres collectés dans des bornes plausibles', () => {
+    for (const s of SCPIS) {
+      if (s.commission != null) expect(s.commission, s.nom).toBeGreaterThanOrEqual(0), expect(s.commission, s.nom).toBeLessThanOrEqual(0.2)
+      if (s.delaiJouissance != null) expect(s.delaiJouissance, s.nom).toBeLessThanOrEqual(12)
+      if (s.tdCible != null) expect(s.tdCible, s.nom).toBeGreaterThan(0), expect(s.tdCible, s.nom).toBeLessThan(0.2)
+    }
   })
 })

@@ -55,8 +55,11 @@ export function ClesTool({ onUse }: { onUse: (scpi: Scpi) => void }) {
             <thead className="bg-slate-50 text-slate-500">
               <tr>
                 <th className="sticky left-0 z-10 bg-slate-50 px-4 py-2.5 text-left font-medium">SCPI</th>
-                <th className="px-2 py-2.5 text-right font-medium">TD</th>
+                <th className="px-2 py-2.5 text-right font-medium">TD 2025</th>
+                <th className="px-2 py-2.5 text-right font-medium">TD cible</th>
                 <th className="px-2 py-2.5 text-right font-medium">Prix</th>
+                <th className="px-2 py-2.5 text-right font-medium">Frais</th>
+                <th className="px-2 py-2.5 text-right font-medium">Délai</th>
                 {DURATIONS.map((d) => (
                   <th key={d} className="px-1.5 py-2.5 text-center font-medium">{d} a</th>
                 ))}
@@ -77,7 +80,15 @@ export function ClesTool({ onUse }: { onUse: (scpi: Scpi) => void }) {
                     {s.td != null && s.td > TD_ATYPIQUE && <span className="text-amber-600" title="TD atypique : à vérifier"> ⚠</span>}
                     {s.anneeTd && <span className="block text-[10px] text-slate-400">{s.anneeTd}</span>}
                   </td>
+                  <td className="whitespace-nowrap px-2 py-2 text-right text-slate-700">
+                    {fmtPct(s.tdCible)}
+                    {s.anneeTdCible && <span className="block text-[10px] text-slate-400">{s.anneeTdCible}</span>}
+                  </td>
                   <td className="whitespace-nowrap px-2 py-2 text-right text-slate-700">{s.prixPart ? fmtEur(s.prixPart) : '—'}</td>
+                  <td className="whitespace-nowrap px-2 py-2 text-right text-slate-700">{s.commission != null ? fmtPct(s.commission) : '—'}</td>
+                  <td className="whitespace-nowrap px-2 py-2 text-right text-slate-700" title={s.delaiTexte ?? undefined}>
+                    {s.delaiJouissance != null ? `${s.delaiJouissance} m` : '—'}
+                  </td>
                   {DURATIONS.map((d) => {
                     const k = s.cles[String(d)]
                     return (

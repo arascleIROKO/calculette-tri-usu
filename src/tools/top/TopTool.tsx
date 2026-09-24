@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { NumberField, Segmented } from '../../components/fields'
 import { fmtPct, fmtPct1 } from '../../lib/format'
 import { CLE_ATYPIQUE_RATIO, MEDIAN_KEYS, type Scpi } from '../../lib/scpi'
-import { presetInvestment, referenceTri, usufruitOpportunities, type Investment, type Opportunity } from '../../lib/usufruit'
+import { presetInvestment, referenceTri, scpiTd, usufruitOpportunities, type Investment, type Opportunity } from '../../lib/usufruit'
 import { StatutBadge } from '../cles/ClesTool'
 
 const TOP_N = 3
@@ -52,8 +52,8 @@ export function TopTool({ onUse }: { onUse: (scpi: Scpi, duree: number, base: In
         <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">Meilleurs TRI usufruit par clé</h1>
         <p className="mt-1 max-w-3xl text-sm text-slate-500">
           Les hypothèses de référence {baseName} du BP (TD net {fmtPct(base.tdNet)}, 100 % usufruit) sont appliquées aux clés des
-          SCPI du marché : seule la clé change. Pour que la comparaison ait un sens, seules les SCPI dont le TD publié est proche du
-          TD de référence sont retenues, car chaque SGP fixe sa clé d’après le rendement de sa propre SCPI. C’est un repérage à
+          SCPI du marché : seule la clé change. Pour que la comparaison ait un sens, seules les SCPI dont le TD cible (à défaut le TD
+          réalisé) est proche du TD de référence sont retenues, car chaque SGP fixe sa clé d’après le rendement de sa propre SCPI. C’est un repérage à
           confirmer auprès de la société de gestion (clé en vigueur, disponibilité des parts).
         </p>
       </header>
@@ -74,7 +74,7 @@ export function TopTool({ onUse }: { onUse: (scpi: Scpi, duree: number, base: In
           <Toggle label="Exclure les barèmes « incertain »" checked={hideUncertain} onChange={setHideUncertain} />
         </div>
         <p className="pb-1 text-xs text-slate-500">
-          {nbScpi} SCPI retenues, TD publié entre {fmtPct(base.tdNet - tolerance)} et {fmtPct(base.tdNet + tolerance)}
+          {nbScpi} SCPI retenues, TD cible (à défaut réalisé) entre {fmtPct(base.tdNet - tolerance)} et {fmtPct(base.tdNet + tolerance)}
         </p>
       </section>
 
@@ -150,7 +150,7 @@ export function TopTool({ onUse }: { onUse: (scpi: Scpi, duree: number, base: In
               <p className="mt-0.5 text-xs text-slate-500">
                 {ranking.length} SCPI
                 {selRef && <> · référence {baseName} {fmtPct(selRef.tri)} (clé {fmtPct1(selRef.cleUsu)})</>}
-                {' '}· « Comparer » ajoute l’investissement au comparateur avec les hypothèses {baseName}.
+                {' '}· « Comparer » ouvre le comparateur pré-rempli avec les paramètres de la SCPI (TD cible, prix, frais, délai).
               </p>
             </div>
             <div className="flex flex-wrap gap-1">
@@ -173,7 +173,7 @@ export function TopTool({ onUse }: { onUse: (scpi: Scpi, duree: number, base: In
                   <th className="px-3 py-2.5 text-right font-medium">TRI ({baseName})</th>
                   <th className="px-3 py-2.5 text-right font-medium">vs réf.</th>
                   <th className="px-3 py-2.5 text-right font-medium">Clé usu</th>
-                  <th className="px-3 py-2.5 text-right font-medium">TD publié</th>
+                  <th className="px-3 py-2.5 text-right font-medium">TD cible</th>
                   <th className="px-3 py-2.5 text-left font-medium">Fiabilité</th>
                   <th className="px-5 py-2.5" />
                 </tr>
@@ -194,8 +194,8 @@ export function TopTool({ onUse }: { onUse: (scpi: Scpi, duree: number, base: In
                     </td>
                     <td className="px-3 py-2 text-right text-slate-700">{fmtPct1(o.cleUsu)}</td>
                     <td className="whitespace-nowrap px-3 py-2 text-right text-slate-500">
-                      {fmtPct(o.scpi.td)}
-                      {o.scpi.anneeTd && <span className="ml-1 text-[10px] text-slate-400">{o.scpi.anneeTd}</span>}
+                      {fmtPct(scpiTd(o.scpi))}
+                      {o.scpi.tdCible == null && <span className="ml-1 text-[10px] text-slate-400" title="Pas d’objectif publié : TD réalisé">réalisé</span>}
                     </td>
                     <td className="px-3 py-2 text-xs">
                       <a href={o.scpi.sourceUrl} target="_blank" rel="noreferrer"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { scpiDurations, type Scpi } from './lib/scpi'
-import { blankInvestment, newId, type Investment } from './lib/usufruit'
+import type { Scpi } from './lib/scpi'
+import { scpiInvestment, type Investment } from './lib/usufruit'
 import { ClesTool } from './tools/cles/ClesTool'
 import { TopTool } from './tools/top/TopTool'
 import { useInvestments } from './tools/usufruit/useInvestments'
@@ -35,26 +35,18 @@ export default function App() {
     window.scrollTo({ top: 0 })
   }
 
-  /** Ajoute un investissement sur le barème de la SCPI et ouvre le comparateur */
-  const compareScpi = (s: Scpi) => {
-    const durations = scpiDurations(s)
-    const base = blankInvestment(store.investments.length + 1)
-    store.add({
-      ...base,
-      nom: s.nom,
-      grille: `scpi:${s.id}`,
-      dureeAnnees: durations.includes(base.dureeAnnees) ? base.dureeAnnees : durations[0],
-      tdNet: s.td ?? base.tdNet,
-      prixPart: s.prixPart ?? base.prixPart,
-    })
+  /**
+   * « Comparer » : investissement 100 % usufruit pré-rempli avec les paramètres publiés de la SCPI
+   * (barème, prix de part, TD cible, frais de souscription, délai de jouissance), puis ouverture du comparateur.
+   */
+  const compareScpi = (s: Scpi, overrides: Partial<Investment> = {}) => {
+    store.add(scpiInvestment(s, { partUsufruit: 1, ...overrides }))
     go('usufruit')
   }
 
-  /** Barème de la SCPI avec les hypothèses de référence (Zen / Atlas) : seule la clé change */
-  const compareWithBase = (s: Scpi, duree: number, base: Investment) => {
-    store.add({ ...base, id: newId(), nom: `${s.nom} — ${duree} ans (base ${base.nom})`, grille: `scpi:${s.id}`, dureeAnnees: duree })
-    go('usufruit')
-  }
+  /** Depuis le classement par clé : durée choisie, ticket et date de la référence Zen / Atlas */
+  const compareFromRanking = (s: Scpi, duree: number, base: Investment) =>
+    compareScpi(s, { nom: `${s.nom} — ${duree} ans`, dureeAnnees: duree, ticketTotal: base.ticketTotal, moisInvestissement: base.moisInvestissement })
 
   return (
     <div className="min-h-screen lg:flex">
@@ -84,8 +76,8 @@ export default function App() {
         </div>
       </aside>
       <main className="min-w-0 flex-1">
-        {tool === 'cles' && <ClesTool onUse={compareScpi} />}
-        {tool === 'top' && <TopTool onUse={compareWithBase} />}
+        {tool === 'cles' && <ClesTool onUse={(s) => compareScpi(s)} />}
+        {tool === 'top' && <TopTool onUse={compareFromRanking} />}
         {tool === 'usufruit' && <UsufruitTool store={store} />}
       </main>
     </div>

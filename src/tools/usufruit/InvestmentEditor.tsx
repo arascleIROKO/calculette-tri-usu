@@ -1,6 +1,7 @@
 import { MonthField, NumberField, Segmented, SelectField, SliderField, TextField } from '../../components/fields'
-import { SCPIS } from '../../lib/scpi'
-import { GRILLE_LABELS, MONTAGE_LABELS, type GrilleId, type Investment, type Montage } from '../../lib/usufruit'
+import { fmtEur, fmtPct } from '../../lib/format'
+import { SCPIS, scpiById } from '../../lib/scpi'
+import { GRILLE_LABELS, MONTAGE_LABELS, scpiInvestment, tdSource, type GrilleId, type Investment, type Montage } from '../../lib/usufruit'
 
 const GRILLE_OPTIONS: { value: GrilleId; label: string; group: string }[] = [
   ...(Object.keys(GRILLE_LABELS) as (keyof typeof GRILLE_LABELS)[]).map((g) => ({
@@ -30,6 +31,7 @@ export function InvestmentEditor({ inv, onChange }: { inv: Investment; onChange:
   return (
     <div className="grid gap-5">
       <TextField label="Nom" value={inv.nom} onChange={(nom) => onChange({ nom })} />
+      <ScpiParamsBanner inv={inv} onChange={onChange} />
 
       <Section title="Montage">
         <div className="sm:col-span-2">
@@ -73,14 +75,16 @@ export function InvestmentEditor({ inv, onChange }: { inv: Investment; onChange:
         )}
       </Section>
 
-      {inv.partUsufruit < 1 && (
-        <Section title={`Frais sur la ${isPP ? 'pleine propriété' : 'nue-propriété'}`}>
-          <NumberField label="Frais d'acquisition" value={inv.fraisAcq} onChange={(fraisAcq) => onChange({ fraisAcq })}
-            suffix="%" scale={100} min={0} max={0.5} step={0.5} hint="Inclus dans le prix, sortie à la valeur de retrait" />
-          <NumberField label="Rétrocession" value={inv.retroFrais} onChange={(retroFrais) => onChange({ retroFrais })}
-            suffix="%" scale={100} min={0} max={0.5} step={0.5} hint={`En % du montant ${isPP ? 'PP' : 'NP'}, encaissée à l'investissement`} />
-        </Section>
-      )}
+      <Section title="Frais de souscription">
+        <NumberField label="Frais de souscription" value={inv.fraisAcq} onChange={(fraisAcq) => onChange({ fraisAcq })}
+          suffix="%" scale={100} min={0} max={0.5} step={0.5}
+          hint={inv.partUsufruit < 1
+            ? `Sur la ${isPP ? 'PP' : 'NP'} : inclus dans le prix, sortie à la valeur de retrait`
+            : 'Sans effet en 100 % usufruit : déjà inclus dans le prix de souscription, base du TD'} />
+        <NumberField label="Rétrocession" value={inv.retroFrais} onChange={(retroFrais) => onChange({ retroFrais })}
+          suffix="%" scale={100} min={0} max={0.5} step={0.5}
+          hint={inv.partUsufruit < 1 ? `En % du montant ${isPP ? 'PP' : 'NP'}, encaissée à l'investissement` : 'S’applique à la part NP / PP'} />
+      </Section>
 
       <Section title="Hypothèses">
         <NumberField label="TD net" value={inv.tdNet} onChange={(tdNet) => onChange({ tdNet })} suffix="%" scale={100} min={0} step={0.1} />
@@ -106,5 +110,39 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       <legend className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">{title}</legend>
       {children}
     </fieldset>
+  )
+}
+
+/** Rappel des paramètres publiés de la SCPI du barème, avec un bouton pour les (ré)appliquer. */
+function ScpiParamsBanner({ inv, onChange }: { inv: Investment; onChange: (patch: Partial<Investment>) => void }) {
+  if (!inv.grille.startsWith('scpi:')) return null
+  const s = scpiById(inv.grille.slice(5))
+  if (!s) return null
+  const src = tdSource(s)
+  const apply = () => {
+    const p = scpiInvestment(s)
+    onChange({ tdNet: p.tdNet, prixPart: p.prixPart, fraisAcq: p.fraisAcq, delaiJouissanceMois: p.delaiJouissanceMois })
+  }
+  return (
+    <div className="rounded-lg bg-slate-50 px-3 py-2.5 text-[11px] leading-relaxed text-slate-600 ring-1 ring-slate-200">
+      <div className="flex items-start justify-between gap-2">
+        <p>
+          <b className="font-semibold text-slate-800">{s.nom}</b> · TD {src === 'cible' ? 'cible' : src === 'réalisé' ? 'réalisé (pas d’objectif publié)' : 'non publié'}{' '}
+          <b>{fmtPct(s.tdCible ?? s.td)}</b>{(s.anneeTdCible ?? s.anneeTd) ? ` (${s.anneeTdCible ?? s.anneeTd})` : ''} · prix{' '}
+          <b>{s.prixPart ? fmtEur(s.prixPart) : '—'}</b> · frais <b>{s.commission != null ? fmtPct(s.commission) : '—'}</b> · délai{' '}
+          <b>{s.delaiJouissance != null ? `${s.delaiJouissance} mois` : '—'}</b>
+          {s.paramsSourceUrl && (
+            <>
+              {' · '}
+              <a href={s.paramsSourceUrl} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">source</a>
+            </>
+          )}
+        </p>
+        <button type="button" onClick={apply}
+          className="shrink-0 rounded-md border border-slate-200 bg-white px-2 py-0.5 font-medium text-slate-700 hover:border-indigo-500 hover:text-indigo-700">
+          Appliquer
+        </button>
+      </div>
+    </div>
   )
 }

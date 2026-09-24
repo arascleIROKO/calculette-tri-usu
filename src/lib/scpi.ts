@@ -18,6 +18,16 @@ export interface Scpi {
   notes: string | null
   /** Souscription fermée / suspendue : barème probablement inactif */
   statut: string | null
+  /** Objectif de TD annoncé par la SGP (non garanti) */
+  tdCible: number | null
+  anneeTdCible: number | null
+  /** Commission de souscription TTC, en % du prix de souscription */
+  commission: number | null
+  /** Mois sans dividende entre souscription et entrée en jouissance */
+  delaiJouissance: number | null
+  delaiTexte: string | null
+  paramsSourceUrl: string | null
+  paramsNotes: string | null
 }
 
 export const SCPI_DB = raw as { description: string; collecte: string; scpis: Scpi[] }

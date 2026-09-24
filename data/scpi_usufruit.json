@@ -20,7 +20,14 @@
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "Concordant chez France SCPI (usufruit 25/30/35) et Argent & Salaire (NP 75/70/65). Prix et TD confirmés sur le site BNP Paribas REIM.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0477,
+      "anneeTdCible": 2026,
+      "commission": 0.1072,
+      "delaiJouissance": 1,
+      "delaiTexte": "Les parts souscrites portent jouissance le 1er jour du deuxième mois suivant la date de souscription correspondant à la date de complétude du dossier de souscription y compris la réception des fonds",
+      "paramsSourceUrl": "https://francescpi.com/scpi-de-rendement/accimmo-pierre/bi/accimmo-pierre-bulletin-2026-t1.pdf",
+      "paramsNotes": "Bulletin T1 2026. Commission 8,93 % HT soit 10,72 % TTC. Objectif de distribution prévisionnelle 2026 d'au minimum 6,72 €/part, soit 6,72 / 141 = 4,77 % (plancher). Certains courtiers donnent à tort un délai au 1er jour du 6e mois."
     },
     {
       "id": "activimmo",
@@ -55,7 +62,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MeilleureSCPI 09/2026 = CBI = FranceSCPI.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0547,
+      "anneeTdCible": 2026,
+      "commission": 0.1272,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6e mois suivant la souscription et son règlement",
+      "paramsSourceUrl": "https://alderan.fr/scpi-activimmo/",
+      "paramsNotes": "Prix 613,50 € depuis le 01/07/2026 (vs 610 €). Commission 10,6 % HT soit 12,72 % TTC (note d'information avril 2026). Objectif de distribution 2026 = 33,55 €/part (non garanti, communiqué SGP relayé par courtiers) soit ~5,47 % du prix de 613,50 €."
     },
     {
       "id": "aestiam-agora",
@@ -90,42 +104,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Source unique",
-      "statut": null
-    },
-    {
-      "id": "aestiam-cap-hebergimmo",
-      "nom": "Aestiam Cap'hébergimmo",
-      "sgp": "Aestiam",
-      "type": null,
-      "cles": {
-        "3": 0.115,
-        "4": 0.15,
-        "5": 0.185,
-        "6": 0.215,
-        "7": 0.24,
-        "8": 0.265,
-        "9": 0.29,
-        "10": 0.31,
-        "11": 0.33,
-        "12": 0.345,
-        "13": 0.36,
-        "14": 0.375,
-        "15": 0.39,
-        "16": 0.395,
-        "17": 0.4,
-        "18": 0.405,
-        "19": 0.41,
-        "20": 0.415
-      },
-      "td": null,
-      "anneeTd": null,
-      "prixPart": null,
-      "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "sourceTdUrl": null,
-      "dateSource": "2026-09",
-      "fiabilite": "courtier",
-      "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 0,
+      "delaiTexte": "Jouissance au 1er jour du mois suivant l'enregistrement de la souscription",
+      "paramsSourceUrl": "https://www.aestiam.com/nos-scpi/aestiam-agora/",
+      "paramsNotes": "Commission 10 % HT du prix de souscription, soit 12 % TTC (TVA 20 %). Aucun objectif de TD 2026 publié (pour 2025 les gérants visaient 4,40-4,60 %). Issue de la fusion Aestiam Pierre Rendement + Cap'Hébergimmo (2025)."
     },
     {
       "id": "aestiam-horizon",
@@ -160,29 +146,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Aestiam Placement Pierre renommée Aestiam Horizon. Grille source légèrement irrégulière (NP 4a 85% après 3a 86,5% ; 6a 79% vs 5a 79,5%), reproduite telle quelle. Clé usufruit = 1 - clé NP. Autres sources : https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
-      "statut": null
-    },
-    {
-      "id": "aestiam-pierre-rendement",
-      "nom": "Aestiam Pierre Rendement",
-      "sgp": "Aestiam",
-      "type": null,
-      "cles": {
-        "5": 0.195,
-        "7": 0.255,
-        "10": 0.32,
-        "12": 0.36,
-        "15": 0.4
-      },
-      "td": null,
-      "anneeTd": null,
-      "prixPart": null,
-      "sourceUrl": "https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
-      "sourceTdUrl": null,
-      "dateSource": "2026",
-      "fiabilite": "courtier",
-      "notes": "Source unique | France SCPI ne publie que 5/7/10/12/15 ans",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 0,
+      "delaiTexte": "Jouissance au 1er jour du mois suivant l'enregistrement de la souscription",
+      "paramsSourceUrl": "https://www.aestiam.com/nos-scpi/aestiam-horizon/",
+      "paramsNotes": "Ex-Aestiam Placement Pierre. Commission 10 % HT soit 12 % TTC. Aucun objectif de TD 2026 publié."
     },
     {
       "id": "aew-commerces-europe",
@@ -217,7 +188,14 @@
       "dateSource": "2025-05",
       "fiabilite": "SGP officielle",
       "notes": "Grille officielle AEW « Proposition de prix de l'usufruit », active au 12/05/2025 (toujours en ligne en sept. 2026). Prix de souscription et TD 2025 relevés sur la fiche produit AEW. Ex-Actipierre Europe. MeilleureSCPI publie une grille plus ancienne ou différente (NP 90/86,5/83...). Autres sources : https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0449,
+      "anneeTdCible": 2026,
+      "commission": 0.108,
+      "delaiJouissance": 1,
+      "delaiTexte": "Les parts souscrites portent jouissance à compter du premier jour du deuxième mois qui suit celui de la souscription",
+      "paramsSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-06/AEW%20COMMERCES%20EUROPE%20Bulletin%202%C3%A8me%20semestre%202025%20V2.pdf",
+      "paramsNotes": "Prix maintenu à 190 € (bulletin S1 2026). Commission 10,80 % TTC (fiche AEW). TD prévisionnel 2026 = 4,49 % soit 8,52 €/part (bulletin S2 2025, AEW). Pas de frais de sortie."
     },
     {
       "id": "aew-diversification-allemagne",
@@ -252,7 +230,14 @@
       "dateSource": "2025-05",
       "fiabilite": "SGP officielle",
       "notes": "Grille officielle AEW « Proposition de prix de l'usufruit », active au 12/05/2025 (toujours en ligne en sept. 2026). Prix de souscription et TD 2025 relevés sur la fiche produit AEW. Autres sources : https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.035,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 1,
+      "delaiTexte": "Les parts souscrites portent jouissance à compter du premier jour du deuxième mois suivant celui au cours duquel la souscription est réalisée",
+      "paramsSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-03/AEW%20DIVERSIFICATION%20ALLEMAGNE%202%C3%A8me%20semestre%202025.pdf",
+      "paramsNotes": "Prix maintenu à 902 € (bulletin S1 2026). Commission 12 % TTC (fiche AEW). TD prévisionnel 2026 = 3,50 % soit 31,60 €/part (bulletin S2 2025)."
     },
     {
       "id": "aew-opportunites-europe",
@@ -287,7 +272,14 @@
       "dateSource": "2025-05",
       "fiabilite": "SGP officielle",
       "notes": "Grille officielle AEW « Proposition de prix de l'usufruit », active au 12/05/2025 (toujours en ligne en sept. 2026). Prix de souscription et TD 2025 relevés sur la fiche produit AEW. Autres sources : https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0508,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 1,
+      "delaiTexte": "Les parts souscrites portent jouissance à compter du premier jour du deuxième mois qui suit celui de la souscription",
+      "paramsSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-03/AEW%20OPPORTUNITES%20EUROPE%20Bulletin%202%C3%A8me%20semestre%202025_0.pdf",
+      "paramsNotes": "Commission 12 % TTC prime d'émission incluse (fiche AEW). TD prévisionnel 2026 = 5,08 % soit 8,89 €/part (bulletin S2 2025)."
     },
     {
       "id": "aew-patrimoine-sante",
@@ -322,7 +314,14 @@
       "dateSource": "2025-05",
       "fiabilite": "SGP officielle",
       "notes": "Grille officielle AEW « Proposition de prix de l'usufruit », active au 12/05/2025 (toujours en ligne en sept. 2026). Prix de souscription et TD 2025 relevés sur la fiche produit AEW. Autres sources : https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.05,
+      "anneeTdCible": 2026,
+      "commission": 0.09,
+      "delaiJouissance": 4,
+      "delaiTexte": "Les parts souscrites portent jouissance après 4 mois calendaires complets suivant celui au cours duquel la souscription est réalisée",
+      "paramsSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-03/AEW%20PATRIMOINE%20SANTE%20Bulletin%202%C3%A8me%20semestre%202025.pdf",
+      "paramsNotes": "Commission 9 % TTC (fiche AEW). Délai : 4 mois pleins après le mois de souscription = jouissance au 1er jour du 5e mois suivant -> 4 mois sans dividende. TD prévisionnel 2026 = 5 % soit 50 €/part (bulletin S2 2025)."
     },
     {
       "id": "affinites-pierre",
@@ -357,7 +356,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Ligne MSC strictement identique à: Attraits Pierre (copier-coller possible) | Concorde avec France SCPI (décotes 2026) (écart max 1.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.1,
+      "delaiJouissance": 4,
+      "delaiTexte": "1er jour du 5ème mois suivant celui de la souscription des parts",
+      "paramsSourceUrl": "https://www.groupamagan-reim.fr/wp-content/uploads/2026/05/Affinites-Pierre-Bulletin-Trismestriel-1T-2026.pdf",
+      "paramsNotes": "Prix passé de 252 à 225 € le 02/03/2026, au passage à capital variable. Commission 10 % TTC. Aucun objectif de TD 2026 dans le bulletin T1 2026."
     },
     {
       "id": "allianz-pierre",
@@ -373,13 +379,20 @@
       },
       "td": 0.04,
       "anneeTd": 2025,
-      "prixPart": 320.0,
+      "prixPart": 201.4,
       "sourceUrl": "https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
       "sourceTdUrl": "https://www.primaliance.com/scpi-de-rendement",
       "dateSource": "2026",
       "fiabilite": "incertain",
       "notes": "Sources en désaccord (>1 pt) : fs/msc écart max 6.50 pt | Écart avec MeilleureSCPI (maj 02/09/2026): max 6.50 pt NP ({'10': 71.0, '15': 62.0} NP%) | France SCPI ne publie que 5/7/10/12/15 ans",
-      "statut": null
+      "statut": "Variabilité du capital suspendue",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": null,
+      "delaiJouissance": null,
+      "delaiTexte": null,
+      "paramsSourceUrl": "https://www.meilleurescpi.com/actualites/la-scpi-allianz-pierre-suspend-la-variabilite-de-son-capital/",
+      "paramsNotes": "Variabilité du capital SUSPENDUE depuis le 12/05/2026 : plus de souscription au prix de 320 € ; achats via marché secondaire organisé (confrontation mensuelle). prix_part = prix acquéreur de la 1re confrontation du 30/06/2026 (201,40 €, -37 %), frais inclus. Commission et délai de jouissance non applicables / non trouvés. Aucun objectif 2026 publié."
     },
     {
       "id": "alta-convictions",
@@ -414,7 +427,14 @@
       "dateSource": "2026-09",
       "fiabilite": "incertain",
       "notes": "Sources en désaccord (>1 pt) : fs/msc écart max 1.50 pt | Écart avec France SCPI (décotes 2026): max 1.50 pt NP ({'5': 78.5, '7': 72.5, '10': 65.5, '12': 62.0, '15': 58.5} NP%)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0525,
+      "anneeTdCible": null,
+      "commission": 0.1014,
+      "delaiJouissance": 3,
+      "delaiTexte": "Jouissance au 1er jour du 4ème mois qui suit le mois de souscription",
+      "paramsSourceUrl": "https://altarea-im.com/nos-produits/alta-convictions/",
+      "paramsNotes": "Commission 10,14 % TTC (fiche Altarea IM). Pas d'objectif 2026 explicite dans le bulletin T2 2026 ; objectif long terme 'entre 5 et 5,5 %' (non garanti, cité par Louve Invest) -> milieu retenu. TD 2025 réalisé 6,57 % (PGA 7,55 %). Distribution mensuelle depuis avril 2026."
     },
     {
       "id": "altixia-cadence-xii",
@@ -449,7 +469,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.50 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.50 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.051,
+      "anneeTdCible": 2026,
+      "commission": 0.108,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ème mois qui suit celui de l'encaissement de l'intégralité du prix de souscription",
+      "paramsSourceUrl": "https://www.pierrepapier.fr/bulletin/la-scpi-altixia-cadence-xii-publie-son-bulletin-pour-le-1t-2026/",
+      "paramsNotes": "Commission 10,80 % TTC. Objectif de distribution 2026 confirmé 'entre 5,00 % et 5,20 %' (bulletin T1 2026) -> milieu 5,10 % retenu."
     },
     {
       "id": "altixia-commerces",
@@ -484,7 +511,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.50 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.50 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.055,
+      "anneeTdCible": null,
+      "commission": 0.03,
+      "delaiJouissance": 0,
+      "delaiTexte": "Le 1er jour du 6ème mois suivant la souscription. Entre le 1er mars 2025 et le 31 décembre 2026, le délai d'entrée en jouissance est temporairement supprimé.",
+      "paramsSourceUrl": "https://www.altixia.fr/scpi-altixia-commerces.php",
+      "paramsNotes": "Prix 203 € depuis le 01/12/2022. Frais d'entrée réduits : 2,5 % HT soit 3 % TTC max. Délai supprimé jusqu'au 31/12/2026 (0), normalement 5 mois. Objectif 'entre 5 % et 6 %' (non garanti, sans année) -> milieu retenu ; la fiche SGP indique 5,0 % pour 2025. Parts en attente de retrait."
     },
     {
       "id": "atout-pierre-diversification",
@@ -519,7 +553,14 @@
       "dateSource": "2025-05",
       "fiabilite": "SGP officielle",
       "notes": "Grille officielle AEW « Proposition de prix de l'usufruit », active au 12/05/2025 (toujours en ligne en sept. 2026). Prix de souscription et TD 2025 relevés sur la fiche produit AEW. Autres sources : https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0435,
+      "anneeTdCible": 2026,
+      "commission": 0.093,
+      "delaiJouissance": 1,
+      "delaiTexte": "Les parts souscrites portent jouissance à compter du premier jour du deuxième mois qui suit celui de la souscription",
+      "paramsSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-03/ATOUT%20PIERRE%20DIVERSIFICATION%20Bulletin%202%C3%A8me%20semestre%202025.pdf",
+      "paramsNotes": "Commission 9,30 % TTC (fiche AEW). TD prévisionnel 2026 = 4,35 % soit 35,56 €/part (bulletin S2 2025)."
     },
     {
       "id": "atream-hotels",
@@ -545,7 +586,14 @@
       "dateSource": "2026-09",
       "fiabilite": "incertain",
       "notes": "Sources en désaccord (>1 pt) : fs/msc écart max 2.00 pt | Écart avec France SCPI (décotes 2026): max 2.00 pt NP ({'5': 82.5, '7': 77.0, '10': 71.0, '12': 68.0, '15': 65.0} NP%)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 3,
+      "delaiTexte": "Les parts souscrites portent jouissance le premier jour du 4ème mois qui suit le mois de la souscription",
+      "paramsSourceUrl": "https://atream.com/wp-content/uploads/2026/07/Bulletin-N2026_2T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
+      "paramsNotes": "Bulletin T2 2026. Commission 10 % HT soit 12 % TTC ; certains courtiers affichent 10 %. Prix maintenu à 1 000 € au 30/06/2026. Aucun objectif de TD publié."
     },
     {
       "id": "attraits-pierre",
@@ -580,7 +628,14 @@
       "dateSource": "2026-09",
       "fiabilite": "incertain",
       "notes": "Seule source MeilleureSCPI ; ligne identique à Affinités Pierre.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.055,
+      "anneeTdCible": 2026,
+      "commission": 0.1,
+      "delaiJouissance": 4,
+      "delaiTexte": "1er jour du 5ème mois suivant le mois de réception de l'intégralité du prix de souscription",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f32832-attraits-pierre/",
+      "paramsNotes": "Objectif 2026 non garanti : « supérieur à 5,5 % » (Haussmann), 5,5 % (MeilleureSCPI). Prix inchangé depuis le lancement en mai 2024. Frais de 10 % présentés comme TTC (non vérifié auprès de la SGP)."
     },
     {
       "id": "buroboutic-metropoles",
@@ -615,7 +670,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Prix 77 EUR relevé sur fiche MeilleureSCPI (probable division de parts, à vérifier). Clé usufruit = 1 - clé NP. Autres sources : https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 1,
+      "delaiTexte": "À compter du 1er jour du 2ème mois suivant la souscription",
+      "paramsSourceUrl": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/buroboutic-metropoles",
+      "paramsNotes": "Nominal divisé par 3 au 01/01/2026 (prix passé de 230 à 77 €). Commission 10 % HT soit 12 % TTC. Aucun objectif de TD 2026 publié."
     },
     {
       "id": "cap-foncieres-et-territoires",
@@ -650,7 +712,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Clé usufruit = 1 - clé NP.",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.096,
+      "delaiJouissance": 4,
+      "delaiTexte": "1er jour du 5ème mois suivant la souscription (depuis le 01/07/2023)",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f161-scpi-nord-est-horizon/caracteristiques/",
+      "paramsNotes": "Prix confirmé dans le bulletin T2 2026. DOUTEUX : frais de 9,6 % TTC (8 % HT) chez MeilleureSCPI contre 10 % chez Primaliance ; jouissance au 5e mois (retenu), au 3e (Primaliance) ou au 6e selon les sources. Aucun objectif de TD 2026 publié."
     },
     {
       "id": "coeur-d-avenir",
@@ -685,7 +754,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.05,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6e mois suivant la souscription",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f26454-scpi-coeur-davenir/",
+      "paramsNotes": "Prix 200 € constaté au 17/09/2026 (date d'effet inconnue). Commission 12 % TTC (10 % HT) selon MeilleureSCPI. TD cible 5 % : c'est un positionnement 'taux de distribution de 5 % (non garanti)' non daté (objectif affiché depuis le lancement, voir Centrale des SCPI 2024 'autour de 5 %'), pas un objectif 2026 explicite de Sogenial. À noter : il est égal au TD 2025 réalisé (5 %), donc douteux. Sogenial ne publie pas d'objectif 2026 sur sa fiche."
     },
     {
       "id": "coeur-d-europe",
@@ -719,7 +795,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC 19a=0.0% aberrant écarté | Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ème mois (fiche Sogenial)",
+      "paramsSourceUrl": "https://www.sogenial.fr/societe/scpi-coeur-deurope/",
+      "paramsNotes": "Prix relevé de 200 à 204 € (date d'effet non trouvée). Commission 12 % TTC selon Louve Invest et France SCPI (la fiche Sogenial ne l'indique pas). Délai : Sogenial dit 1er jour du 6e mois (=5), ce qui concorde avec les '5 mois' de Louve et France SCPI. La SGP ne publie aucun objectif de TD pour 2026 (TD 2025 : 6,25 % brut / 5,23 % net de fiscalité étrangère). Ancien objectif de 2024 : '5-5,20 % net / >6 % brut' (Centrale des SCPI), pas repris ici."
     },
     {
       "id": "coeur-de-regions",
@@ -754,7 +837,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6e mois suivant la souscription",
+      "paramsSourceUrl": "https://www.sogenial.fr/societe/scpi-coeur-des-regions/",
+      "paramsNotes": "Prix 664 € constaté en sept. 2026 (8 hausses depuis la création). Commission 12 % TTC (10 % HT) selon MeilleureSCPI et Primaliance. Délai : Sogenial et MeilleureSCPI disent 1er jour du 6e mois, certains courtiers disent '6 mois'. La SGP ne publie pas d'objectif 2026. MeilleureSCPI affiche un 'rendement prévisionnel 6,20 %', qui est en fait le TD 2025 réalisé : ignoré. TRI cible 6 % sur 10 ans."
     },
     {
       "id": "coeur-de-ville",
@@ -788,7 +878,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC 14a=2.0% aberrant écarté | Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 3,
+      "delaiTexte": "1er jour du 4e mois suivant la souscription",
+      "paramsSourceUrl": "https://www.sogenial.fr/wp-content/uploads/2026/04/Bulletin-Trimestriel-1T-2026-%E2%80%93-Coeur-de-Ville.pdf",
+      "paramsNotes": "Bulletin T1 2026 : 'prix de souscription maintenu à 210 €', entrée en jouissance le 1er jour du 4e mois. Commission 12 % (Louve Invest, HT/TTC non précisé ; la norme Sogenial est 10 % HT = 12 % TTC). Aucun objectif de TD 2026 dans le bulletin, qui parle seulement de 'continuité des objectifs de rendement'. TD 2025 : 6,20 %. Ancien objectif de 2024 : 5,30 %."
     },
     {
       "id": "comete",
@@ -823,7 +920,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MeilleureSCPI 09/2026 = CBI = FranceSCPI. Autres sources : https://argent-et-salaire.com/avis-comete/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.07,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6e mois suivant la souscription et son règlement",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-comete",
+      "paramsNotes": "Commission 10 % HT soit 12 % TTC. Objectif de distribution 2026 = 17,50 €/part (7 %, non garanti), bien en dessous du TD 2025 de 9 %. TRI cible 10 ans 6,5 %."
     },
     {
       "id": "corum-eurion",
@@ -858,7 +962,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Écart avec CommentBienInvestir (janv. 2026): max 2.00 pt NP ({'3': 87.0, '4': 84.0, '5': 80.0, '6': 78.0, '7': 76.0, '8': 75.0, '9': 73.0, '10': 71.0, '15': 64.0, '20': 59.0} NP%) | Concorde avec France SCPI (décotes 2026) (écart max 0.08 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.045,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "Délai de jouissance de 5 mois (entrée en jouissance le 1er jour du 6e mois suivant la souscription)",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-corum-eurion",
+      "paramsNotes": "Objectif annuel de 4,5 % non garanti ; dividende prévisionnel 2026 de 9,68 €/part (9,68 / 215 = 4,50 %). Commission de 12 % TTC déduite par analogie avec la gamme Corum, à vérifier."
     },
     {
       "id": "corum-origin",
@@ -891,7 +1002,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC 19a=7.0% aberrant écarté | MSC: valeur 65.0% dupliquée à 10/11 ans -> colonnes décalées d'un cran, réalignées (vérifié vs autre source) | Écart avec CommentBienInvestir (janv. 2026): max 2.00 pt NP ({'3': 85.0, '4': 82.0, '5': 78.0, '6': 76.0, '7': 73.0, '8': 71.0, '9': 69.0, '10': 67.0, '15': 60.0, '20': 55.0} NP%) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) Autres sources : https://www.meilleurescpi.com/actualites/24281-corum-l-usufruit-le-plus-attractif-du-marche/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.06,
+      "anneeTdCible": 2026,
+      "commission": 0.11964,
+      "delaiJouissance": 5,
+      "delaiTexte": "Les nouveaux associés doivent attendre 5 mois, ce qui correspond au délai de jouissance (1er jour du 6e mois)",
+      "paramsSourceUrl": "https://www.corum.fr/nos-scpi/corum-origin/frais",
+      "paramsNotes": "Frais de souscription de 11,964 % TTC (corum.fr) ; pas de frais de sortie. Objectif 2026 de 6 % non garanti ; dividende prévisionnel 2026 de 68,10 €/part (Centrale des SCPI), soit 6,0 %. Certains courtiers affichent 6,5 %, qui est le TD 2025 réalisé."
     },
     {
       "id": "corum-usa",
@@ -926,7 +1044,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MeilleureSCPI 09/2026 ; 7 ans = 77% NP (CBI et FranceSCPI : usufruit 23%) au lieu de 79% (coquille).",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.045,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "Délai de jouissance de 5 mois",
+      "paramsSourceUrl": "https://www.corum.fr/nos-scpi/corum-usa",
+      "paramsNotes": "Frais de souscription de 12 % TTC inclus ; pas de frais de sortie. DOUTEUX : 4,5 % est l'objectif de TRI sur 10 ans, qui semble servir aussi d'objectif de rendement annuel non garanti. Aucun dividende prévisionnel 2026 publié (TD 2025 réalisé : 7,7 %)."
     },
     {
       "id": "corum-xl",
@@ -961,7 +1086,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC: valeur 86.0% dupliquée à 3/4 ans -> colonnes décalées d'un cran, réalignées (vérifié vs autre source) | Concorde avec CommentBienInvestir (janv. 2026) (écart max 1.00 pt) | Écart avec France SCPI (décotes 2026): max 3.00 pt NP ({'5': 79.0, '7': 72.0, '10': 65.0, '12': 63.0, '15': 60.0} NP%) | Durées complétées depuis la source concordante: 20a Autres sources : https://www.meilleurescpi.com/actualites/78425-decouvrez-les-cles-de-repartition-actuelles-de-corum-xl/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.05,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "Les nouveaux associés doivent patienter 5 mois avant de pouvoir bénéficier de ces revenus éventuels, ce qui correspond au délai de jouissance",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-corum-xl",
+      "paramsNotes": "Frais de 12 % inclus, peut-être 11,964 % TTC comme pour Origin (non vérifié). Objectif 2026 de 5 % non garanti (Centrale des SCPI)."
     },
     {
       "id": "cristal-life",
@@ -996,7 +1128,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Clé usufruit = 1 - clé NP.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.065,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ème mois suivant la souscription",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f21736-cristal-life/caracteristiques/",
+      "paramsNotes": "Rendement prévisionnel 2026 de 6,5 % non garanti (MeilleureSCPI, non vérifié sur le site d'Inter Gestion). Frais de 12 % TTC ; une source indique 13,2 %."
     },
     {
       "id": "cristal-rente",
@@ -1025,13 +1164,20 @@
       },
       "td": 0.05,
       "anneeTd": 2025,
-      "prixPart": 256.0,
+      "prixPart": 255.68,
       "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
       "sourceTdUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f23-scpi-cristal-rente/",
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Prix 255,68 EUR. Clé usufruit = 1 - clé NP.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.05,
+      "anneeTdCible": 2026,
+      "commission": 0.1,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ème mois suivant la souscription",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f23-scpi-cristal-rente/caracteristiques/",
+      "paramsNotes": "Prix au 17/09/2026. Frais de 10 % TTC, dégressifs au-delà de 50 parts ; une source indique 12 %. Rendement prévisionnel 2026 de 5 % non garanti."
     },
     {
       "id": "credit-mutuel-pierre-1",
@@ -1066,7 +1212,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Gérée par La Française (pas Advenis). Variabilité du capital suspendue depuis le 01/06/2026 (marché secondaire par confrontation) ; dernier prix de souscription 215 EUR -> prix_part laissé null. Barème démembrement potentiellement inapplicable aux nouvelles souscriptions. Autres sources : https://argent-et-salaire.com/avis-cm-pierre-1/",
-      "statut": "Variabilité du capital suspendue"
+      "statut": "Variabilité du capital suspendue",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": null,
+      "delaiJouissance": 0,
+      "delaiTexte": "Premier jour du mois suivant",
+      "paramsSourceUrl": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/credit-mutuel-pierre-1",
+      "paramsNotes": "FERMÉE : variabilité du capital suspendue depuis le 01/06/2026, marché secondaire uniquement. Dernier prix de souscription connu 215 EUR. Aucun objectif de TD 2026 (distribution S2 variable selon résultats)."
     },
     {
       "id": "darwin-re01",
@@ -1095,13 +1248,20 @@
       },
       "td": 0.0754,
       "anneeTd": 2025,
-      "prixPart": 200.0,
+      "prixPart": 202.0,
       "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
       "sourceTdUrl": "https://www.primaliance.com/scpi-de-rendement",
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC: valeur 89.0% dupliquée à 3/4 ans -> colonnes décalées d'un cran, réalignées (vérifié vs autre source) | Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Écart avec France SCPI (décotes 2026): max 3.00 pt NP ({'5': 80.0, '7': 74.0, '10': 67.0, '12': 64.0, '15': 61.0} NP%) | Durées complétées depuis la source concordante: 20a",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.075,
+      "anneeTdCible": 2026,
+      "commission": 0.096,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ème mois suivant l'enregistrement de la souscription",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f31342-scpi-darwin-re01/caracteristiques/",
+      "paramsNotes": "Prix passé de 200 à 202 € au 01/01/2026. Commission 8 % HT soit 9,6 % TTC. TD prévisionnel 2026 de 7,5 % selon MeilleureSCPI et Portail-SCPI ; objectif long terme de 6 % selon Haussmann ; TRI cible 6,5 % sur 8 ans."
     },
     {
       "id": "eden",
@@ -1126,7 +1286,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec CommentBienInvestir (janv. 2026) (écart max 1.00 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) | Durées complétées depuis la source concordante: 6a,8a,9a,20a",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.065,
+      "anneeTdCible": null,
+      "commission": 0.0,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6e mois suivant votre souscription",
+      "paramsSourceUrl": "https://www.advenis-reim.com/scpi_sc/scpi-eden/",
+      "paramsNotes": "SANS FRAIS D'ENTRÉE (0 %). Commission de retrait si parts détenues depuis moins de 5 ans (taux non précisé sur la fiche). Objectif de TD annuel 6,5 % non garanti, long terme (sans année) ; TD 2025 réalisé 8 %. Distribution mensuelle à partir du 01/10/2026. Délai issu de MeilleureSCPI / courtiers."
     },
     {
       "id": "edissimmo",
@@ -1144,7 +1311,14 @@
       "dateSource": "2026",
       "fiabilite": "incertain",
       "notes": "Une seule durée publiée (10 ans, NP 67 %), une seule source. TD 3,63 % (France SCPI et demembrement.fr) ; Argent & Salaire indique 4,03 %. Prix 150 EUR en 2026.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0463,
+      "anneeTdCible": 2026,
+      "commission": 0.0799,
+      "delaiJouissance": 5,
+      "delaiTexte": "Entrée en jouissance au premier jour du sixième mois suivant la souscription",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/article/amundi-baisse-prix-part-edissimmo-genepierre-rivoli-aout-2026",
+      "paramsNotes": "Prix abaissé à 150 € le 28/08/2026 (retrait 138,01 €). Commission 7,99 % TTC (écart souscription/retrait ; MeilleureSCPI indique 10 %, non retenu). Objectif de distribution 2026 maintenu à 6,94 €/part -> 4,63 % sur le nouveau prix. Délai : sources divergentes (MeilleureSCPI : 1er jour du 3e mois) ; 6e mois retenu (sources 2026)."
     },
     {
       "id": "edmond-de-rothschild-europa",
@@ -1178,7 +1352,14 @@
       "dateSource": "2026-09",
       "fiabilite": "incertain",
       "notes": "MSC 19a=8.0% aberrant écarté | Sources en désaccord (>1 pt) : fs/msc écart max 2.00 pt | Écart avec France SCPI (décotes 2026): max 2.00 pt NP ({'5': 79.0, '7': 74.0, '10': 66.0, '12': 62.5, '15': 59.5} NP%)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.06,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ème mois suivant la souscription et son règlement",
+      "paramsSourceUrl": "https://www.clubpatrimoine.com/contenus/scpi-edmond-rothschild-europa-prix-part",
+      "paramsNotes": "Prix passé de 200 à 202 € au 01/06/2026. Le 6 % est un rendement cible de long terme. DOUTEUX : MeilleureSCPI indique une jouissance immédiate, contredite par les autres sources (1er jour du 6ème mois)."
     },
     {
       "id": "efimmo-1",
@@ -1211,7 +1392,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Écart avec CommentBienInvestir (janv. 2026): max 2.00 pt NP ({'5': 80.0, '6': 77.0, '7': 74.0, '8': 71.0, '9': 68.5, '10': 66.5, '15': 59.0, '20': 54.0} NP%) | Concorde avec France SCPI (décotes 2026) (écart max 1.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0437,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 0,
+      "delaiTexte": "Temporairement : 1er jour du mois suivant la date d'encaissement des fonds (depuis le 01/02/2024, jusqu'au 31/12/2026). Normalement : 1er jour du 3e mois suivant l'encaissement",
+      "paramsSourceUrl": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Efimmo_OPTI.pdf",
+      "paramsNotes": "Prix baissé de 212 € à 190 € au 01/09/2026. Frais de souscription : 10 % HT, soit 12 % TTC. Fourchette prévisionnelle 2026 de Sofidy : 8,00 à 8,60 €/part, non garantie. td_cible = milieu (8,30 €) / 190 € = 4,37 % ; rapporté au prix au 1er janvier 2026 (212 €), on obtient 3,92 %. Délai normal : 2 mois hors mesure temporaire, qui prend fin au 31/12/2026."
     },
     {
       "id": "elevation-tertiom",
@@ -1246,7 +1434,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.08,
+      "anneeTdCible": 2026,
+      "commission": 0.0,
+      "delaiJouissance": 5,
+      "delaiTexte": "Délai porté de 3 à 5 mois pour toute souscription encaissée à partir du 1er juillet 2026 (avant : 1er jour du 4ème mois suivant l'encaissement)",
+      "paramsSourceUrl": "https://francescpi.com/scpi/actualites-scpi/la-scpi-elevation-tertiom-allonge-son-delai-de-jouissance-2026",
+      "paramsNotes": "Sans frais d'entrée. Frais de retrait possibles en cas de sortie anticipée, non vérifiés. Frais de gestion 24 % TTC des loyers. TRI cible 9 % sur 10 ans."
     },
     {
       "id": "elialys",
@@ -1271,7 +1466,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) | Durées complétées depuis la source concordante: 6a,8a,9a,20a",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.114,
+      "delaiJouissance": 3,
+      "delaiTexte": "1er jour du 4e mois suivant votre souscription",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f99595-scpi-elialys/caracteristiques/",
+      "paramsNotes": "Commission 11,40 % TTC (courtiers). Aucun objectif chiffré 2026 publié : la SGP indique seulement viser 'un niveau de distribution en ligne avec les objectifs fixés' (non garanti). Une source web non vérifiée cite 6 % 2026 / 6,5 % 10 ans : non retenu."
     },
     {
       "id": "elysees-grand-large",
@@ -1302,7 +1504,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.06,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 4,
+      "delaiTexte": "Le premier jour du deuxième trimestre qui suit le trimestre au cours duquel est intervenue la souscription",
+      "paramsSourceUrl": "https://www.reim.hsbc.fr/fr/elysees-grand-large",
+      "paramsNotes": "Jouissance trimestrielle de 3 à 5 mois ; 4 = moyenne. Commission 10 % HT soit 12 % TTC. Objectif d'environ 6 % relayé par les courtiers, non spécifique à 2026 ; TRI cible 6,5 % sur 10 ans. TD 2025 de 1,82 % dans la liste contre 6 % chez Haussmann (année de lancement incomplète ?)."
     },
     {
       "id": "elysees-pierre",
@@ -1327,13 +1536,20 @@
       },
       "td": 0.05,
       "anneeTd": 2025,
-      "prixPart": 660.0,
+      "prixPart": 549.0,
       "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
       "sourceTdUrl": "https://www.primaliance.com/scpi-de-rendement",
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0454,
+      "anneeTdCible": 2026,
+      "commission": 0.06,
+      "delaiJouissance": 1,
+      "delaiTexte": "Premier jour du trimestre civil suivant le trimestre de la souscription (depuis le 01/01/2026)",
+      "paramsSourceUrl": "https://www.reim.hsbc.fr/fr/elysees-pierre/elysees-pierre-details",
+      "paramsNotes": "IMPORTANT : prix baissé de 660 à 549 € le 03/08/2026 (-16,8 %). Jouissance de 0 à 2 mois ; 1 = moyenne. DOUTEUX : le TD prévisionnel de 4,54 % correspond à 30 €/an sur 660 € ; sur 549 €, cela ferait 5,46 %."
     },
     {
       "id": "epargne-fonciere",
@@ -1368,7 +1584,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 1.00 pt) Autres sources : https://argent-et-salaire.com/avis-epargne-fonciere/",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.09,
+      "delaiJouissance": 0,
+      "delaiTexte": "Premier jour du mois suivant",
+      "paramsSourceUrl": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/epargne-fonciere",
+      "paramsNotes": "Commission 7,5 % HT soit 9 % TTC. Délai raccourci (auparavant 1er jour du 4e mois). Aucun objectif chiffré de TD 2026 ; la SGP évoque une possible révision à la baisse au S2 2026."
     },
     {
       "id": "epargne-pierre",
@@ -1403,7 +1626,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 0,
+      "delaiTexte": "Suppression du délai de jouissance du 1er février au 31 décembre 2026 (délai statutaire : 1er jour du 6e mois suivant la souscription)",
+      "paramsSourceUrl": "https://atland-voisin.com/scpi/epargne-pierre/",
+      "paramsNotes": "Division de la part par 10 au 01/07/2026 (208 € -> 20,80 €). Commission 12 % TTC (10 % HT). Délai 0 jusqu'au 31/12/2026, sinon 5. Aucun objectif de TD 2026 publié."
     },
     {
       "id": "epargne-pierre-europe",
@@ -1438,7 +1668,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MeilleureSCPI 09/2026 = CBI = FranceSCPI. Prix 20 € depuis 01/07/2026 (nominal divisé par 10).",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ème mois",
+      "paramsSourceUrl": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
+      "paramsNotes": "Commission 12 % TTC (10 % HT). Pas d'objectif de TD 2026 confirmé sur le site SGP ni Centrale des SCPI (seul un TRI cible 10 ans 5,5 %) ; MeilleureSCPI affiche un 'rendement prévisionnel 5,50 %' et un résumé web cite 5,00 % : non vérifiés, non retenus."
     },
     {
       "id": "epargne-pierre-sophia",
@@ -1473,7 +1710,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MeilleureSCPI 09/2026 ; 5-12 ans concordants FranceSCPI ; 15 ans : FranceSCPI 40,5% vs 36,5% retenu. Autres sources : https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.055,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 4,
+      "delaiTexte": "1er jour du 5ème mois",
+      "paramsSourceUrl": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
+      "paramsNotes": "Part divisée par 10 (22 € au 01/07/2026). Commission 12 % TTC (10 % HT). Objectif de distribution 5,50 % brut (avant fiscalité étrangère) sur la durée de placement de 10 ans, non garanti ; TRI cible 10 ans 5,75 %. Prix réduit possible en période sponsor."
     },
     {
       "id": "epsicap-explore",
@@ -1507,7 +1751,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Clé usufruit = 1 - clé NP. Durées 19 ans omises (valeur manifestement erronée dans le tableau source).",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.065,
+      "anneeTdCible": null,
+      "commission": 0.0,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ème mois suivant la souscription (souscriptions postérieures au 27/10/2025)",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/avis/avis-epsicap-explore/",
+      "paramsNotes": "Sans frais d'entrée ; pénalité de retrait de 5 % TTC avant 5 ans. DOUTEUX : 250 € au 17/09/2026 selon les courtiers, mais 242,50 € au 01/01/2026 selon une page MeilleureSCPI. 6,5 % = objectif cible de long terme (TRI cible 7,5 % sur 10 ans)."
     },
     {
       "id": "epsicap-nano",
@@ -1542,7 +1793,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Clé usufruit = 1 - clé NP. Prix 257 EUR (NP 5 ans 77% recoupé avec Louve Invest).",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.06,
+      "anneeTdCible": 2026,
+      "commission": 0.06,
+      "delaiJouissance": 5,
+      "delaiTexte": "Premier jour du 6ème mois suivant celui de la souscription",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f15727-scpi-epsilon/caracteristiques/",
+      "paramsNotes": "Commission de 6 % TTC selon MeilleureSCPI, 5 % selon Primaliance (sans doute HT). DOUTEUX : le TD prévisionnel 2026 de 6 % (bulletin T1 2026) n'a pas été vérifié directement ; TRI cible 6,5 %."
     },
     {
       "id": "esg-pierre-capitale",
@@ -1576,7 +1834,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MeilleureSCPI 09/2026 (18 ans omis, non monotone). FranceSCPI : 7/10/12/15 ans concordants, 5 ans 18,5% vs 18%.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.05,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "premier jour du sixième mois suivant la date de souscription",
+      "paramsSourceUrl": "https://francescpi.com/scpi-de-rendement/esg-pierre-capitale/bi/esg-pierre-capitale-bulletin-2026-t1.pdf",
+      "paramsNotes": "Bulletin T1 2026 : prix 188 € (depuis le 20/01/2025 selon MeilleureSCPI), commission 12 % TTC (9,60 % collecte + 2,40 % recherche), délai 1er jour du 6e mois. La suppression temporaire du délai (nov. 2023 à jan. 2024) est terminée ; délai raccourci en assurance-vie. TD cible 5 % : 'rendement prévisionnel 2026' selon MeilleureSCPI, attribué à Swiss Life AM mais absent du bulletin T1 2026. Douteux. TD 2025 : 5,05 % (5,51 % selon certaines sources, brut ou net ?)."
     },
     {
       "id": "eurovalys",
@@ -1601,7 +1866,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec CommentBienInvestir (janv. 2026) (écart max 1.00 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) | Durées complétées depuis la source concordante: 6a,8a,9a,20a",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0469,
+      "anneeTdCible": 2026,
+      "commission": 0.114,
+      "delaiJouissance": 5,
+      "delaiTexte": "Jouissance à compter du premier jour du sixième mois suivant la réception intégrale des fonds par la société",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/article/scpi-advenis-t2-2026-eden-elialys-eurovalys",
+      "paramsNotes": "ATTENTION : division de la part par 20 au 01/10/2026 (960 € -> 48 €). Commission 11,40 % TTC. Distribution 2026 estimée par Advenis ~45 € net/part (non garanti) soit ~4,69 % (net de fiscalité allemande) ; MeilleureSCPI affiche aussi 4,69 %. TRI cible 10 ans 4,14 %."
     },
     {
       "id": "euryale-horizons-sante",
@@ -1636,7 +1908,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.055,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 4,
+      "delaiTexte": "1er jour du 5ème mois suivant l'investissement",
+      "paramsSourceUrl": "https://www.euryale-am.fr/nos-solutions/scpi-euryale-horizons-sante/",
+      "paramsNotes": "Lancée en juin 2025. Commission de 12 % TTC. 5,5 % = objectif de performance annuelle moyenne sur 10 ans, non garanti. Délai tiré de sources courtiers."
     },
     {
       "id": "ficommerce-proximite",
@@ -1658,7 +1937,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.50 pt) | Durées complétées depuis la source concordante: 12a",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 1,
+      "delaiTexte": "Au 1er jour du 2ème mois suivant la souscription et son règlement",
+      "paramsSourceUrl": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
+      "paramsNotes": "Nominal divisé par 3 au 01/01/2026 (prix passé de 210 à 70 €). Commission 10 % HT soit 12 % TTC. Aucun objectif de TD 2026 publié."
     },
     {
       "id": "fonciere-des-praticiens",
@@ -1692,42 +1978,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Clé usufruit = 1 - clé NP. Prix 1 100 EUR relevé sur fiche MeilleureSCPI. Durées 19 ans omises (valeur manifestement erronée dans le tableau source).",
-      "statut": null
-    },
-    {
-      "id": "fonciere-remusat",
-      "nom": "Foncière Remusat",
-      "sgp": "Atland Voisin",
-      "type": null,
-      "cles": {
-        "3": 0.135,
-        "4": 0.17,
-        "5": 0.21,
-        "6": 0.24,
-        "7": 0.27,
-        "8": 0.29,
-        "9": 0.32,
-        "10": 0.34,
-        "11": 0.355,
-        "12": 0.365,
-        "13": 0.375,
-        "14": 0.385,
-        "15": 0.4,
-        "16": 0.41,
-        "17": 0.42,
-        "18": 0.43,
-        "19": 0.435,
-        "20": 0.44
-      },
-      "td": null,
-      "anneeTd": null,
-      "prixPart": null,
-      "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "sourceTdUrl": null,
-      "dateSource": "2026-09",
-      "fiabilite": "incertain",
-      "notes": "Ligne MSC strictement identique à: CAP Foncieres & Territoires, Immo Placement (copier-coller possible) | Source unique Société de gestion non sourcée, à vérifier.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.05,
+      "anneeTdCible": 2026,
+      "commission": 0.096,
+      "delaiJouissance": 4,
+      "delaiTexte": "4 mois (depuis le 14 février 2025)",
+      "paramsSourceUrl": "https://www.groupemagellim.com/reim/scpi-foncieres-des-praticiens/ ; https://www.centraledesscpi.com/scpi/scpi-fonciere-des-praticiens",
+      "paramsNotes": "Commission 9,60 % TTC (site SGP ; Primaliance indique 8 % HT). Objectif formulé comme 'une 8e année consécutive au-dessus de 5 %' (non garanti) : 0,05 est un plancher, pas une cible ponctuelle. Primaliance mentionne aussi 'premier jour du septième mois' (incohérent) : délai à confirmer dans la note d'information."
     },
     {
       "id": "fructipierre",
@@ -1756,13 +2014,20 @@
       },
       "td": 0.0494,
       "anneeTd": 2025,
-      "prixPart": 357.52,
+      "prixPart": 275.0,
       "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
       "sourceTdUrl": "https://www.primaliance.com/scpi-de-rendement",
       "dateSource": "2026-09",
       "fiabilite": "incertain",
       "notes": "Ligne MSC strictement identique à: LF Europimmo, Logipierre 3 (copier-coller possible) | Source unique",
-      "statut": null
+      "statut": "Marché secondaire uniquement",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": null,
+      "delaiJouissance": null,
+      "delaiTexte": null,
+      "paramsSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-08/FRUCTIPIERRE%20Bulletin%201er%20semestre%202026.pdf",
+      "paramsNotes": "SCPI à CAPITAL FIXE, pas de souscription primaire : achat uniquement sur le marché secondaire (confrontations). prix_part = prix acquéreur 275 € (droits 5 % + commission de cession 4 % TTC inclus), prix d'exécution 252,29 € (bulletin S1 2026). Le 357,52 € affiché par Primaliance semble obsolète. Pas de commission de souscription au sens strict (frais déjà dans le prix acquéreur). Aucun TD prévisionnel 2026 trouvé dans les bulletins AEW."
     },
     {
       "id": "gma-essentialis",
@@ -1797,7 +2062,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Ligne MSC strictement identique à: CRISTAL Rente (copier-coller possible) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) | TD 2025 MeilleureSCPI 5.33% vs Primaliance 4.00%",
-      "statut": null
+      "statut": "Dissolution votée, distribution suspendue",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ème mois suivant le mois de réception de l'intégralité du prix de souscription",
+      "paramsSourceUrl": "https://www.louveinvest.com/scpi-info/gma-essentialis",
+      "paramsNotes": "ALERTE : selon Louve Invest, dissolution anticipée votée en AGE le 24/09/2026 ; environ 34 % du capital en demandes de retrait ; distribution suspendue depuis le 01/05/2026 ; valeur de réalisation de 160,89 € au 31/07/2026. Souscription déconseillée, à exclure ou signaler. Commission 10 % HT soit 12 % TTC. Aucun objectif de TD 2026."
     },
     {
       "id": "grand-paris-residentiels",
@@ -1826,13 +2098,20 @@
       },
       "td": null,
       "anneeTd": null,
-      "prixPart": null,
+      "prixPart": 200.0,
       "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
       "sourceTdUrl": null,
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Source unique",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.035,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6e mois suivant la souscription",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-grand-paris-residentiels",
+      "paramsNotes": "SGP : Inter Gestion REIM. SCPI résidentielle Île-de-France créée en 2017, ouverte à la collecte en 2026. Prix de 200 € (Centrale des SCPI, 31/07/2026). Commission de 12 % TTC selon MeilleureSCPI et France SCPI. Délai : 1er jour du 6e mois (agrégateur, non vérifié sur un document SGP). td_cible = objectif de distribution annuel non garanti de 3,5 % sur la durée de vie (non daté 2026), TRI cible de 5 % à 10 ans. TD 2025 réalisé : 0 %. Objectif à prendre avec prudence."
     },
     {
       "id": "immo-placement",
@@ -1861,13 +2140,20 @@
       },
       "td": 0.0623,
       "anneeTd": 2025,
-      "prixPart": 845.0,
+      "prixPart": 890.0,
       "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
       "sourceTdUrl": "https://www.primaliance.com/scpi-de-rendement",
       "dateSource": "2026-09",
       "fiabilite": "incertain",
       "notes": "Ligne MSC strictement identique à: CAP Foncieres & Territoires, Foncière Remusat (copier-coller possible) | Source unique",
-      "statut": null
+      "statut": "Marché secondaire uniquement",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.108,
+      "delaiJouissance": 5,
+      "delaiTexte": "Parts payées comptant : le premier jour du 6ème mois qui suit la réception des fonds (note d'information MAJ AG 25/06/2026). Marché secondaire : jouissance au 1er du mois de la cession.",
+      "paramsSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/20260625-NI-SCPI-IMMO-PLACEMENT-MAJ-AG-2026-vfinale.pdf",
+      "paramsNotes": "SCPI à capital fixe : dernière (72e) augmentation de capital close le 01/03/2023, aucune ouverte en 2026, donc achat surtout sur le marché secondaire. 890 € = prix acquéreur MeilleureSCPI au 15/09/2026 (845 € au T1 2026 ; fourchette secondaire 720-890 € selon Atland). Commission 9 % HT soit 10,8 % TTC, valable seulement sur les augmentations de capital ; frais du secondaire (droits d'enregistrement, commission de cession) non vérifiés. Délai de 5 mois = primaire ; 0 en pratique au secondaire. Aucun objectif de TD 2026 publié."
     },
     {
       "id": "immorente",
@@ -1900,7 +2186,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Barème MeilleureSCPI (maj 02/09/2026), durées 5-20 ans (Sofidy ne propose pas 3-4 ans). Recoupé avec FranceSCPI sur 5/7/10/12/15 ans. Sofidy indique 'mise à jour février 2026' sur sa page démembrement (clés indicatives).",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0462,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 0,
+      "delaiTexte": "Temporairement : 1er jour du mois suivant l'encaissement des fonds (depuis le 01/02/2024, jusqu'au 31/12/2026). Normalement : 1er jour du 3e mois suivant l'encaissement",
+      "paramsSourceUrl": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf",
+      "paramsNotes": "Frais de souscription : 10 % HT, soit 12 % TTC (fiche produit d'avril 2026). Fourchette prévisionnelle 2026 : 15,00 à 16,40 €/part, non garantie. Le milieu (15,70 €) rapporté à 340 € donne 4,62 %. Délai normal : 2 mois hors mesure temporaire."
     },
     {
       "id": "iroko-atlas",
@@ -1935,7 +2228,14 @@
       "dateSource": "2026-09",
       "fiabilite": "SGP officielle",
       "notes": "Même grille officielle que Iroko Zen (PDF Iroko, en vigueur au 01/09/2026). TD 2025 9,41% sur première année partielle (lancement sept. 2025), objectif pérenne 6,5%. Prix 200 EUR. Autres sources : https://commentbieninvestir.fr/cles-repartition-scpi/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.065,
+      "anneeTdCible": null,
+      "commission": 0.0,
+      "delaiJouissance": 4,
+      "delaiTexte": "4 mois pleins (entrée en jouissance le 1er jour du 5e mois suivant la souscription)",
+      "paramsSourceUrl": "https://www.iroko.eu/scpi/atlas ; https://francescpi.com/scpi-de-rendement/iroko-atlas",
+      "paramsNotes": "Sans frais d'entrée. Commission de sortie de 6 % TTC du capital retiré en cas de retrait avant 6 ans (0 % après). TD cible non garanti de 6,5 % 'long terme' (pas d'année précise) ; TRI cible 7 % sur 10 ans. TD 2025 de 9,41 % dopé par la période de prix de lancement."
     },
     {
       "id": "iroko-zen",
@@ -1970,7 +2270,14 @@
       "dateSource": "2026-09",
       "fiabilite": "SGP officielle",
       "notes": "Grille officielle Iroko en vigueur au 01/09/2026, commune à Iroko Zen et Iroko Atlas. TD 2025 7,14% (PGA 8,13%). Prix 205 EUR (au 01/08/2026). Nouvelle commission de sortie 6% TTC avant 6 ans pour parts souscrites après le 01/09/2026. Autres sources : https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.055,
+      "anneeTdCible": 2026,
+      "commission": 0.0,
+      "delaiJouissance": 3,
+      "delaiTexte": "3 mois pleins (1er jour du 4e mois suivant la souscription)",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-iroko-zen ; https://www.iroko.eu/scpi/zen",
+      "paramsNotes": "Sans frais d'entrée. Commission de retrait 5 % HT soit 6 % TTC du montant remboursé si sortie avant 3 ans (6 ans pour les parts émises à partir du 01/09/2026). Prix 205 EUR depuis le 01/08/2026 (204 EUR avant). TD cible 5,5 % et TRI cible 6 % sur 10 ans révisés à l'AG d'avril 2026 (non garantis) ; valeurs affichées en tirets sur iroko.eu lors de la consultation, chiffre repris de La Centrale des SCPI."
     },
     {
       "id": "kyaneos-pierre",
@@ -2005,7 +2312,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Grille en vigueur depuis le 01/09/2024, confirmée inchangée en 2025 (recoupé : NP 3a 88% / 10a 67% / 20a 56,5%). Clé usufruit = 1 - clé NP. Autres sources : https://commentbieninvestir.fr/cles-repartition-scpi/",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.11,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ème mois suivant la souscription",
+      "paramsSourceUrl": "https://kyaneosam.com/kyaneos-pierre/",
+      "paramsNotes": "Commission 11 % TTI (8 % collecte + 3 % recherche/investissement). Aucun objectif de TD publié par la SGP. La Centrale des SCPI indique 'délai de 6 mois' mais le site SGP dit 1er jour du 6e mois (=5)."
     },
     {
       "id": "laffitte-pierre",
@@ -2040,7 +2354,14 @@
       "dateSource": "2025-05",
       "fiabilite": "SGP officielle",
       "notes": "Grille officielle AEW « Proposition de prix de l'usufruit », active au 12/05/2025 (toujours en ligne en sept. 2026). Prix de souscription et TD 2025 relevés sur la fiche produit AEW. Autres sources : https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0421,
+      "anneeTdCible": 2026,
+      "commission": 0.119,
+      "delaiJouissance": 1,
+      "delaiTexte": "Les parts souscrites portent jouissance à compter du premier jour du deuxième mois à compter de la fin du mois de souscription",
+      "paramsSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-03/LAFFITTE%20PIERRE%202%C3%A8me%20semestre%202025.pdf",
+      "paramsNotes": "Prix maintenu à 295 € (bulletin S1 2026). Commission 11,90 % TTC (fiche AEW). TD prévisionnel 2026 = 4,21 % soit 12,41 €/part (bulletin S2 2025), en baisse vs 5,30 % en 2025. Texte de jouissance ambigu (1 ou 2 mois) ; 1 retenu par analogie avec les autres SCPI AEW."
     },
     {
       "id": "lf-avenir-sante",
@@ -2062,7 +2383,14 @@
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "Clés (usufruit) d'une seule source : France SCPI.",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.108,
+      "delaiJouissance": 5,
+      "delaiTexte": "Premier jour du sixième mois",
+      "paramsSourceUrl": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/lf-avenir-sante",
+      "paramsNotes": "Commission 9 % HT soit 10,8 % TTC. Aucun objectif chiffré ; la SGP prévient que la baisse du taux d'encaissement ne permettra pas de tenir le niveau 2025 (5,08 %) au S2 2026."
     },
     {
       "id": "lf-croissance-et-territoires",
@@ -2082,7 +2410,14 @@
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "Clés (usufruit) d'une seule source : France SCPI ; prix = prix de référence 2025 de France SCPI.",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.108,
+      "delaiJouissance": 3,
+      "delaiTexte": "Premier jour du quatrième mois",
+      "paramsSourceUrl": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/lf-croissance-territoires",
+      "paramsNotes": "Commission 9 % HT soit 10,8 % TTC (valeur de retrait 228,41 EUR). Aucun objectif de TD publié."
     },
     {
       "id": "lf-europimmo",
@@ -2117,7 +2452,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Ligne MSC strictement identique à: Fructipierre, Logipierre 3 (copier-coller possible) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) Autres sources : https://argent-et-salaire.com/avis-lf-europimmo/",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.096,
+      "delaiJouissance": 0,
+      "delaiTexte": "Premier jour du mois suivant",
+      "paramsSourceUrl": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/lf-europimmo",
+      "paramsNotes": "Commission 8 % HT soit 9,6 % TTC (valeur de retrait 667 EUR). Aucun objectif de TD publié."
     },
     {
       "id": "lf-grand-paris-patrimoine",
@@ -2152,7 +2494,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Ligne MSC strictement identique à: AEW Opportunités Europe (copier-coller possible) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) Autres sources : https://argent-et-salaire.com/avis-lf-grand-paris-patrimoine/",
-      "statut": "Variabilité du capital suspendue"
+      "statut": "Variabilité du capital suspendue",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": null,
+      "delaiJouissance": 0,
+      "delaiTexte": "Premier jour du mois suivant",
+      "paramsSourceUrl": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/lf-grand-paris-patrimoine",
+      "paramsNotes": "FERMÉE : variabilité du capital suspendue depuis le 01/06/2026, marché secondaire uniquement (confrontation des ordres). Dernier prix de souscription connu 218 EUR. Fiche SGP affiche commission 0 % (sans objet, pas de souscription primaire). Aucun objectif de TD 2026."
     },
     {
       "id": "lf-opportunite-immo",
@@ -2186,7 +2535,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC: valeur 87.0% dupliquée à 3/4 ans -> colonnes décalées d'un cran, réalignées (vérifié vs autre source) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) Autres sources : https://argent-et-salaire.com/avis-lf-opportunite-immo/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0515,
+      "anneeTdCible": 2026,
+      "commission": 0.108,
+      "delaiJouissance": 5,
+      "delaiTexte": "Premier jour du sixième mois",
+      "paramsSourceUrl": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/lf-opportunite-immo ; https://www.centraledesscpi.com/scpi/scpi-lf-opportunite-immo",
+      "paramsNotes": "Commission 9 % HT soit 10,8 % TTC. TD 2026 anticipé par la SGP entre 5,05 % et 5,25 % (non garanti) : td_cible = milieu de fourchette."
     },
     {
       "id": "linaclub",
@@ -2221,7 +2577,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.50 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0675,
+      "anneeTdCible": null,
+      "commission": 0.108,
+      "delaiJouissance": 4,
+      "delaiTexte": "Jouissance au 1er jour du cinquième mois suivant l'enregistrement de la souscription",
+      "paramsSourceUrl": "https://www.aestiam.com/nos-scpi/linaclub/",
+      "paramsNotes": "Prix passé de 200 à 204 € le 16/09/2026 (rock-n-data ; la fiche Aestiam affichait encore 200 € au 30/06). Commission 9 % HT soit 10,8 % TTC. Objectif TD 'entre 6,5 % et 7,0 %' (non garanti, sans année) : milieu de fourchette retenu."
     },
     {
       "id": "log-in",
@@ -2256,7 +2619,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MeilleureSCPI 09/2026 = CBI = FranceSCPI.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0625,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "le 1er jour du 6e mois suivant la date de souscription",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/actualites/scpi-log-in-un-trimestre-porte-par-une-operation-majeure/",
+      "paramsNotes": "Prix de 255 € (nominal 150 € + prime 105 €), date d'effet inconnue. Commission de 12 % TTC. Theoreim annonce un 'objectif de taux de distribution brut pour 2026 entre 6,00 % et 6,50 %' (non garanti) : td_cible = milieu de fourchette. MeilleureSCPI cite 6,50 %. TRI cible de 5 % à 10 ans. TD 2025 : 6,21 %."
     },
     {
       "id": "logipierre-3",
@@ -2291,7 +2661,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Ligne MSC strictement identique à: Fructipierre, LF Europimmo (copier-coller possible) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 1,
+      "delaiTexte": "1er jour du 2ème mois suivant la souscription et son règlement",
+      "paramsSourceUrl": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/logipierre-3-residences-services",
+      "paramsNotes": "Commission 10 % HT soit 12 % TTC ; minimum 5 parts. Un courtier indique un délai au 1er jour du 6e mois, contredit par le site de la SGP (retenu). Aucun objectif de TD 2026 publié."
     },
     {
       "id": "mistral-selection",
@@ -2325,7 +2702,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC 19a=8.0% aberrant écarté | Ligne MSC strictement identique à: Métronome (copier-coller possible) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.075,
+      "anneeTdCible": 2026,
+      "commission": 0.0,
+      "delaiJouissance": 4,
+      "delaiTexte": "premier jour du cinquième mois suivant la date de souscription",
+      "paramsSourceUrl": "https://www.boursorama.com/immobilier/actualites/scpi-mistral-selection-bilan-2025-et-orientations-strategiques-pour-2026-d0b786e79a6746662d15caddae65bb5c",
+      "paramsNotes": "SCPI sans frais d'entrée (commission de souscription 0 %, bulletin T1 2026). Des frais de sortie la remplacent : commission de retrait de 6 % TTC max si vente avant 6 ans. Délai : 1er jour du 5e mois (bulletin T1 2026) ; Louve Invest dit '4 mois', ce qui concorde. TD cible : 'Pour 2026, la société de gestion vise un objectif de taux de distribution (non garanti) de 7,5 %' (Boursorama). D'autres sources donnent 'rendement prévisionnel 7,25 %' ou '7-7,5 %'. TD 2025 : 8,07 %. TRI cible 10 ans : 6,4 %. Bulletin : https://www.primaliance.com/sites/default/files/products/1848/MISTRAL_SELECTION-Bulletin_trimestriel-2026-1T.pdf"
     },
     {
       "id": "momentime",
@@ -2347,42 +2731,14 @@
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "Source unique | France SCPI ne publie que 5/7/10/12/15 ans",
-      "statut": null
-    },
-    {
-      "id": "multimmobilier-2",
-      "nom": "Multimmobilier 2",
-      "sgp": "—",
-      "type": null,
-      "cles": {
-        "3": 0.095,
-        "4": 0.125,
-        "5": 0.16,
-        "6": 0.18,
-        "7": 0.205,
-        "8": 0.23,
-        "9": 0.25,
-        "10": 0.265,
-        "11": 0.285,
-        "12": 0.3,
-        "13": 0.31,
-        "14": 0.315,
-        "15": 0.32,
-        "16": 0.33,
-        "17": 0.335,
-        "18": 0.34,
-        "19": 0.35,
-        "20": 0.36
-      },
-      "td": null,
-      "anneeTd": null,
-      "prixPart": null,
-      "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "sourceTdUrl": null,
-      "dateSource": "2026-09",
-      "fiabilite": "courtier",
-      "notes": "Source unique",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.08,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ième mois",
+      "paramsSourceUrl": "https://www.arkea-reim.com/immobilier/pa_92423/scpi-momentime",
+      "paramsNotes": "Commission 10 % HT max (fiche Arkéa) soit 12 % TTC (TTC déduit par analogie avec Transitions Europe, 12 % TTC chez MeilleureSCPI). Objectif de distribution 2026 = 16 €/part soit 8 % (bulletin S1 2026, non garanti). PGA cible 10 ans 6 %."
     },
     {
       "id": "mysharescpl",
@@ -2417,7 +2773,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Source unique",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.05,
+      "anneeTdCible": 2026,
+      "commission": 0.102,
+      "delaiJouissance": 5,
+      "delaiTexte": "Premier jour du sixième mois de la souscription",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f24093-mysharescpi/caracteristiques/",
+      "paramsNotes": "Commission 10 % HT soit 10,20 % TTC (valeur de retrait 169,20 EUR). 'Rendement prévisionnel 2026 5,00 %' affiché par MeilleureSCPI, non vérifié sur le site SGP (douteux : identique au TD 2025)."
     },
     {
       "id": "metronome",
@@ -2451,7 +2814,14 @@
       "dateSource": "2026-09",
       "fiabilite": "incertain",
       "notes": "MSC 19a=8.0% aberrant écarté | Ligne MSC strictement identique à: Mistral Sélection (copier-coller possible) | Source unique",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.05,
+      "anneeTdCible": null,
+      "commission": 0.114,
+      "delaiJouissance": 4,
+      "delaiTexte": "Jusqu'au premier jour du cinquième mois suivant la souscription",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-metronome",
+      "paramsNotes": "Commission 11,40 % TTC (136,80 EUR/part). Objectif de TD annuel 5 % non garanti (pas d'année précisée). TRI 10 ans affiché 4,58 %."
     },
     {
       "id": "ncap-continent",
@@ -2481,7 +2851,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Barème publié seulement de 3 à 15 ans. Clé usufruit = 1 - clé NP.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0705,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "Premier jour ouvré du 6e mois suivant la souscription et la réception des fonds",
+      "paramsSourceUrl": "https://www.normacapital.fr/nos-offres-grand-public/scpi-ncap-continent/ ; https://www.centraledesscpi.com/scpi/scpi-ncap-continent",
+      "paramsNotes": "Commission 10 % HT soit 12 % TTC (25,20 EUR). Objectif de performance brut 2026 entre 6,80 % et 7,30 % (non garanti) : td_cible = milieu de fourchette. France SCPI indique '6 mois' de délai (formulation imprécise)."
     },
     {
       "id": "ncap-education-sante",
@@ -2516,7 +2893,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Fair Invest renommée NCap Education Santé. Clé usufruit = 1 - clé NP. Autres sources : https://commentbieninvestir.fr/cles-repartition-scpi/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.048,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "Premier jour du sixième mois suivant la souscription (5 mois selon Primaliance)",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-ncap-education-sante ; https://www.primaliance.com/scpi-de-rendement/241-scpi-ncap-education-sante",
+      "paramsNotes": "Prix inchangé depuis 2023. Commission 12 % TTC (24,24 EUR). Objectif de performance brut 2026 de 4,40 % à 5,20 % (non garanti) : td_cible = milieu de fourchette. Une source mentionne un délai au 4e mois pour une variante : à confirmer."
     },
     {
       "id": "ncap-regions",
@@ -2551,7 +2935,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Vendôme Régions renommée NCap Régions. Clé usufruit = 1 - clé NP. Prix 682 EUR relevé sur fiche MeilleureSCPI (à vérifier). Durées 5/6/7 ans identiques (NP 77%) dans la source. Autres sources : https://commentbieninvestir.fr/cles-repartition-scpi/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0555,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "Premier jour du sixième mois suivant la souscription",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-ncap-regions ; https://www.primaliance.com/scpi-de-rendement/205-scpi-ncap-regions",
+      "paramsNotes": "Prix 682 EUR depuis le 02/09/2025. Commission 12 % TTC (81,84 EUR). Objectif 2026 de 5,10 % à 6 % (non garanti) : td_cible = milieu de fourchette."
     },
     {
       "id": "novapierre-1",
@@ -2586,42 +2977,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC: valeur 80.0% dupliquée à 6/7 ans -> colonnes décalées d'un cran, réalignées (vérifié vs autre source) | Ligne MSC strictement identique à: Patrimmo Commerce, Primopierre (copier-coller possible) | Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) | Durées complétées depuis la source concordante: 20a Autres sources : https://commentbieninvestir.fr/cles-repartition-scpi/",
-      "statut": null
-    },
-    {
-      "id": "novapierre-allemagne-2",
-      "nom": "Novapierre Allemagne 2",
-      "sgp": "Paref Gestion",
-      "type": "Commerces Allemagne",
-      "cles": {
-        "3": 0.105,
-        "4": 0.14,
-        "5": 0.17,
-        "6": 0.19,
-        "7": 0.22,
-        "8": 0.24,
-        "9": 0.265,
-        "10": 0.28,
-        "11": 0.295,
-        "12": 0.31,
-        "13": 0.315,
-        "14": 0.325,
-        "15": 0.335,
-        "16": 0.345,
-        "17": 0.355,
-        "18": 0.365,
-        "19": 0.37,
-        "20": 0.375
-      },
-      "td": 0.0479,
-      "anneeTd": 2023,
-      "prixPart": 260.0,
-      "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "sourceTdUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f11164-scpi-novapierre-allemagne-2/",
-      "dateSource": "2026-09",
-      "fiabilite": "incertain",
-      "notes": "Ligne identique à PAREF Prima dans le tableau MeilleureSCPI ; dernier TD publié 2023.",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.08,
+      "delaiJouissance": 0,
+      "delaiTexte": "Premier jour du mois suivant la réception intégrale des fonds (sources divergentes)",
+      "paramsSourceUrl": "https://paref-gestion.com/nos-scpi/novapierre-1/ ; https://www.primaliance.com/scpi-de-rendement/107-scpi-novapierre",
+      "paramsNotes": "Commission 8 % HT, TVA récupérée par la SGP (valeur de retrait 406,64 EUR = 92 % du prix) ; certains courtiers affichent 9,60 % TTC. Délai DOUTEUX : Portail-SCPI 'aucun', Primaliance '1 mois', une autre source '1er jour du 3e mois', Monujo '3 à 6 mois'. Aucun objectif de TD publié."
     },
     {
       "id": "novapierre-italie",
@@ -2656,7 +3019,14 @@
       "dateSource": "2026-09",
       "fiabilite": "incertain",
       "notes": "Seule source MeilleureSCPI ; ligne identique à Selectinvest 1 / Crédit Mutuel Pierre 1 (copie possible). Pas de TD récent. Société de gestion non sourcée, à vérifier.",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.1,
+      "delaiJouissance": 5,
+      "delaiTexte": "5 mois (France SCPI)",
+      "paramsSourceUrl": "https://francescpi.com/scpi-de-rendement/novapierre-italie",
+      "paramsNotes": "SCPI quasi dormante (3,1 MEUR de capitalisation, 5 associés au 31/12/2025, TD 2025 = 0 %), absente de la liste des SCPI sur le site Paref : statut de commercialisation douteux. Commission : France SCPI indique 12 % mais valeur de retrait 225 EUR = 90 % du prix, d'où 10 % HT (TVA récupérée, comme les autres Paref). Délai non confirmé par la SGP. Aucun objectif de TD."
     },
     {
       "id": "novaxia-neo",
@@ -2690,7 +3060,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Clé usufruit = 1 - clé NP (tableau MeilleureSCPI maj 02/09/2026). 5 ans cohérent avec la décote de 20,5% citée par ailleurs. Durées 3 ans omises (valeur manifestement erronée dans le tableau source).",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.06,
+      "anneeTdCible": null,
+      "commission": 0.0,
+      "delaiJouissance": 3,
+      "delaiTexte": "Normalement 1er jour du 4e mois ; 'sans délai de jouissance' (1er jour du mois suivant) pour les souscriptions reçues jusqu'au 31/03/2026",
+      "paramsSourceUrl": "https://www.novaxia-investissement.fr/produits/novaxia-neo/",
+      "paramsNotes": "Sans frais d'entrée (frais de gestion 18 % TTC). Commission de retrait 5 % HT pour les parts détenues moins de 5 ans. Délai 3 = régime standard supposé rétabli après le 31/03/2026 (prolongation non vérifiée). Objectif de TD annuel 6 % non garanti selon la SGP (certains courtiers citent 5,5 %)."
     },
     {
       "id": "optimale",
@@ -2725,7 +3102,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Source unique",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.055,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 3,
+      "delaiTexte": "1er jour du 4e mois suivant le mois de souscription",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-optimale",
+      "paramsNotes": "Commission 10 % HT soit 12 % TTC (note d'information de décembre 2025, citée indirectement) ; les courtiers affichent 10 %, probablement le taux HT. TD cible « entre 5 % et 6 % » non garanti, sans millésime : 0,055 est le milieu de la fourchette."
     },
     {
       "id": "osmo-energie",
@@ -2746,7 +3130,14 @@
       "dateSource": "2026",
       "fiabilite": "SGP officielle",
       "notes": "Page officielle Osmo Energie (5/7/10/12 ans ; 15 ans 'jusqu'à 40%' usufruit, omis). Le tableau MeilleureSCPI maj 09/2026 donne une grille différente (NP 5a 80% / 7a 74% / 10a 67% / 12a 64%) : incertitude sur la grille en vigueur. Prix 306 EUR selon fiche MeilleureSCPI (300 EUR en 2025). Autres sources : https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.06,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "Premier jour du sixième mois suivant celui de la souscription",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-osmo-energie",
+      "paramsNotes": "Prix 306 EUR TTC depuis le 01/08/2026. Commission 12 % TTC. Objectif de TD 6 % 'long terme' non garanti (pas d'année)."
     },
     {
       "id": "paref-evo",
@@ -2780,7 +3171,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC 19a=62.5% non monotone écarté | Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Écart avec France SCPI (décotes 2026): max 5.00 pt NP ({'5': 80.0, '7': 74.0, '10': 67.0, '12': 64.0, '15': 61.0} NP%)",
-      "statut": "Démembrement possiblement fermé"
+      "statut": "Démembrement possiblement fermé",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.1,
+      "delaiJouissance": 5,
+      "delaiTexte": "Premier jour du sixième mois suivant l'acquisition des parts (depuis le 01/01/2025)",
+      "paramsSourceUrl": "https://paref-gestion.com/nos-scpi/paref-evo/ ; https://www.meilleurescpi.com/actualites/modification-du-delai-de-jouissance-de-la-scpi-paref-evo/",
+      "paramsNotes": "Commission 10 % HT, TVA récupérée par la SGP (valeur de retrait 225 EUR = 90 %) ; La Centrale affiche 12 %. Aucun objectif de TD publié."
     },
     {
       "id": "paref-hexa",
@@ -2815,7 +3213,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MeilleureSCPI 09/2026, concordant CBI/FranceSCPI. Prix de part abaissé de 210 à 172 € le 18/12/2025 : clés possiblement non révisées depuis.",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.1,
+      "delaiJouissance": 3,
+      "delaiTexte": "1er jour du 4e mois suivant la souscription",
+      "paramsSourceUrl": "https://paref-gestion.com/nos-scpi/paref-hexa/ ; https://www.meilleurescpi.com/actualites/32075-la-scpi-interpierre-france-allonge-son-delai-de-jouissance/",
+      "paramsNotes": "Prix 172 EUR depuis le 18/12/2025 (baisse). Commission 10 % HT, TVA récupérée (valeur de retrait 154,80 EUR = 90 %). Délai douteux : Finance Héros indique '1 mois'. Aucun objectif de TD publié (cashback 3 % proposé par certains distributeurs)."
     },
     {
       "id": "paref-prima",
@@ -2850,7 +3255,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MeilleureSCPI 09/2026, concordant avec CommentBienInvestir et FranceSCPI.",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.1,
+      "delaiJouissance": 0,
+      "delaiTexte": "Premier jour du mois suivant la réception des fonds (mesure temporaire annoncée mi-2025 ; auparavant 1er jour du 5e mois)",
+      "paramsSourceUrl": "https://paref-gestion.com/nos-scpi/paref-prima/ ; https://fr.linkedin.com/posts/paref_paref-gestion-paref-prima-d%C3%A9lai-de-jouissance-activity-7354435090468225024-rTXa",
+      "paramsNotes": "Commission 10 % HT, TVA récupérée (valeur de retrait 244,80 EUR = 90 %) ; certains courtiers affichent 12 % TTC. Délai réduit présenté comme TEMPORAIRE : maintien en 2026 non confirmé (Primaliance affiche encore 1er jour du 5e mois = 4). TD 2025 de 5 % décrit comme 'en ligne avec son objectif cible' mais aucun objectif chiffré 2026 publié."
     },
     {
       "id": "patrimmo-commerce",
@@ -2872,7 +3284,14 @@
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "5/7/15 ans concordants chez demembrement.fr, France SCPI (usufruit 15/19,5/24/30) et Argent & Salaire ; 10 ans : NP 76 % (demembrement.fr + France SCPI) contre 74 % (Argent & Salaire) ; 20 ans uniquement chez demembrement.fr. ATTENTION : plus de prix de souscription au 30/06/2026 (marché secondaire, BTI T2 2026) ; 160 EUR = dernier prix publié. Autres sources : https://commentbieninvestir.fr/cles-repartition-scpi/",
-      "statut": "Marché secondaire uniquement"
+      "statut": "Marché secondaire uniquement",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.09,
+      "delaiJouissance": 3,
+      "delaiTexte": "3 mois (Louve Invest, conditions primaire avant suspension)",
+      "paramsSourceUrl": "https://www.praemiareim.fr/scpi-patrimmo-commerce ; https://www.louveinvest.com/scpi-info/patrimmo-commerce ; https://www.centraledesscpi.com/scpi/scpi-patrimmo-commerce",
+      "paramsNotes": "Variabilité du capital suspendue depuis l'AG du 25/06/2026 : souscription fermée, marché secondaire mensuel (1re confrontation le 24/09/2026, pas de prix d'exécution connu). 160 € est le dernier prix de souscription, qui ne s'applique plus. Valeur de réalisation au 30/06/2026 : 120,64 €. Commission de 9 % (Louve), sans précision HT/TTC. Aucun objectif de distribution 2026 publié : acomptes de 1,25 €/part par trimestre au S1 2026, soit 2,50 €."
     },
     {
       "id": "patrimmo-croissance-impact",
@@ -2891,7 +3310,14 @@
       "dateSource": "2026",
       "fiabilite": "incertain",
       "notes": "SCPI de capitalisation (pas de distribution). Clés 5/10 ans d'une seule source (demembrement.fr). Plus de prix de souscription au 30/06/2026 (BTI T2 2026).",
-      "statut": "Marché secondaire uniquement"
+      "statut": "Marché secondaire uniquement",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.1196,
+      "delaiJouissance": 0,
+      "delaiTexte": "0 mois (Louve Invest)",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f166-scpi-patrimmo-croissance/caracteristiques/ ; https://www.louveinvest.com/scpi-info/patrimmo-croissance",
+      "paramsNotes": "SCPI de capitalisation (nue-propriété de logements sociaux et intermédiaires) : aucune distribution, donc pas d'objectif de TD. Variabilité du capital suspendue depuis le 24/06/2026, marché secondaire (1re confrontation le 24/09/2026). 677 € est le dernier prix de souscription (maintenu au T1 2026). Commission : 11,96 % TTC selon MeilleureSCPI, 11,76 % selon Louve. Valeur de réalisation : 578,14 € ; valeur de reconstitution : 699,15 € (30/06/2026). La page produit Praemia renvoie une 404."
     },
     {
       "id": "patrimonia-capital-et-rendement",
@@ -2922,7 +3348,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": "Dissolution annoncée",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": null,
+      "delaiJouissance": null,
+      "delaiTexte": "Premier jour du 5e mois (~150 jours) avant fermeture",
+      "paramsSourceUrl": "https://portail-scpi.fr/scpi/patrimonia-capital-rendement/",
+      "paramsNotes": "DISSOLUTION annoncée en novembre 2025, plus ouverte à la souscription. Derniers paramètres connus : prix 210 EUR (depuis 16/03/2025), commission 12 % TTC, jouissance 1er jour du 5e mois (=4), objectif de TD long terme 6 % (8,5 % visé pour 2025). Laissé à null car non souscriptible."
     },
     {
       "id": "perial-grand-paris",
@@ -2957,7 +3390,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.50 pt)",
-      "statut": null
+      "statut": "Souscription fermée",
+      "tdCible": 0.0437,
+      "anneeTdCible": 2026,
+      "commission": null,
+      "delaiJouissance": null,
+      "delaiTexte": null,
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-perial-grand-paris",
+      "paramsNotes": "FERMÉE à la collecte, marché secondaire uniquement. Dernier prix de souscription connu 458 EUR. Objectif 2026 publié en euros : ~20 EUR brut/part (point bas avant redressement à 2 ans) ; td_cible = 20/458 calculé sur le dernier prix connu."
     },
     {
       "id": "perial-hospitalite-europe",
@@ -2982,7 +3422,14 @@
       "dateSource": "2026-01",
       "fiabilite": "courtier",
       "notes": "Écart avec MeilleureSCPI (maj 02/09/2026): max 1.50 pt NP ({'3': 90.5, '4': 87.5, '5': 83.5, '6': 81.0, '7': 78.0, '8': 75.5, '9': 73.5, '10': 72.0, '11': 70.5, '12': 69.0, '13': 67.5, '14': 66.0, '15': 64.5, '16': 64.0, '17': 63.5, '18': 63.0, '19': 62.5, '20': 62.0} NP%) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) | Durées complétées depuis la source concordante: 12a,15a Autres sources : https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.045,
+      "anneeTdCible": 2026,
+      "commission": 0.102,
+      "delaiJouissance": 3,
+      "delaiTexte": "1er jour du 4e mois suivant le mois de réception intégrale du prix de souscription",
+      "paramsSourceUrl": "https://www.perial.com/scpi/perial-hospitalite-europe ; https://www.meilleurescpi.com/scpi/scpi-de-rendement/f35603-pf-hospitalite-europe-2/caracteristiques/",
+      "paramsNotes": "Commission 8,5 % HT soit 10,2 % TTC. td_cible = 'rendement prévisionnel 2026 4,50 %' affiché par MeilleureSCPI ; DOUTEUX car le site Perial n'affiche que le TRI cible 4,5 % sur 10 ans (possible confusion). Une source mentionne un délai au 1er jour du 6e mois : Primaliance et la note d'info citée retiennent le 4e mois."
     },
     {
       "id": "perial-o2",
@@ -3007,7 +3454,14 @@
       "dateSource": "2026-01",
       "fiabilite": "courtier",
       "notes": "Écart avec MeilleureSCPI (maj 02/09/2026): max 2.00 pt NP ({'3': 89.0, '4': 86.0, '5': 81.0, '6': 78.0, '7': 75.0, '8': 75.0, '9': 72.5, '10': 70.0, '11': 67.5, '12': 65.5, '13': 63.5, '14': 62.0, '15': 60.0, '16': 58.5, '17': 58.0, '18': 57.5, '19': 57.0, '20': 56.5} NP%) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) | Durées complétées depuis la source concordante: 12a,15a",
-      "statut": null
+      "statut": "Souscription fermée",
+      "tdCible": 0.0396,
+      "anneeTdCible": 2026,
+      "commission": null,
+      "delaiJouissance": null,
+      "delaiTexte": null,
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-perial-o2",
+      "paramsNotes": "FERMÉE à la collecte depuis le 25/02/2026, marché secondaire uniquement. Dernier prix de souscription connu 164 EUR. Objectif 2026 publié en euros : ~6,50 EUR brut/part (point bas) ; td_cible = 6,5/164 calculé sur le dernier prix connu."
     },
     {
       "id": "perial-opportunites-europe",
@@ -3041,7 +3495,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC 19a=52.5% non monotone écarté | Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.50 pt) | Concorde avec France SCPI (décotes 2026) (écart max 1.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.114,
+      "delaiJouissance": 3,
+      "delaiTexte": "1er jour du 4e mois suivant la souscription",
+      "paramsSourceUrl": "https://www.perial.com/scpi/perial-opportunites-europe",
+      "paramsNotes": "Prix de 44 € depuis la division par 20 du 01/01/2026 ; prix de retrait 39,82 €. Commission de 11,4 % TTC selon la fiche Perial (9,5 % HT ; Louve Invest affiche 9,50 % et France SCPI 10 %, sans doute en HT). Délai : 1er jour du 4e mois selon MeilleureSCPI (actualité T2 2026), '3 mois' selon Louve Invest et France SCPI. Aucun objectif de TD 2026 publié par la SGP, seulement un TRI cible de 6 % à 10 ans (non garanti). Certains agrégateurs citent un 'objectif 6 %' qui correspond à ce TRI : ignoré. Dividendes mensuels depuis 2026."
     },
     {
       "id": "perial-opportunites-territoires",
@@ -3063,42 +3524,14 @@
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "Décotes FranceSCPI (5/7/10/12/15 ans) uniquement.",
-      "statut": null
-    },
-    {
-      "id": "pierre-altitude",
-      "nom": "Pierre Altitude",
-      "sgp": "—",
-      "type": null,
-      "cles": {
-        "3": 0.11,
-        "4": 0.145,
-        "5": 0.175,
-        "6": 0.2,
-        "7": 0.23,
-        "8": 0.25,
-        "9": 0.275,
-        "10": 0.29,
-        "11": 0.305,
-        "12": 0.32,
-        "13": 0.33,
-        "14": 0.34,
-        "15": 0.35,
-        "16": 0.36,
-        "17": 0.37,
-        "18": 0.38,
-        "19": 0.385,
-        "20": 0.39
-      },
-      "td": null,
-      "anneeTd": null,
-      "prixPart": null,
-      "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "sourceTdUrl": null,
-      "dateSource": "2026-09",
-      "fiabilite": "courtier",
-      "notes": "Source unique",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0705,
+      "anneeTdCible": null,
+      "commission": 0.132,
+      "delaiJouissance": 4,
+      "delaiTexte": "4 mois (Louve Invest / France SCPI)",
+      "paramsSourceUrl": "https://www.perial.com/scpi/perial-opportunites-territoires",
+      "paramsNotes": "Prix de 51 € depuis le 12/02/2026 (+2 %). Commission de 13,2 % TTC selon la fiche Perial et MeilleureSCPI (11 % HT ; Louve et France SCPI affichent 11 %). Délai de '4 mois' selon les courtiers, formulation exacte non trouvée chez la SGP. td_cible = milieu de la fourchette d'objectif 'entre 6,80 % et 7,30 %' pour les années à venir (Louve Invest, ZoomInvest), non datée 2026. MeilleureSCPI cite '7,50 % prévisionnel 2026' et France SCPI '~6 %' : divergences. TRI cible de 6 % à 10 ans (6,5 % selon une actualité Perial). TD 2025 : 7,50 %."
     },
     {
       "id": "pierre-expansion-sante",
@@ -3120,77 +3553,14 @@
       "dateSource": "2026",
       "fiabilite": "incertain",
       "notes": "MSC: valeur 90.0% dupliquée à 4/5 ans -> colonnes décalées d'un cran, réalignées (vérifié vs autre source) | Ligne MSC strictement identique à: Selectipierre 2 (copier-coller possible) | Sources en désaccord (>1 pt) : fs/msc écart max 7.00 pt | Écart avec MeilleureSCPI (maj 02/09/2026): max 7.00 pt NP ({'3': 92.0, '4': 90.0, '5': 87.5, '6': 86.5, '7': 85.0, '8': 83.0, '9': 80.5, '10': 79.0, '11': 77.0, '12': 76.0, '13': 75.5, '14': 74.5, '15': 73.5, '16': 73.0, '17': 72.5, '18': 72.0, '19': 71.5} NP%) | France SCPI ne publie que 5/7/10/12/15 ans",
-      "statut": null
-    },
-    {
-      "id": "pierre-plus",
-      "nom": "Pierre Plus",
-      "sgp": "—",
-      "type": null,
-      "cles": {
-        "3": 0.095,
-        "4": 0.13,
-        "5": 0.16,
-        "6": 0.185,
-        "7": 0.21,
-        "8": 0.23,
-        "9": 0.25,
-        "10": 0.27,
-        "11": 0.285,
-        "12": 0.3,
-        "13": 0.31,
-        "14": 0.315,
-        "15": 0.32,
-        "16": 0.33,
-        "17": 0.34,
-        "18": 0.35,
-        "19": 0.355,
-        "20": 0.36
-      },
-      "td": null,
-      "anneeTd": null,
-      "prixPart": null,
-      "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "sourceTdUrl": null,
-      "dateSource": "2026-09",
-      "fiabilite": "courtier",
-      "notes": "Source unique",
-      "statut": null
-    },
-    {
-      "id": "pierre-privilege",
-      "nom": "Pierre Privilege",
-      "sgp": "—",
-      "type": null,
-      "cles": {
-        "3": 0.105,
-        "4": 0.14,
-        "5": 0.17,
-        "6": 0.195,
-        "7": 0.225,
-        "8": 0.245,
-        "9": 0.265,
-        "10": 0.275,
-        "11": 0.305,
-        "12": 0.315,
-        "13": 0.325,
-        "14": 0.335,
-        "15": 0.345,
-        "16": 0.35,
-        "17": 0.355,
-        "18": 0.365,
-        "19": 0.37,
-        "20": 0.375
-      },
-      "td": null,
-      "anneeTd": null,
-      "prixPart": null,
-      "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "sourceTdUrl": null,
-      "dateSource": "2026-09",
-      "fiabilite": "courtier",
-      "notes": "Source unique",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.144,
+      "delaiJouissance": 1,
+      "delaiTexte": "1er jour du 2ème mois suivant la souscription et son règlement intégral",
+      "paramsSourceUrl": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/pierre-expansion-sante",
+      "paramsNotes": "Commission 12 % HT soit 14,4 % TTC (38,45 € TTC par part). Aucun objectif de TD 2026 publié."
     },
     {
       "id": "pierval-sante",
@@ -3223,7 +3593,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC 9a=7.5% aberrant écarté | MSC 11a=4.0% aberrant écarté | MSC 17a=0.0% aberrant écarté | MSC 20a=5.0% aberrant écarté | Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Écart avec France SCPI (décotes 2026): max 8.00 pt NP ({'5': 81.0, '7': 75.0, '10': 68.0, '12': 65.0, '15': 61.0} NP%) | Durées complétées depuis la source concordante: 9a,20a",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.045,
+      "anneeTdCible": 2026,
+      "commission": 0.1051,
+      "delaiJouissance": 0,
+      "delaiTexte": "Délai de jouissance ramené de 5 mois à 1 mois depuis le 1er juillet 2025 (dividende dès le mois suivant la souscription)",
+      "paramsSourceUrl": "https://www.meilleurescpi.com/scpi/scpi-de-rendement/f157-scpi-pierval-sante/caracteristiques/",
+      "paramsNotes": "Prix de 204 € maintenu en 2026. DOUTEUX : les formulations du délai varient (« 1 mois », « 1er jour du mois suivant ») ; valeur retenue 0, peut-être 1. Objectif 2026 de 4,5 % non garanti."
     },
     {
       "id": "praemia-hotels-europe",
@@ -3244,7 +3621,14 @@
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "Concordant chez France SCPI (usufruit 11/14/18/23 %) et Argent & Salaire. MeilleureSCPI donne NP 70 % à 10 ans et 60 % à 15 ans (divergent). Prix baissé de 204 à 180 EUR le 31/07/2026 : le barème est peut-être antérieur à cette baisse. Autres sources : https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0461,
+      "anneeTdCible": 2026,
+      "commission": 0.09,
+      "delaiJouissance": 3,
+      "delaiTexte": "1er jour du 4e mois suivant la souscription (Primaliance)",
+      "paramsSourceUrl": "https://www.praemiareim.fr/scpi-praemia-hotels-europe ; https://www.centraledesscpi.com/scpi/scpi-praemia-hotels-europe ; https://www.primaliance.com/scpi-de-rendement/237-scpi-premia-hotels-europe",
+      "paramsNotes": "Ex-Primofamily. Le prix est passé de 204 € à 180 € le 31/07/2026 (site SGP). Objectif de la SGP (via Centrale des SCPI) : « taux de distribution d'environ 4,0 % (non garanti), distribution prévisionnelle estimée à 8,3 € par part », fixé sur la base de 204 €. 0,0461 = 8,3 / 180 ; sur 204 €, on obtient environ 4,07 %. Objectif à 2 ans : plus de 5 %. Commission de 9 % (TTC selon MeilleureSCPI). Délai divergent : 1er jour du 4e mois (Primaliance, recherche) contre 1 mois (France SCPI)."
     },
     {
       "id": "primopierre",
@@ -3259,13 +3643,20 @@
       },
       "td": 0.0362,
       "anneeTd": 2025,
-      "prixPart": 43.92,
+      "prixPart": 39.53,
       "sourceUrl": "https://argent-et-salaire.com/avis-primopierre/",
       "sourceTdUrl": "https://www.praemiareim.fr/fr/scpi-primopierre",
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "Clés identiques chez France SCPI (usufruit 17/22/28/35 %) et Argent & Salaire (NP 83/78/72/65 %). Divergent chez demembrement.fr (NP 82/77/70/60/56) et MeilleureSCPI (ligne manifestement recopiée de Novapierre, écartée). ATTENTION : capital variable suspendu (AGE du 7 janv. 2026), parts échangées uniquement sur le marché secondaire : barème de démembrement probablement inactif. Prix = prix d'exécution net vendeur du marché secondaire (BTI T2 2026, 30/04 au 25/06/2026). Autres sources : https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "statut": "Marché secondaire uniquement"
+      "statut": "Marché secondaire uniquement",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": null,
+      "delaiJouissance": null,
+      "delaiTexte": null,
+      "paramsSourceUrl": "https://www.praemiareim.fr/scpi-primopierre ; https://www.centraledesscpi.com/scpi/scpi-primopierre ; https://www.louveinvest.com/scpi-info/primopierre",
+      "paramsNotes": "Variabilité du capital suspendue depuis le 07/01/2026 : uniquement marché secondaire, confrontation le dernier jeudi de chaque mois. 39,53 € est le prix acquéreur affiché par la SGP le 24/09/2026, sans doute celui de la dernière confrontation (prix d'exécution vendeur : 36,00 €). Il était de 43,92 € TTC le 25/06/2026 et d'environ 40 € au T2 selon Louve. Pas de commission de souscription au primaire (les frais acquéreur sont inclus dans le prix acquéreur). Délai de jouissance au secondaire non trouvé (Louve indiquait 3 mois au primaire). Dernier prix de souscription : 115 €. Aucun objectif 2026 publié par la SGP : acomptes de 0,90 €/part aux T1 et T2 2026. Les ~4,00 €/part viennent d'une projection de 2ndmarket.fr, pas de la SGP."
     },
     {
       "id": "primovie",
@@ -3287,7 +3678,14 @@
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "5/7/10/15 ans concordants chez France SCPI, Argent & Salaire et demembrement.fr ; 20 ans (NP 61 %) uniquement chez demembrement.fr. ATTENTION : marché secondaire ouvert en 2026, pas de prix de souscription au 30/06/2026 (BTI T2 2026) ; 164 EUR = dernier prix de part publié (courtiers). Autres sources : https://commentbieninvestir.fr/cles-repartition-scpi/",
-      "statut": "Marché secondaire uniquement"
+      "statut": "Marché secondaire uniquement",
+      "tdCible": 0.0427,
+      "anneeTdCible": 2026,
+      "commission": 0.09,
+      "delaiJouissance": 5,
+      "delaiTexte": "5 mois (Louve Invest) ; une autre source indique 6 mois",
+      "paramsSourceUrl": "https://www.praemiareim.fr/scpi-primovie ; https://www.louveinvest.com/scpi-info/primovie ; https://2ndmarket.fr/landing-pages/scpi-primovie-2026",
+      "paramsNotes": "Variabilité du capital suspendue depuis le 23/06/2026 : souscription fermée, marché secondaire (1re confrontation le 24/09/2026, pas encore de prix). 164 € est le dernier prix de souscription. Prévision de la SGP maintenue (bulletin T2 2026, via Louve et la recherche web) : environ 7,0 €/part en 2026, soit 0,0427 sur 164 €. Le rythme du S1 (1,70 € par trimestre) donne environ 6,80 €. Commission de 9 % (MeilleureSCPI : HT = TTC = 9 % ; une source indique 10 % HT, non retenue). Valeur de réalisation : 123,76 € (30/06/2026)."
     },
     {
       "id": "principal-inside",
@@ -3303,13 +3701,20 @@
       },
       "td": null,
       "anneeTd": null,
-      "prixPart": null,
+      "prixPart": 250.0,
       "sourceUrl": "https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
       "sourceTdUrl": null,
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "Source unique | France SCPI ne publie que 5/7/10/12/15 ans",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.06,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6e mois suivant la souscription (associés standard) ; 1er jour du 3e mois pendant la phase sponsors",
+      "paramsSourceUrl": "https://portail-scpi.fr/scpi/principal-inside/ ; https://francescpi.com/scpi-de-rendement/principal-inside ; https://www.primaliance.com/scpi-de-rendement/574-scpi-principal-inside",
+      "paramsNotes": "Prix sponsors de 238 € jusqu'au 31/01/2026, puis 250 € depuis le 01/02/2026. Commission de 10 % HT, soit 12 % TTC (30 €/part) selon Portail SCPI et France SCPI ; MeilleureSCPI indique 6,55 % TTC et Primaliance 10 % (non retenus). Délai divergent : 1er jour du 6e mois (Portail SCPI, retenu) ; Primaliance cite « 1er jour du 3e mois » mais code 5 mois ; France SCPI indique 2 mois (phase sponsors). Objectif de TD de 6 % brut non garanti, sur la durée de vie et non propre à 2026 (annee_td_cible à null) ; TRI cible de 6,5 % à 10 ans. SGP : Principal Real Estate SAS, site non consulté directement."
     },
     {
       "id": "reason",
@@ -3337,7 +3742,14 @@
       "dateSource": "2026-01",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) | Durées complétées depuis la source concordante: 12a | TD 2025 MeilleureSCPI 12.9% vs Primaliance 13.00% | Prix de part 1,03 EUR selon Primaliance (a verifier) Autres sources : https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.06,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "Jusqu'au premier jour du sixième mois suivant la souscription",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-reason",
+      "paramsNotes": "Part à ~1 EUR (1,03 EUR depuis le 01/08/2026, minimum ~200 EUR). Commission 12 % TTI. Objectif de TD non garanti > 6 %/an sur la durée de placement recommandée (8 ans) ; TRI cible 7 % sur 8 ans. TD 2025 de 12,9 % exceptionnel (premier exercice)."
     },
     {
       "id": "remake-live",
@@ -3370,7 +3782,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Grille Wenova applicable depuis le 02/02/2026 (5 à 20 ans), recoupée avec commentbieninvestir.fr (NP 5a 78,5% / 7a 72% / 10a 64% / 13a 60% / 15a 58,5% / 20a 53,5%). Clé usufruit = 1 - clé NP.",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.055,
+      "anneeTdCible": null,
+      "commission": 0.0,
+      "delaiJouissance": 3,
+      "delaiTexte": "Premier jour du quatrième mois suivant celui de la souscription",
+      "paramsSourceUrl": "https://francescpi.com/scpi-de-rendement/remake-live/bi/remake-live-bulletin-2026-t2.pdf",
+      "paramsNotes": "Sans frais d'entrée (0 %). Commission de retrait de 4,17 % HT (5 % TTC) si les parts sont détenues moins de 5 ans. Bulletin T2 2026 : 'La SCPI vise un objectif de taux de distribution annuel de 5,50 % (non garanti)'. C'est un objectif annuel de long terme, pas un chiffre propre à 2026 (d'où annee_td_cible à null). TRI cible 7 % à 10 ans, TD 2025 réalisé 7,05 %. Délai de 3 mois confirmé par MeilleureSCPI. Le site remake-am.com était injoignable."
     },
     {
       "id": "rivoli-avenir-patrimoine",
@@ -3389,7 +3808,14 @@
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "Clés concordantes chez Argent & Salaire (NP 80/67) et demembrement.fr (usufruit 20/33). Prix 203 EUR en 2026 (France SCPI et demembrement.fr ; Argent & Salaire affiche encore 228).",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0414,
+      "anneeTdCible": 2026,
+      "commission": 0.0799,
+      "delaiJouissance": 5,
+      "delaiTexte": "Entrée en jouissance au premier jour du sixième mois suivant la souscription",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-rivoli-avenir-patrimoine",
+      "paramsNotes": "Prix abaissé de 228 à 203 € le 28/08/2026 (retrait 186,77 €). Commission 7,99 % TTC. Objectif de distribution 2026 = 8,40 €/part (2,10 €/trimestre, non garanti) -> 4,14 % sur 203 €. Délai : certaines sources évoquent un délai réduit (2-3 mois) ; 6e mois retenu (Centrale des SCPI)."
     },
     {
       "id": "selectinvest-1",
@@ -3424,7 +3850,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Ligne MSC strictement identique à: Crédit Mutuel Pierre 1, Novapierre Italie (copier-coller possible) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) Autres sources : https://argent-et-salaire.com/avis-selectinvest-1/",
-      "statut": "Variabilité du capital suspendue"
+      "statut": "Variabilité du capital suspendue",
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": null,
+      "delaiJouissance": 0,
+      "delaiTexte": "Premier jour du mois suivant",
+      "paramsSourceUrl": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/selectinvest-1",
+      "paramsNotes": "FERMÉE : variabilité du capital suspendue depuis le 01/06/2026, marché secondaire uniquement. Dernier prix de souscription connu 530 EUR (depuis 01/2025). Aucun objectif de TD publié."
     },
     {
       "id": "selectipierre-2",
@@ -3458,7 +3891,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "MSC: valeur 90.0% dupliquée à 4/5 ans -> colonnes décalées d'un cran, réalignées (vérifié vs autre source) | Ligne MSC strictement identique à: Pierre Expansion Santé (copier-coller possible) | Concorde avec France SCPI (décotes 2026) (écart max 1.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 1,
+      "delaiTexte": "1er jour du 2ème mois suivant la souscription et son règlement (depuis le 01/01/2024, jusqu'à nouvel avis)",
+      "paramsSourceUrl": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/selectipierre-2-paris",
+      "paramsNotes": "Commission 10 % HT soit 12 % TTC. Prix inchangé depuis le 01/03/2023. Aucun objectif de TD 2026 publié."
     },
     {
       "id": "sofiboutique",
@@ -3490,7 +3930,14 @@
       "dateSource": "2026-09",
       "fiabilite": "incertain",
       "notes": "MeilleureSCPI 09/2026 (14 ans omis, coquille 50%). FranceSCPI donne des usufruits nettement plus bas (5 ans 15,3% ; 10 ans 26,3%) et un courtier indique que le démembrement n'est pas ouvert actuellement sur Sofiboutique. Autres sources : https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
-      "statut": "Démembrement possiblement fermé"
+      "statut": "Démembrement possiblement fermé",
+      "tdCible": 0.0477,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 0,
+      "delaiTexte": "Temporairement : 1er jour du mois suivant l'encaissement des fonds (jusqu'au 31/12/2026). Normalement : 1er jour du 3e mois suivant l'encaissement",
+      "paramsSourceUrl": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Sofiboutique_OPTI-1.pdf",
+      "paramsNotes": "Prix de 320 € inchangé depuis la réouverture en capital variable le 01/06/2022, toujours en vigueur en 2026. Frais de souscription : 10 % HT, soit 12 % TTC. Fourchette prévisionnelle 2026 : 14,50 à 16,00 €/part, non garantie. Le milieu (15,25 €) rapporté à 320 € donne 4,77 %. Écart sur la date de début de la mesure temporaire : 01/07/2026 selon la fiche produit d'août 2026, 01/02/2024 selon le bulletin. Délai normal : 2 mois hors mesure temporaire."
     },
     {
       "id": "sofidy-europe-invest",
@@ -3523,7 +3970,14 @@
       "dateSource": "2026-03",
       "fiabilite": "courtier",
       "notes": "Nouvelles clés Sofidy en vigueur au 01/03/2026 (article MeilleureSCPI) ; durées intermédiaires issues du tableau global MeilleureSCPI 09/2026. FranceSCPI publie des clés plus anciennes (5 ans 17,75%). Autres sources : https://francescpi.com/investir-scpi/scpi-en-demembrement/scpi-nue-propriete/decote-demembrement",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0464,
+      "anneeTdCible": 2026,
+      "commission": 0.108,
+      "delaiJouissance": 3,
+      "delaiTexte": "Premier jour du quatrième mois suivant la date de souscription et d'inscription sur le registre",
+      "paramsSourceUrl": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_SEI_OPTI.pdf",
+      "paramsNotes": "Frais de souscription : 9 % HT, soit 10,8 % TTC (fiche produit d'avril 2026). Fourchette prévisionnelle 2026 : 10,50 à 11,30 €/part, non garantie. Le milieu (10,90 €) rapporté à 235 € donne 4,64 %. Le dividende 2025 était de 11,04 €. Aucune réduction temporaire du délai."
     },
     {
       "id": "sofidynamic",
@@ -3551,7 +4005,14 @@
       "dateSource": "2026-03",
       "fiabilite": "courtier",
       "notes": "Clés Sofidy au 01/03/2026 (5 à 15 ans uniquement). Autres sources : https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0763,
+      "anneeTdCible": 2026,
+      "commission": 0.024,
+      "delaiJouissance": 5,
+      "delaiTexte": "Jouissance à compter du 1er jour du 6ème mois suivant la date de souscription et d'inscription sur le registre",
+      "paramsSourceUrl": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Sofidynamic_OPTI.pdf",
+      "paramsNotes": "Prix passé de 315 € à 320 € le 01/06/2026. Frais d'entrée réduits à 2 % HT, soit 2,4 % TTC. En contrepartie, commission de retrait de 4,17 % HT (5 % TTC) si les parts sont détenues moins de 8 ans (fiche produit de juin 2026). Fourchette prévisionnelle 2026 : 23,20 à 25,60 €/part, non garantie. td_cible = milieu (24,40 €) / 320 € = 7,63 % ; rapporté au prix au 1er janvier 2026 (315 €), on obtient 7,75 %."
     },
     {
       "id": "sofipierre",
@@ -3584,7 +4045,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Source unique",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0538,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 0,
+      "delaiTexte": "Temporairement : 1er jour du mois suivant l'encaissement (du 01/07/2026 au 31/12/2026). Normalement : 1er jour du 3e mois suivant l'encaissement",
+      "paramsSourceUrl": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Sofipierre_OPTI.pdf",
+      "paramsNotes": "Frais de souscription : 10 % HT, soit 12 % TTC (fiche produit d'août 2026). Fourchette prévisionnelle 2026 : 31,00 à 33,00 €/part, non garantie. Le milieu (32 €) rapporté à 595 € donne 5,38 %. Le dividende 2025 était de 35,79 €, dont une part exceptionnelle. Délai normal : 2 mois hors mesure temporaire."
     },
     {
       "id": "telamon-borea",
@@ -3606,7 +4074,14 @@
       "dateSource": "2026",
       "fiabilite": "courtier",
       "notes": "Source unique | France SCPI ne publie que 5/7/10/12/15 ans",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.0625,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6e mois (France SCPI indique '6 mois')",
+      "paramsSourceUrl": "https://www.jepargne-avec-telamon.com/produit/borea/",
+      "paramsNotes": "Prix de 250 € depuis le 19/09/2025, fin de la période sponsor à 237,50 €. Commission de 10 % HT, soit 12 % TTC (site Telamon, MeilleureSCPI). Délai : '1er jour du 6e mois' selon un agrégateur, '6 mois' selon France SCPI, pas de texte SGP trouvé, donc incertain (5 ou 6). Objectif de TD non garanti de 6,25 % par an affiché par la SGP (valable à partir de 2025, repris pour 2026). TRI cible 7 %. TD 2025 faible car c'était l'année de lancement."
     },
     {
       "id": "transitions-europe",
@@ -3634,7 +4109,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt) | Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt) | Durées complétées depuis la source concordante: 3a,4a,6a,8a,9a,15a,20a,12a Autres sources : https://commentbieninvestir.fr/cles-repartition-scpi/",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.07,
+      "anneeTdCible": 2026,
+      "commission": 0.12,
+      "delaiJouissance": 5,
+      "delaiTexte": "1er jour du 6ième mois",
+      "paramsSourceUrl": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
+      "paramsNotes": "Prix 202 € depuis le 01/12/2025. Commission 10 % HT soit 12 % TTC. Objectif de distribution 2026 = 14,14 €/part brut soit 7 % (non garanti, bulletin semestriel S1 2026). PGA/TRI cible long terme 6 %."
     },
     {
       "id": "upeka",
@@ -3668,7 +4150,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "TD 2025 5,70-5,71% selon source. Clé usufruit = 1 - clé NP. Durées 3 ans omises (valeur manifestement erronée dans le tableau source).",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.055,
+      "anneeTdCible": null,
+      "commission": 0.0,
+      "delaiJouissance": 4,
+      "delaiTexte": "Entrée en jouissance le 1er jour du 5ème mois suivant la souscription (délai de 4 mois)",
+      "paramsSourceUrl": "https://www.upeka.fr/",
+      "paramsNotes": "Sans frais d'entrée, remplacés par des frais de sortie anticipée dégressifs avant 6 ans (6 % TTC la 1re année, puis -1 point par an). Frais de gestion de 16 à 18 % TTC selon la source. Prix au 31/12/2025, pas de changement trouvé en 2026. TD cible de 5,5 % (net de fiscalité étrangère, non garanti) = objectif permanent, pas spécifique à 2026 ; TRI cible 6,5 %."
     },
     {
       "id": "urban-coeur-commerce",
@@ -3703,7 +4192,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec France SCPI (décotes 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": null,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 3,
+      "delaiTexte": "1er jour du 4e mois suivant la réception de la souscription",
+      "paramsSourceUrl": "https://www.primaliance.com/scpi-de-rendement/242-scpi-urban-coeur-commerce",
+      "paramsNotes": "Prix de 303 € depuis le 30/12/2025. Commission de 12 % TTC selon MeilleureSCPI et France SCPI (Primaliance affiche 11,83 %). Délai : 1er jour du 4e mois (Primaliance, Ramify, France SCPI '3 mois'). Un résultat de recherche citait 'le 1er jour du mois suivant', contredit par ces sources. Aucun objectif de TD 2026 publié par la SGP à notre connaissance (l'objectif 2025 était de 5,50 %). MeilleureSCPI affiche un 'rendement prévisionnel de 6,00 % en 2026' non confirmé par la SGP : non retenu."
     },
     {
       "id": "vitaly",
@@ -3732,13 +4228,20 @@
       },
       "td": 0.0614,
       "anneeTd": 2025,
-      "prixPart": null,
+      "prixPart": 200.0,
       "sourceUrl": "https://www.meilleurescpi.com/actualites/68905-demembrement-en-scpi-les-cles-de-repartitions-en-2020/",
       "sourceTdUrl": "https://www.meilleurescpi.com/actualites/classement-scpi-2025-les-meilleurs-taux-de-distribution/",
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Concorde avec CommentBienInvestir (janv. 2026) (écart max 0.00 pt)",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.06,
+      "anneeTdCible": null,
+      "commission": 0.096,
+      "delaiJouissance": 3,
+      "delaiTexte": "Jouissance le premier jour du quatrième mois suivant la souscription",
+      "paramsSourceUrl": "https://www.centraledesscpi.com/scpi/scpi-vitality",
+      "paramsNotes": "Nom exact « Vitality » (ClubFunding AM), orthographié « Vitaly » dans la liste. Prix de 200 € au 31/03/2026. Objectif de TD de 6 % net de frais de gestion, non garanti, sur l'horizon de placement (pas spécifique à 2026). TD 2025 : 6,13 % chez les courtiers, contre 6,14 % dans la liste. Sources courtiers uniquement."
     },
     {
       "id": "wemo-one",
@@ -3773,7 +4276,14 @@
       "dateSource": "2026-09",
       "fiabilite": "courtier",
       "notes": "Nouvelle clé (NP 3a 85% / 4a 81% / 5a 77%) recoupée avec l'annonce MeilleureSCPI. TD 2025 15,27% exceptionnel (objectif 2026 ~10%, cible pérenne 7%).",
-      "statut": null
+      "statut": null,
+      "tdCible": 0.07,
+      "anneeTdCible": null,
+      "commission": 0.12,
+      "delaiJouissance": 6,
+      "delaiTexte": "1er jour du 7e mois suivant la souscription",
+      "paramsSourceUrl": "https://francescpi.com/scpi/actualites-scpi/wemo-one-bulletin-1er-trimestre-2026",
+      "paramsNotes": "Prix passé de 200 à 210 € le 01/04/2026. Commission de 12 % TTC (Louve Invest affiche 10 %, sans doute en HT). Délai : 1er jour du 7e mois selon Portail-SCPI, '6 mois' selon Louve Invest. Pour 2026, 'un taux de distribution cible de 10 % est évoqué, sans garantie' (bulletin T1 2026 de Wemo REIM, repris par France SCPI et Portail-SCPI). Objectif long terme de 7 %, TRI cible de 7,5 %. TD 2025 exceptionnel : 15,27 %."
     }
   ]
 }

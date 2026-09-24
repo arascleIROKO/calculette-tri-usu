@@ -52,6 +52,25 @@ STATUTS = {
     "credit-mutuel-pierre-1": "Variabilité du capital suspendue",
     "paref-evo": "Démembrement possiblement fermé",
     "sofiboutique": "Démembrement possiblement fermé",
+    "perial-grand-paris": "Souscription fermée",
+    "perial-o2": "Souscription fermée",
+    "immo-placement": "Marché secondaire uniquement",
+    "gma-essentialis": "Dissolution votée, distribution suspendue",
+    "patrimonia-capital-et-rendement": "Dissolution annoncée",
+    "fructipierre": "Marché secondaire uniquement",
+    "allianz-pierre": "Variabilité du capital suspendue",
+}
+
+# SCPI absorbées : ne sont plus souscriptibles, retirées de la base (collecte 09/2026)
+ABSORBEES = {
+    "multimmobilier-2": "absorbée par Épargne Foncière (2021)",
+    "pierre-privilege": "absorbée par Épargne Foncière (2021)",
+    "pierre-altitude": "absorbée par Atream Hôtels (2021)",
+    "pierre-plus": "absorbée par AEW Commerces Europe (2023)",
+    "novapierre-allemagne-2": "absorbée par PAREF Prima (2024)",
+    "aestiam-cap-hebergimmo": "absorbée par Aestiam Pierre Rendement, devenue Aestiam Agora (2025)",
+    "aestiam-pierre-rendement": "renommée Aestiam Agora (2025), doublon",
+    "fonciere-remusat": "absorbée par Immo Placement (2023)",
 }
 
 # SGP renseignées sans source par la collecte
@@ -93,6 +112,44 @@ def num(v):
     return f
 
 
+PARAMS_GLOB = "scpi_params_*.json"
+
+# Corrections manuelles des paramètres collectés
+PARAM_OVERRIDES = {
+    # « 10 % évoqué sans garantie » au T1 2026 : on retient l'objectif long terme publié
+    "wemo-one": {"td_cible": 0.07, "annee_td_cible": None},
+}
+
+
+def apply_params(scpis: list[dict]) -> None:
+    """Complète chaque SCPI avec ses paramètres de souscription (data/raw/scpi_params_*.json) :
+    prix de part (prioritaire s'il est renseigné), TD cible, commission, délai de jouissance."""
+    params: dict[str, dict] = {}
+    for f in sorted((OUT.parent / "raw").glob(PARAMS_GLOB)):
+        for e in json.loads(f.read_text(encoding="utf-8")):
+            if e.get("id"):
+                params[e["id"]] = e
+    for s in scpis:
+        e = {**params.get(s["id"], {}), **PARAM_OVERRIDES.get(s["id"], {})}
+        td_cible = num(e.get("td_cible"))
+        commission = num(e.get("commission_souscription"))
+        delai = num(e.get("delai_jouissance_mois"))
+        prix = num(e.get("prix_part"))
+        if td_cible is not None and td_cible > 1:
+            td_cible /= 100
+        if commission is not None and commission > 1:
+            commission /= 100
+        if prix is not None and prix > 0:
+            s["prixPart"] = prix
+        s["tdCible"] = round(td_cible, 5) if td_cible is not None else None
+        s["anneeTdCible"] = e.get("annee_td_cible")
+        s["commission"] = round(commission, 5) if commission is not None else None
+        s["delaiJouissance"] = int(delai) if delai is not None and delai >= 0 else None
+        s["delaiTexte"] = e.get("delai_texte")
+        s["paramsSourceUrl"] = e.get("source_url")
+        s["paramsNotes"] = e.get("notes")
+
+
 def main(paths: list[str]) -> None:
     by_id: dict[str, list[dict]] = {}
     for p in paths:
@@ -104,6 +161,9 @@ def main(paths: list[str]) -> None:
 
     scpis = []
     for sid, entries in by_id.items():
+        if sid in ABSORBEES:
+            print(f"  retirée : {sid} ({ABSORBEES[sid]})")
+            continue
         with_keys = [e for e in entries if e["cles"]]
         if not with_keys:
             continue
@@ -151,6 +211,7 @@ def main(paths: list[str]) -> None:
             }
         )
 
+    apply_params(scpis)
     scpis.sort(key=lambda s: s["nom"].lower())
     db = json.loads(OUT.read_text(encoding="utf-8"))
     db["scpis"] = scpis

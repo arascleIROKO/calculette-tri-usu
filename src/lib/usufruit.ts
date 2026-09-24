@@ -179,8 +179,10 @@ function buildUsuPp(inv: Investment, cleUsu: number): CashflowRow[] {
     } else {
       const annee = Math.floor((m - 1) / 12)
       const prix = inv.prixPart * Math.pow(1 + inv.croissancePrixPart, annee)
-      usu = (nbPartsUsu * prix * inv.tdNet) / 12
-      np = (nbPartsPp * prix * inv.tdNet) / 12
+      // Pas de dividende pendant le délai de jouissance (usufruit comme pleine propriété)
+      const enJouissance = m > inv.delaiJouissanceMois
+      usu = enJouissance ? (nbPartsUsu * prix * inv.tdNet) / 12 : 0
+      np = enJouissance ? (nbPartsPp * prix * inv.tdNet) / 12 : 0
       if (m === dureeMois) {
         np += nbPartsPp * inv.prixPart * Math.pow(1 + inv.croissancePrixPart, inv.dureeAnnees) * (1 - inv.fraisAcq)
       }
@@ -320,8 +322,14 @@ const isAtypical = (cle: number, duree: number) => {
   return median != null && cle < CLE_ATYPIQUE_RATIO * median
 }
 
-/** SCPI au profil de rendement comparable : TD publié à ± tolérance du TD de l'investissement */
-const comparableTd = (s: Scpi, td: number, tol: number) => s.td != null && Math.abs(s.td - td) <= tol + 1e-9
+/** TD de référence d'une SCPI : objectif publié, à défaut TD réalisé */
+export const scpiTd = (s: Scpi) => s.tdCible ?? s.td
+
+/** SCPI au profil de rendement comparable : TD (cible, sinon réalisé) à ± tolérance du TD de l'investissement */
+const comparableTd = (s: Scpi, td: number, tol: number) => {
+  const t = scpiTd(s)
+  return t != null && Math.abs(t - td) <= tol + 1e-9
+}
 
 /**
  * Comparatif marché : l'investissement (ses hypothèses, seule la clé change) recalculé avec le barème
@@ -334,6 +342,31 @@ export function scpiScenarios(inv: Investment, { tdTolerance = 0.01 } = {}): Scp
     return { scpi, inv: v, result, cleAtypique: isAtypical(result.cleUsu, inv.dureeAnnees) }
   })
 }
+
+/**
+ * Investissement pré-rempli avec les paramètres publiés d'une SCPI : barème, prix de part, TD cible
+ * (TD réalisé à défaut), commission de souscription (frais d'acquisition NP / PP) et délai de jouissance.
+ * `overrides` fixe les champs propres au contexte (durée, part usufruit, ticket…).
+ */
+export function scpiInvestment(scpi: Scpi, overrides: Partial<Investment> = {}): Investment {
+  const base = blankInvestment(0)
+  const durations = scpiDurations(scpi)
+  return {
+    ...base,
+    nom: scpi.nom,
+    grille: `scpi:${scpi.id}`,
+    dureeAnnees: durations.includes(base.dureeAnnees) ? base.dureeAnnees : durations[0],
+    tdNet: scpiTd(scpi) ?? base.tdNet,
+    prixPart: scpi.prixPart ?? base.prixPart,
+    fraisAcq: scpi.commission ?? 0,
+    delaiJouissanceMois: scpi.delaiJouissance ?? 0,
+    ...overrides,
+  }
+}
+
+/** D'où vient le TD utilisé par `scpiInvestment` */
+export const tdSource = (scpi: Scpi): 'cible' | 'réalisé' | 'défaut' =>
+  scpi.tdCible != null ? 'cible' : scpi.td != null ? 'réalisé' : 'défaut'
 
 export interface Opportunity {
   scpi: Scpi

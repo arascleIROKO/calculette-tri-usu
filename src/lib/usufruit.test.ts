@@ -108,4 +108,21 @@ describe("frais d'acquisition et rétrocession", () => {
     expect(metric(inv, 'np')).toBeCloseTo(0.061221605139178806, 8)
     expect(metric(inv, 'blend')).toBeCloseTo(0.058656036788482954, 8)
   })
+
+  it('PP : délai de jouissance appliqué aux dividendes usufruit et PP', () => {
+    const inv: Investment = {
+      ...blankInvestment(1),
+      dureeAnnees: 7,
+      tdNet: 0.05,
+      grille: 'manuel',
+      cleUsufruitManuelle: 0.3,
+      montage: 'usu_pp',
+      croissancePrixPart: 0.01,
+      fraisAcq: 0.1,
+      delaiJouissanceMois: 3,
+    }
+    expect(metric(inv, 'usu')).toBeCloseTo(0.0419146034306918, 8)
+    expect(metric(inv, 'np')).toBeCloseTo(0.04600308947648273, 8)
+    expect(metric(inv, 'blend')).toBeCloseTo(0.044488211090498615, 8)
+  })
 })

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { fmtEur, fmtMultiple, fmtPct, fmtPct1 } from '../../lib/format'
 import { CLE_ATYPIQUE_RATIO, SCPIS } from '../../lib/scpi'
-import { scpiScenarios, type Investment } from '../../lib/usufruit'
+import { scpiScenarios, scpiTd, type Investment } from '../../lib/usufruit'
 
 const TD_TOLERANCE = 0.01
 
@@ -30,7 +30,7 @@ export function ScpiCompare({ inv, onPick }: { inv: Investment; onPick: (patch: 
       <div className="px-5 pb-3 pt-4">
         <h2 className="text-sm font-semibold text-slate-900">Clés des SCPI comparables — {inv.dureeAnnees} ans</h2>
         <p className="mt-0.5 text-xs text-slate-500">
-          Vos hypothèses appliquées à la clé de chaque SCPI dont le TD publié est entre {fmtPct(inv.tdNet - TD_TOLERANCE)} et{' '}
+          Vos hypothèses appliquées à la clé de chaque SCPI dont le TD cible (à défaut réalisé) est entre {fmtPct(inv.tdNet - TD_TOLERANCE)} et{' '}
           {fmtPct(inv.tdNet + TD_TOLERANCE)} : {rows.length} SCPI. SCPI fermées et clés atypiques
           (&lt; {CLE_ATYPIQUE_RATIO * 100} % de la médiane marché) exclues. Cliquez une ligne pour appliquer la clé.
         </p>
@@ -46,7 +46,7 @@ export function ScpiCompare({ inv, onPick }: { inv: Investment; onPick: (patch: 
                 <th className="px-5 py-2.5 text-left font-medium">#</th>
                 <th className="px-3 py-2.5 text-left font-medium">SCPI</th>
                 <th className="px-3 py-2.5 text-right font-medium">Clé usu</th>
-                <th className="px-3 py-2.5 text-right font-medium">TD publié</th>
+                <th className="px-3 py-2.5 text-right font-medium">TD cible</th>
                 {metrics.map((m) => (
                   <th key={m.key} className={`whitespace-nowrap px-3 py-2.5 text-right font-medium ${m.headline ? 'text-slate-900' : ''}`}>
                     {m.label.replace(/^TRI /, '')}
@@ -71,7 +71,7 @@ export function ScpiCompare({ inv, onPick }: { inv: Investment; onPick: (patch: 
                       <span className="block truncate text-[11px] text-slate-500">{r.scpi.sgp}</span>
                     </td>
                     <td className="px-3 py-2 text-right text-slate-700">{fmtPct1(r.result.cleUsu)}</td>
-                    <td className="px-3 py-2 text-right text-slate-500">{fmtPct(r.scpi.td)}</td>
+                    <td className="px-3 py-2 text-right text-slate-500">{fmtPct(scpiTd(r.scpi))}</td>
                     {r.result.metrics.map((m) => (
                       <td key={m.key} className={`px-3 py-2 text-right ${m.headline ? 'font-semibold text-slate-900' : 'text-slate-700'}`}>
                         {fmtPct(m.value)}
