@@ -3,11 +3,9 @@ import { fmtMultiple, fmtPct, fmtPct1 } from '../../lib/format'
 import { keyScenarios, type Investment } from '../../lib/usufruit'
 
 const LEG_COLORS: Record<string, string> = {
-  usu: '#94a3b8',
-  usuReemploi: '#4f46e5',
+  usu: '#4f46e5',
   np: '#059669',
-  blend: '#d97706',
-  blendReemploi: '#0f172a',
+  blend: '#0f172a',
 }
 
 /** Même investissement recalculé pour chaque clé du barème (une ligne = une durée = une clé). */

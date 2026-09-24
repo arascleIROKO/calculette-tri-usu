@@ -189,6 +189,9 @@ export function Segmented<T extends string>({
   )
 }
 
+/** 66,7 % pour les tiers, 50 % pour les valeurs rondes */
+const pctLabel = (v: number) => `${(Math.round(v * 1000) / 10).toLocaleString('fr-FR')} %`
+
 export function SliderField({
   label,
   value,
@@ -211,17 +214,17 @@ export function SliderField({
             type="range"
             min={0}
             max={100}
-            step={5}
+            step={1}
             value={Math.round(value * 100)}
             onChange={(e) => onChange(Number(e.target.value) / 100)}
             className="w-full accent-indigo-600"
           />
           <div className="flex justify-between text-[11px] tabular-nums text-slate-500">
             <span>
-              {left} <b className="font-semibold text-slate-700">{Math.round(value * 100)} %</b>
+              {left} <b className="font-semibold text-slate-700">{pctLabel(value)}</b>
             </span>
             <span>
-              {right} <b className="font-semibold text-slate-700">{Math.round((1 - value) * 100)} %</b>
+              {right} <b className="font-semibold text-slate-700">{pctLabel(1 - value)}</b>
             </span>
           </div>
         </div>

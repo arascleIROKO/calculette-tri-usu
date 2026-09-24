@@ -12,7 +12,7 @@ import {
   YAxis,
 } from 'recharts'
 import { fmtEur, fmtEurCompact, fmtPct } from '../../lib/format'
-import type { Investment, Result } from '../../lib/usufruit'
+import type { Result } from '../../lib/usufruit'
 
 const axisProps = { stroke: '#94a3b8', fontSize: 11, tickLine: false, axisLine: false } as const
 
@@ -43,13 +43,12 @@ const tooltipStyle = {
 }
 
 /** Flux annuels (hors investissement initial) + cumul, pour l'investissement sélectionné. */
-export function CashflowChart({ inv, result, color }: { inv: Investment; result: Result; color: string }) {
-  const col = inv.montage === 'usu_np' ? 'blendReemploi' : 'blend'
+export function CashflowChart({ result, color }: { result: Result; color: string }) {
   const years = new Map<number, number>()
   result.cashflows.forEach((r, m) => {
     if (m === 0) return
     const y = Math.ceil(m / 12)
-    years.set(y, (years.get(y) ?? 0) + r[col])
+    years.set(y, (years.get(y) ?? 0) + r.blend)
   })
   let cumul = -result.totalInvesti
   const data = [

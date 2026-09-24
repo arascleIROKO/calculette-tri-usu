@@ -4,7 +4,6 @@ import { gridRows } from '../../lib/usufruit'
 
 const ITEMS = [
   ['Coupon usufruit', 'Montant usufruit × TD net ÷ clé usufruit, versé mensuellement après le délai de jouissance.'],
-  ['Réemploi', 'L’usufruit est amorti linéairement ; l’amortissement est capitalisé au taux de réemploi et restitué à l’échéance.'],
   ['Nue-propriété', 'Valeur à terme = montant NP ÷ clé NP (reconstitution de la pleine propriété).'],
   ['Pleine propriété', 'Parts valorisées au prix de part, éventuellement revalorisé chaque année ; dividendes sur usufruit + PP.'],
   ['Frais d’acquisition', 'Sur la NP / PP uniquement, inclus dans le prix comme une commission de souscription : sortie à la valeur de retrait = valeur × (1 − frais). Le TD reste calculé sur le prix de souscription.'],

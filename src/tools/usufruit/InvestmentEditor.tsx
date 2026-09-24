@@ -15,6 +15,16 @@ const MONTAGE_OPTIONS = (Object.keys(MONTAGE_LABELS) as Montage[]).map((m) => ({
   label: m === 'usu_np' ? 'Usu / NP' : 'Usu / PP',
 }))
 
+/** Raccourcis de répartition usufruit / NP-PP (les tiers sont exacts) */
+const SPLITS = [
+  { p: 1, label: '100/0' },
+  { p: 0.75, label: '75/25' },
+  { p: 2 / 3, label: '66/33' },
+  { p: 0.5, label: '50/50' },
+  { p: 1 / 3, label: '33/66' },
+  { p: 0.25, label: '25/75' },
+]
+
 export function InvestmentEditor({ inv, onChange }: { inv: Investment; onChange: (patch: Partial<Investment>) => void }) {
   const isPP = inv.montage === 'usu_pp'
   return (
@@ -33,15 +43,15 @@ export function InvestmentEditor({ inv, onChange }: { inv: Investment; onChange:
             left="Usufruit"
             right={isPP ? 'Pleine propriété' : 'Nue-propriété'}
           />
-          <div className="mt-2 flex gap-1.5">
-            {[1, 0.75, 0.5, 0.25].map((p) => (
-              <button key={p} type="button" onClick={() => onChange({ partUsufruit: p })}
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {SPLITS.map(({ p, label }) => (
+              <button key={label} type="button" onClick={() => onChange({ partUsufruit: p })}
                 className={`rounded-md border px-2 py-0.5 text-[11px] font-medium tabular-nums transition ${
                   Math.abs(inv.partUsufruit - p) < 1e-9
                     ? 'border-indigo-600 bg-indigo-50 text-indigo-700'
                     : 'border-slate-200 text-slate-500 hover:border-slate-300 hover:text-slate-700'
                 }`}>
-                {p * 100}/{100 - p * 100}
+                {label}
               </button>
             ))}
           </div>
@@ -75,12 +85,9 @@ export function InvestmentEditor({ inv, onChange }: { inv: Investment; onChange:
       <Section title="Hypothèses">
         <NumberField label="TD net" value={inv.tdNet} onChange={(tdNet) => onChange({ tdNet })} suffix="%" scale={100} min={0} step={0.1} />
         <NumberField label="Prix de part" value={inv.prixPart} onChange={(prixPart) => onChange({ prixPart })} suffix="€" min={0.01} step={1} />
-        {isPP ? (
+        {isPP && (
           <NumberField label="Revalorisation part / an" value={inv.croissancePrixPart}
             onChange={(croissancePrixPart) => onChange({ croissancePrixPart })} suffix="%" scale={100} step={0.1} />
-        ) : (
-          <NumberField label="Taux de réemploi" value={inv.tauxReemploi} onChange={(tauxReemploi) => onChange({ tauxReemploi })}
-            suffix="%" scale={100} min={0} step={0.1} />
         )}
         {!isPP && (
           <NumberField label="Délai de jouissance" value={inv.delaiJouissanceMois}

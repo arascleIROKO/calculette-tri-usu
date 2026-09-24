@@ -3,8 +3,6 @@
  *
  * Portage fidèle de tri_core.py (onglet "06.3 - USU TRI" du BP Iroko Next) :
  * - coupon usufruit mensuel = montant_usufruit x TD_net / clé_usufruit / 12
- * - amortissement comptable linéaire de l'usufruit, capitalisé dans une poche
- *   "réemploi" au taux_reemploi, restituée à l'échéance
  * - valeur terminale nue-propriété = montant_np / clé_np
  * - valeur terminale pleine propriété = parts PP valorisées au prix de part
  *   (éventuellement revalorisé chaque année)
@@ -31,7 +29,6 @@ export interface Investment {
   partUsufruit: number
   prixPart: number
   tdNet: number
-  tauxReemploi: number
   delaiJouissanceMois: number
   /** Mois d'investissement, format YYYY-MM */
   moisInvestissement: string
@@ -115,14 +112,10 @@ export interface CashflowRow {
   date: Date
   /** Flux investisseur (usufruit seul) */
   usu: number
-  /** Flux usufruit seul, amortissement réemployé et restitué à l'échéance */
-  usuReemploi: number
   /** Flux nue-propriété ou pleine propriété */
   np: number
-  /** Flux total blendé (sans réemploi) */
+  /** Flux total blendé */
   blend: number
-  /** Flux total blendé avec réemploi de l'amortissement */
-  blendReemploi: number
 }
 
 export interface Metric {
@@ -151,26 +144,20 @@ function buildUsuNp(inv: Investment, cleUsu: number, cleNp: number): CashflowRow
   const delai = inv.delaiJouissanceMois
 
   const couponAnnuel = cleUsu ? (montantUsu * inv.tdNet) / cleUsu : 0
-  const amortMensuel = dureeMois ? montantUsu / dureeMois : 0
   const valeurNpTerme = cleNp ? (montantNp * (1 - inv.fraisAcq)) / cleNp : 0
 
   const dates = monthlyDates(inv.moisInvestissement, dureeMois)
   const rows: CashflowRow[] = []
-  let poche = 0
   for (let m = 0; m <= dureeMois; m++) {
-    let usu: number, usuReemploi: number, np: number
+    let usu: number, np: number
     if (m === 0) {
       usu = -montantUsu
-      usuReemploi = -montantUsu
       np = -montantNp * (1 - inv.retroFrais)
     } else {
-      const coupon = delai < m && m <= delai + dureeMois ? couponAnnuel / 12 : 0
-      poche = poche * Math.pow(1 + inv.tauxReemploi, 1 / 12) + amortMensuel
-      usu = coupon
-      usuReemploi = coupon - amortMensuel + (m === dureeMois ? poche : 0)
+      usu = delai < m && m <= delai + dureeMois ? couponAnnuel / 12 : 0
       np = m === dureeMois ? valeurNpTerme : 0
     }
-    rows.push({ date: dates[m], usu, usuReemploi, np, blend: usu + np, blendReemploi: usuReemploi + np })
+    rows.push({ date: dates[m], usu, np, blend: usu + np })
   }
   return rows
 }
@@ -198,8 +185,7 @@ function buildUsuPp(inv: Investment, cleUsu: number): CashflowRow[] {
         np += nbPartsPp * inv.prixPart * Math.pow(1 + inv.croissancePrixPart, inv.dureeAnnees) * (1 - inv.fraisAcq)
       }
     }
-    const total = usu + np
-    rows.push({ date: dates[m], usu, usuReemploi: usu, np, blend: total, blendReemploi: total })
+    rows.push({ date: dates[m], usu, np, blend: usu + np })
   }
   return rows
 }
@@ -224,10 +210,8 @@ export function compute(inv: Investment): Result {
     cashflows = buildUsuNp(inv, cleUsu, cleNp)
     metrics = [
       ...leg(hasUsu, { key: 'usu', label: 'TRI usufruit (cash)', value: irr(cashflows, 'usu') }),
-      ...leg(hasUsu, { key: 'usuReemploi', label: 'TRI usufruit + réemploi', value: irr(cashflows, 'usuReemploi') }),
       ...leg(hasOther, { key: 'np', label: 'TRI nue-propriété', value: irr(cashflows, 'np') }),
-      { key: 'blend', label: 'TRI blendé', value: irr(cashflows, 'blend') },
-      { key: 'blendReemploi', label: 'TRI blendé + réemploi', value: irr(cashflows, 'blendReemploi'), headline: true },
+      { key: 'blend', label: 'TRI blendé', value: irr(cashflows, 'blend'), headline: true },
     ]
   } else {
     cashflows = buildUsuPp(inv, cleUsu)
@@ -238,9 +222,8 @@ export function compute(inv: Investment): Result {
     ]
   }
 
-  const col: keyof CashflowRow = inv.montage === 'usu_np' ? 'blendReemploi' : 'blend'
-  const totalInvesti = -cashflows[0][col]
-  const totalRecu = cashflows.slice(1).reduce((s, r) => s + r[col], 0)
+  const totalInvesti = -cashflows[0].blend
+  const totalRecu = cashflows.slice(1).reduce((s, r) => s + r.blend, 0)
 
   return {
     cleUsu,
@@ -267,7 +250,6 @@ export function presetInvestment(nom: keyof typeof PRESETS): Investment {
     partUsufruit: p.part_usufruit,
     prixPart: p.prix_part,
     tdNet: p.td_net,
-    tauxReemploi: p.taux_reemploi,
     delaiJouissanceMois: p.delai_jouissance_mois,
     moisInvestissement: '2027-01',
     grille: p.grille as GrilleId,
@@ -290,7 +272,6 @@ export function blankInvestment(index: number): Investment {
     partUsufruit: 0.5,
     prixPart: 250,
     tdNet: 0.055,
-    tauxReemploi: 0.04,
     delaiJouissanceMois: 0,
     moisInvestissement: '2027-01',
     grille: 'epsicap_2026',

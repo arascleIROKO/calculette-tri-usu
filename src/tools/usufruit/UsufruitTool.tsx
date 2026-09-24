@@ -116,7 +116,7 @@ export function UsufruitTool({ store }: { store: ReturnType<typeof useInvestment
           {current?.result && (
             <Card title={`Flux annuels — ${current.inv.nom}`} subtitle="Flux nets par année et cumul (ligne pointillée)">
               <div className="px-2 pb-4">
-                <CashflowChart inv={current.inv} result={current.result} color={current.color} />
+                <CashflowChart result={current.result} color={current.color} />
               </div>
             </Card>
           )}
@@ -125,7 +125,7 @@ export function UsufruitTool({ store }: { store: ReturnType<typeof useInvestment
 
           {current && <ScpiCompare inv={current.inv} onPick={(patch) => store.update(current.inv.id, patch)} />}
 
-          <Card title="Classement" subtitle="TRI principal : blendé + réemploi (Usu/NP) ou blendé (Usu/PP)">
+          <Card title="Classement" subtitle="TRI principal : TRI blendé (usufruit + NP / PP)">
             <div className="px-3 pb-3">
               {ranked.length ? (
                 <TriBarChart data={ranked.map((c) => ({ nom: c.inv.nom, tri: c.result!.headline.value, color: c.color }))} />
@@ -148,10 +148,8 @@ export function UsufruitTool({ store }: { store: ReturnType<typeof useInvestment
 
 const METRIC_ROWS: { key: string; label: string }[] = [
   { key: 'usu', label: 'TRI usufruit (cash)' },
-  { key: 'usuReemploi', label: 'TRI usufruit + réemploi' },
   { key: 'np', label: 'TRI nue-prop. / pleine prop.' },
   { key: 'blend', label: 'TRI blendé' },
-  { key: 'blendReemploi', label: 'TRI blendé + réemploi' },
 ]
 
 function ComparisonTable({ computed, onSelect, selectedId }: { computed: Computed[]; onSelect: (id: string) => void; selectedId?: string }) {
@@ -165,7 +163,7 @@ function ComparisonTable({ computed, onSelect, selectedId }: { computed: Compute
     { label: 'Clé usufruit', render: (c) => fmtPct(c.result?.cleUsu) },
     ...METRIC_ROWS.map((m) => ({
       label: m.label,
-      strong: m.key === 'blendReemploi',
+      strong: m.key === 'blend',
       render: (c: Computed) => {
         const metric = c.result?.metrics.find((x) => x.key === m.key)
         return metric ? fmtPct(metric.value) : <span className="text-slate-300">—</span>

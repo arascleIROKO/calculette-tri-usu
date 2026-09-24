@@ -10,13 +10,13 @@ describe('parité avec tri_core.py', () => {
     expect(compute(inv).cleUsu).toBe(0.335)
     expect(metric(inv, 'usu')).toBeCloseTo(0.09661683810939982, 8)
     expect(metric(inv, 'blend')).toBeCloseTo(0.09661683810939982, 8)
-    expect(metric(inv, 'blendReemploi')).toBeCloseTo(0.07112732253332492, 8)
+    expect(compute(inv).headline.key).toBe('blend')
   })
 
   it('Iroko Atlas', () => {
     const inv = presetInvestment('Iroko Atlas')
     expect(metric(inv, 'usu')).toBeCloseTo(0.15978337100461384, 8)
-    expect(metric(inv, 'blendReemploi')).toBeCloseTo(0.1128623667420596, 8)
+    expect(metric(inv, 'blend')).toBeCloseTo(0.15978337100461384, 8)
   })
 
   it('usufruit / nue-propriété démembré avec délai de jouissance', () => {
@@ -24,7 +24,6 @@ describe('parité avec tri_core.py', () => {
     expect(metric(inv, 'usu')).toBeCloseTo(0.049806613750786384, 8)
     expect(metric(inv, 'np')).toBeCloseTo(0.053633140826589605, 8)
     expect(metric(inv, 'blend')).toBeCloseTo(0.05233721156359771, 8)
-    expect(metric(inv, 'blendReemploi')).toBeCloseTo(0.04951865341030647, 8)
   })
 
   it('usufruit / pleine propriété, clé manuelle, revalorisation', () => {
@@ -45,11 +44,11 @@ describe('parité avec tri_core.py', () => {
     expect(() => compute({ ...blankInvestment(1), dureeAnnees: 2 })).toThrow(/absente du barème/)
   })
 
-  it('jambes séparées 50/50 : usufruit + réemploi et nue-propriété', () => {
+  it('jambes séparées 50/50 : usufruit et nue-propriété', () => {
     const inv: Investment = { ...blankInvestment(1), dureeAnnees: 5 }
-    expect(metric(inv, 'usuReemploi')).toBeCloseTo(0.058462975631178145, 8)
+    expect(metric(inv, 'usu')).toBeCloseTo(0.0751467849495909, 8)
     expect(metric(inv, 'np')).toBeCloseTo(0.053633140826589605, 8)
-    expect(metric(inv, 'blendReemploi')).toBeCloseTo(0.05594823832487596, 8)
+    expect(metric(inv, 'blend')).toBeCloseTo(0.06072596303552047, 8)
   })
 
   it('jambes séparées 50/50 : usufruit et pleine propriété', () => {
@@ -74,7 +73,7 @@ describe('détail par clé', () => {
     expect(rows.map((r) => r.duree)).toEqual([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
     const zen = rows.find((r) => r.duree === 9)!
     expect(zen.cleUsu).toBe(0.335)
-    expect(zen.result.headline.value).toBeCloseTo(0.07112732253332492, 8)
+    expect(zen.result.headline.value).toBeCloseTo(0.09661683810939982, 8)
   })
 
   it('clé manuelle : sensibilité autour de la clé saisie', () => {
@@ -90,9 +89,9 @@ describe("frais d'acquisition et rétrocession", () => {
   it('NP : sortie à la valeur de retrait, rétro encaissée en t0', () => {
     const inv: Investment = { ...blankInvestment(1), dureeAnnees: 5, ...frais }
     expect(metric(inv, 'np')).toBeCloseTo(0.046749818655408594, 8)
-    expect(metric(inv, 'blendReemploi')).toBeCloseTo(0.052614376287423575, 8)
+    expect(metric(inv, 'blend')).toBeCloseTo(0.05663585235413265, 8)
     // la jambe usufruit n'est pas concernée
-    expect(metric(inv, 'usuReemploi')).toBeCloseTo(0.058462975631178145, 8)
+    expect(metric(inv, 'usu')).toBeCloseTo(0.0751467849495909, 8)
   })
 
   it('PP : dividendes inchangés, sortie nette de frais', () => {

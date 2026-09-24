@@ -41,12 +41,12 @@ npm run build    # build statique dans dist/
 ## Méthodologie
 
 - Coupon usufruit mensuel = `montant_usufruit × TD_net / clé_usufruit / 12`.
-- Amortissement comptable linéaire de l'usufruit, capitalisé dans une poche de réemploi
-  au taux de réemploi, restituée à l'échéance (`TRI blendé + réemploi`).
 - Valeur terminale nue-propriété = `montant_NP / clé_NP`.
 - Valeur terminale pleine propriété = parts PP valorisées au prix de part (éventuellement
   revalorisé chaque année pour le montage usufruit/pleine propriété).
-- TRI calculés en XIRR sur les flux mensuels datés.
+- Frais d'acquisition sur la NP / PP inclus dans le prix (sortie à la valeur de retrait) ; rétrocession en %
+  du montant NP / PP, encaissée à l'investissement.
+- TRI calculés en XIRR sur les flux mensuels datés. Le TRI principal est le TRI blendé (usufruit + NP / PP).
 
 ## Déploiement
 
