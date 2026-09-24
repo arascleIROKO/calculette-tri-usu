@@ -12,7 +12,7 @@
  * montant NP / PP, est encaissée à la date d'investissement.
  */
 import keyData from '../../data/keys_demembrement.json'
-import { SCPIS, scpiById, scpiDurations, type Scpi } from './scpi'
+import { CLE_ATYPIQUE_RATIO, MEDIAN_KEYS, SCPIS, scpiById, scpiDurations, type Scpi } from './scpi'
 import { xirr } from './xirr'
 
 export type Montage = 'usu_np' | 'usu_pp'
@@ -312,21 +312,26 @@ export interface ScpiScenario {
   scpi: Scpi
   inv: Investment
   result: Result
+  cleAtypique: boolean
 }
 
+const isAtypical = (cle: number, duree: number) => {
+  const median = MEDIAN_KEYS.get(duree)
+  return median != null && cle < CLE_ATYPIQUE_RATIO * median
+}
+
+/** SCPI au profil de rendement comparable : TD publié à ± tolérance du TD de l'investissement */
+const comparableTd = (s: Scpi, td: number, tol: number) => s.td != null && Math.abs(s.td - td) <= tol + 1e-9
+
 /**
- * Comparatif marché : l'investissement recalculé avec le barème de chaque SCPI disposant d'une clé à
- * sa durée. Avec `useScpiHypotheses`, le TD et le prix de part publiés de la SCPI remplacent ceux saisis.
+ * Comparatif marché : l'investissement (ses hypothèses, seule la clé change) recalculé avec le barème
+ * de chaque SCPI au TD comparable disposant d'une clé à sa durée.
  */
-export function scpiScenarios(inv: Investment, { useScpiHypotheses }: { useScpiHypotheses: boolean }): ScpiScenario[] {
-  return SCPIS.filter((s) => s.cles[String(inv.dureeAnnees)] != null).map((scpi) => {
-    const v: Investment = {
-      ...inv,
-      grille: `scpi:${scpi.id}`,
-      ...(useScpiHypotheses && scpi.td != null ? { tdNet: scpi.td } : {}),
-      ...(useScpiHypotheses && scpi.prixPart != null ? { prixPart: scpi.prixPart } : {}),
-    }
-    return { scpi, inv: v, result: compute(v) }
+export function scpiScenarios(inv: Investment, { tdTolerance = 0.01 } = {}): ScpiScenario[] {
+  return SCPIS.filter((s) => s.cles[String(inv.dureeAnnees)] != null && comparableTd(s, inv.tdNet, tdTolerance)).map((scpi) => {
+    const v: Investment = { ...inv, grille: `scpi:${scpi.id}` }
+    const result = compute(v)
+    return { scpi, inv: v, result, cleAtypique: isAtypical(result.cleUsu, inv.dureeAnnees) }
   })
 }
 
@@ -334,21 +339,32 @@ export interface Opportunity {
   scpi: Scpi
   duree: number
   cleUsu: number
-  td: number
   tri: number | null
+  /** Clé très en dessous de la médiane du marché à la même durée : erreur de saisie probable */
+  cleAtypique: boolean
 }
 
 /**
- * Marché de l'usufruit : TRI d'un investissement 100 % usufruit sur chaque SCPI et chaque durée de
- * son barème, avec le TD publié de la SCPI (SCPI sans TD publié exclues). Le TRI ne dépend ni du
- * ticket ni du prix de part.
+ * Comparaison des clés du marché : l'investissement de référence (Iroko Zen ou Atlas, hypothèses
+ * du BP) recalculé à chaque durée du barème de chaque SCPI, en ne changeant que la clé.
+ *
+ * Une SGP fixe sa clé d'après le rendement de sa propre SCPI : appliquer le TD de référence à la clé
+ * d'une SCPI au rendement très différent donnerait un TRI fictif. Seules les SCPI dont le TD publié
+ * est à ± `tdTolerance` du TD de référence sont donc retenues (profil de rendement comparable).
  */
-export function usufruitOpportunities({ delaiJouissanceMois = 0 } = {}): Opportunity[] {
-  const base = { ...blankInvestment(0), partUsufruit: 1, delaiJouissanceMois }
-  return SCPIS.filter((s) => s.td != null).flatMap((scpi) =>
+export function usufruitOpportunities(base: Investment, { tdTolerance = 0.01 } = {}): Opportunity[] {
+  const comparable = SCPIS.filter((s) => comparableTd(s, base.tdNet, tdTolerance))
+  return comparable.flatMap((scpi) =>
     scpiDurations(scpi).map((duree) => {
-      const r = compute({ ...base, dureeAnnees: duree, grille: `scpi:${scpi.id}`, tdNet: scpi.td! })
-      return { scpi, duree, cleUsu: r.cleUsu, td: scpi.td!, tri: r.headline.value }
+      const r = compute({ ...base, dureeAnnees: duree, grille: `scpi:${scpi.id}` })
+      return { scpi, duree, cleUsu: r.cleUsu, tri: r.headline.value, cleAtypique: isAtypical(r.cleUsu, duree) }
     }),
   )
+}
+
+/** TRI de la référence sur son propre barème à une durée donnée (null si la durée est hors barème). */
+export function referenceTri(base: Investment, duree: number): { cleUsu: number; tri: number | null } | null {
+  if (!gridDurations(base.grille).includes(duree)) return null
+  const r = compute({ ...base, dureeAnnees: duree })
+  return { cleUsu: r.cleUsu, tri: r.headline.value }
 }

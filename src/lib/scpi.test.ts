@@ -18,16 +18,15 @@ describe('base SCPI du marché', () => {
     expect(new Set(SCPIS.map((s) => s.id)).size).toBe(SCPIS.length)
   })
 
-  it('comparatif marché : une ligne par SCPI ayant une clé à la durée', () => {
+  it('comparatif marché : SCPI au TD comparable ayant une clé à la durée, hypothèses conservées', () => {
     const inv = { ...blankInvestment(1), dureeAnnees: 5 }
-    const rows = scpiScenarios(inv, { useScpiHypotheses: false })
-    expect(rows.length).toBe(SCPIS.filter((s) => s.cles['5'] != null).length)
+    const rows = scpiScenarios(inv)
+    const expected = SCPIS.filter((s) => s.cles['5'] != null && s.td != null && Math.abs(s.td - inv.tdNet) <= 0.01 + 1e-9)
+    expect(rows.length).toBe(expected.length)
     for (const r of rows) {
       expect(r.inv.tdNet).toBe(inv.tdNet)
       expect(r.result.cleUsu).toBe(r.scpi.cles['5'])
     }
-    const withScpi = scpiScenarios(inv, { useScpiHypotheses: true })
-    for (const r of withScpi) expect(r.inv.tdNet).toBe(r.scpi.td ?? inv.tdNet)
   })
 
   it('un barème SCPI se calcule comme une clé manuelle équivalente', () => {
@@ -40,14 +39,34 @@ describe('base SCPI du marché', () => {
   })
 })
 
-describe('opportunités usufruit', () => {
-  it('une ligne par SCPI avec TD et par durée de son barème, TRI = compute 100 % usufruit', async () => {
-    const { usufruitOpportunities } = await import('./usufruit')
-    const rows = usufruitOpportunities()
-    const expected = SCPIS.filter((s) => s.td != null).reduce((n, s) => n + Object.keys(s.cles).length, 0)
-    expect(rows.length).toBe(expected)
+describe('opportunités usufruit (base Zen / Atlas)', () => {
+  it('une ligne par SCPI et par durée de son barème, avec les hypothèses de la référence', async () => {
+    const { usufruitOpportunities, presetInvestment } = await import('./usufruit')
+    const zen = presetInvestment('Iroko Zen')
+    const rows = usufruitOpportunities(zen)
+    const comparable = SCPIS.filter((s) => s.td != null && Math.abs(s.td - zen.tdNet) <= 0.01 + 1e-9)
+    expect(comparable.length).toBeGreaterThan(0)
+    expect(rows.length).toBe(comparable.reduce((n, s) => n + Object.keys(s.cles).length, 0))
+    expect(rows.every((r) => Math.abs(r.scpi.td! - zen.tdNet) <= 0.01 + 1e-9)).toBe(true)
     const r = rows[0]
-    const ref = compute({ ...blankInvestment(0), partUsufruit: 1, dureeAnnees: r.duree, grille: `scpi:${r.scpi.id}`, tdNet: r.td })
+    const ref = compute({ ...zen, dureeAnnees: r.duree, grille: 'manuel', cleUsufruitManuelle: r.cleUsu })
     expect(r.tri).toBeCloseTo(ref.headline.value!, 12)
+  })
+
+  it('référence Zen à 9 ans = TRI du BP', async () => {
+    const { referenceTri, presetInvestment } = await import('./usufruit')
+    expect(referenceTri(presetInvestment('Iroko Zen'), 9)?.tri).toBeCloseTo(0.09661683810939982, 8)
+    expect(referenceTri(presetInvestment('Iroko Atlas'), 12)?.tri).toBeCloseTo(0.15978337100461384, 8)
+    expect(referenceTri(presetInvestment('Iroko Zen'), 2)).toBeNull()
+  })
+})
+
+describe('clés atypiques', () => {
+  it('médiane marché calculée pour chaque durée présente, clés atypiques signalées', async () => {
+    const { MEDIAN_KEYS, CLE_ATYPIQUE_RATIO } = await import('./scpi')
+    const { usufruitOpportunities, presetInvestment } = await import('./usufruit')
+    expect(MEDIAN_KEYS.get(5)).toBeGreaterThan(0.15)
+    for (const r of usufruitOpportunities(presetInvestment('Iroko Zen')))
+      expect(r.cleAtypique).toBe(r.cleUsu < CLE_ATYPIQUE_RATIO * MEDIAN_KEYS.get(r.duree)!)
   })
 })

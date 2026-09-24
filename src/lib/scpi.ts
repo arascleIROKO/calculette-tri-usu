@@ -27,5 +27,21 @@ const BY_ID = new Map(SCPIS.map((s) => [s.id, s]))
 /** TD publié inhabituellement élevé (> 10 %) : souvent une année partielle ou exceptionnelle */
 export const TD_ATYPIQUE = 0.1
 
+/** Clé médiane du marché par durée (toutes SCPI de la base) */
+export const MEDIAN_KEYS: Map<number, number> = (() => {
+  const by = new Map<number, number[]>()
+  for (const s of SCPIS) for (const [d, k] of Object.entries(s.cles)) by.set(Number(d), [...(by.get(Number(d)) ?? []), k])
+  return new Map(
+    [...by.entries()].map(([d, ks]) => {
+      const v = [...ks].sort((a, b) => a - b)
+      const m = v.length % 2 ? v[(v.length - 1) / 2] : (v[v.length / 2 - 1] + v[v.length / 2]) / 2
+      return [d, m]
+    }),
+  )
+})()
+
+/** En dessous de ce ratio de la médiane marché, une clé est jugée atypique (erreur de saisie probable) */
+export const CLE_ATYPIQUE_RATIO = 0.8
+
 export const scpiById = (id: string) => BY_ID.get(id)
 export const scpiDurations = (s: Scpi) => Object.keys(s.cles).map(Number).sort((a, b) => a - b)
