@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { blankInvestment, compute, presetInvestment, type Investment } from './usufruit'
+import { blankInvestment, compute, keyScenarios, presetInvestment, type Investment } from './usufruit'
 
 // Valeurs de référence produites par tri_core.py (pyxirr)
 const metric = (inv: Investment, key: string) => compute(inv).metrics.find((m) => m.key === key)?.value
@@ -43,5 +43,43 @@ describe('parité avec tri_core.py', () => {
 
   it('durée hors barème lève une erreur explicite', () => {
     expect(() => compute({ ...blankInvestment(1), dureeAnnees: 2 })).toThrow(/absente du barème/)
+  })
+
+  it('jambes séparées 50/50 : usufruit + réemploi et nue-propriété', () => {
+    const inv: Investment = { ...blankInvestment(1), dureeAnnees: 5 }
+    expect(metric(inv, 'usuReemploi')).toBeCloseTo(0.058462975631178145, 8)
+    expect(metric(inv, 'np')).toBeCloseTo(0.053633140826589605, 8)
+    expect(metric(inv, 'blendReemploi')).toBeCloseTo(0.05594823832487596, 8)
+  })
+
+  it('jambes séparées 50/50 : usufruit et pleine propriété', () => {
+    const inv: Investment = {
+      ...blankInvestment(1),
+      dureeAnnees: 7,
+      tdNet: 0.05,
+      grille: 'manuel',
+      cleUsufruitManuelle: 0.3,
+      montage: 'usu_pp',
+      croissancePrixPart: 0.01,
+    }
+    expect(metric(inv, 'usu')).toBeCloseTo(0.05445266145687519, 8)
+    expect(metric(inv, 'np')).toBeCloseTo(0.06134819278117066, 8)
+    expect(metric(inv, 'blend')).toBeCloseTo(0.0588735625721641, 8)
+  })
+})
+
+describe('détail par clé', () => {
+  it('recalcule chaque durée du barème', () => {
+    const rows = keyScenarios(presetInvestment('Iroko Zen'))
+    expect(rows.map((r) => r.duree)).toEqual([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
+    const zen = rows.find((r) => r.duree === 9)!
+    expect(zen.cleUsu).toBe(0.335)
+    expect(zen.result.headline.value).toBeCloseTo(0.07112732253332492, 8)
+  })
+
+  it('clé manuelle : sensibilité autour de la clé saisie', () => {
+    const rows = keyScenarios({ ...blankInvestment(1), grille: 'manuel', cleUsufruitManuelle: 0.3 })
+    expect(rows.map((r) => r.cleUsu)).toEqual([0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4])
+    expect(new Set(rows.map((r) => r.duree))).toEqual(new Set([5]))
   })
 })

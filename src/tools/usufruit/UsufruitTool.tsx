@@ -3,6 +3,7 @@ import { fmtEur, fmtMultiple, fmtPct, SERIES_COLORS } from '../../lib/format'
 import { compute, GRILLE_LABELS, PRESET_NAMES, type Investment, type Result } from '../../lib/usufruit'
 import { CashflowChart, TriBarChart } from './charts'
 import { InvestmentEditor } from './InvestmentEditor'
+import { KeyDetail } from './KeyDetail'
 import { Methodology } from './Methodology'
 import { useInvestments } from './useInvestments'
 
@@ -104,22 +105,13 @@ export function UsufruitTool() {
 
         {/* Colonne droite : résultats */}
         <div className="flex min-w-0 flex-col gap-6">
-          {current && (
-            <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
-              {current.error ? (
-                <div className="col-span-full rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-                  <b>{current.inv.nom}</b> : {current.error}
-                </div>
-              ) : (
-                <>
-                  <Kpi label={current.result!.headline.label} value={fmtPct(current.result!.headline.value)} accent={current.color} />
-                  <Kpi label="Clé usufruit" value={fmtPct(current.result!.cleUsu)} />
-                  <Kpi label="Multiple" value={fmtMultiple(current.result!.multiple)} />
-                  <Kpi label="Total perçu" value={fmtEur(current.result!.totalRecu)} />
-                </>
-              )}
+          {current?.error && (
+            <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+              <b>{current.inv.nom}</b> : {current.error}
             </div>
           )}
+
+          {current?.result && <LegsPanel c={current} />}
 
           {current?.result && (
             <Card title={`Flux annuels — ${current.inv.nom}`} subtitle="Flux nets par année et cumul (ligne pointillée)">
@@ -128,6 +120,8 @@ export function UsufruitTool() {
               </div>
             </Card>
           )}
+
+          {current?.result && <KeyDetail inv={current.inv} onPick={(patch) => store.update(current.inv.id, patch)} />}
 
           <Card title="Classement" subtitle="TRI principal : blendé + réemploi (Usu/NP) ou blendé (Usu/PP)">
             <div className="px-3 pb-3">
@@ -152,7 +146,8 @@ export function UsufruitTool() {
 
 const METRIC_ROWS: { key: string; label: string }[] = [
   { key: 'usu', label: 'TRI usufruit (cash)' },
-  { key: 'np', label: 'TRI nue-propriété' },
+  { key: 'usuReemploi', label: 'TRI usufruit + réemploi' },
+  { key: 'np', label: 'TRI nue-prop. / pleine prop.' },
   { key: 'blend', label: 'TRI blendé' },
   { key: 'blendReemploi', label: 'TRI blendé + réemploi' },
 ]
@@ -259,14 +254,36 @@ export function Card({ title, subtitle, className = '', children }: { title?: st
   )
 }
 
-function Kpi({ label, value, accent }: { label: string; value: string; accent?: string }) {
+/** TRI de chaque jambe (usufruit, NP / PP) et du blendé pour l'investissement sélectionné. */
+function LegsPanel({ c }: { c: Computed }) {
+  const r = c.result!
+  const pctUsu = Math.round(c.inv.partUsufruit * 100)
+  const other = c.inv.montage === 'usu_pp' ? 'PP' : 'NP'
   return (
-    <div className="rounded-2xl border border-slate-200/80 bg-white px-4 py-3.5 shadow-xs">
-      <p className="truncate text-xs text-slate-500">{label}</p>
-      <p className="mt-1 text-xl font-semibold tabular-nums tracking-tight" style={{ color: accent ?? '#0f172a' }}>
-        {value}
-      </p>
-    </div>
+    <section className="rounded-2xl border border-slate-200/80 bg-white shadow-xs">
+      <div className="flex flex-wrap items-baseline justify-between gap-2 px-5 pb-1 pt-4">
+        <h2 className="text-sm font-semibold text-slate-900">TRI par jambe — {c.inv.nom}</h2>
+        <p className="text-xs text-slate-500">
+          {pctUsu} % usufruit / {100 - pctUsu} % {other} · {c.inv.dureeAnnees} ans · clé usu {fmtPct(r.cleUsu)}
+        </p>
+      </div>
+      <div className="grid grid-cols-2 gap-px overflow-hidden px-5 py-4 sm:grid-cols-3 xl:grid-cols-5">
+        {r.metrics.map((m) => (
+          <div key={m.key} className="py-1 pr-3">
+            <p className="text-xs text-slate-500">{m.label}</p>
+            <p className="mt-0.5 text-xl font-semibold tabular-nums tracking-tight"
+              style={{ color: m.headline ? c.color : '#0f172a' }}>
+              {fmtPct(m.value)}
+            </p>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-x-6 gap-y-1 border-t border-slate-100 px-5 py-3 text-xs text-slate-500">
+        <span>Investi <b className="font-semibold tabular-nums text-slate-800">{fmtEur(r.totalInvesti)}</b></span>
+        <span>Total perçu <b className="font-semibold tabular-nums text-slate-800">{fmtEur(r.totalRecu)}</b></span>
+        <span>Multiple <b className="font-semibold tabular-nums text-slate-800">{fmtMultiple(r.multiple)}</b></span>
+      </div>
+    </section>
   )
 }
 

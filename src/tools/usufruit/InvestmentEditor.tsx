@@ -25,6 +25,18 @@ export function InvestmentEditor({ inv, onChange }: { inv: Investment; onChange:
             left="Usufruit"
             right={isPP ? 'Pleine propriété' : 'Nue-propriété'}
           />
+          <div className="mt-2 flex gap-1.5">
+            {[1, 0.75, 0.5, 0.25].map((p) => (
+              <button key={p} type="button" onClick={() => onChange({ partUsufruit: p })}
+                className={`rounded-md border px-2 py-0.5 text-[11px] font-medium tabular-nums transition ${
+                  Math.abs(inv.partUsufruit - p) < 1e-9
+                    ? 'border-indigo-600 bg-indigo-50 text-indigo-700'
+                    : 'border-slate-200 text-slate-500 hover:border-slate-300 hover:text-slate-700'
+                }`}>
+                {p * 100}/{100 - p * 100}
+              </button>
+            ))}
+          </div>
         </div>
         <NumberField label="Ticket investi" value={inv.ticketTotal} onChange={(ticketTotal) => onChange({ ticketTotal })}
           suffix="€" thousands min={0} step={10000} />

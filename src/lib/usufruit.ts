@@ -85,6 +85,8 @@ export interface CashflowRow {
   date: Date
   /** Flux investisseur (usufruit seul) */
   usu: number
+  /** Flux usufruit seul, amortissement réemployé et restitué à l'échéance */
+  usuReemploi: number
   /** Flux nue-propriété ou pleine propriété */
   np: number
   /** Flux total blendé (sans réemploi) */
@@ -126,19 +128,19 @@ function buildUsuNp(inv: Investment, cleUsu: number, cleNp: number): CashflowRow
   const rows: CashflowRow[] = []
   let poche = 0
   for (let m = 0; m <= dureeMois; m++) {
-    let usu: number, np: number, blendReemploi: number
+    let usu: number, usuReemploi: number, np: number
     if (m === 0) {
       usu = -montantUsu
+      usuReemploi = -montantUsu
       np = -montantNp
-      blendReemploi = -(montantUsu + montantNp)
     } else {
       const coupon = delai < m && m <= delai + dureeMois ? couponAnnuel / 12 : 0
       poche = poche * Math.pow(1 + inv.tauxReemploi, 1 / 12) + amortMensuel
       usu = coupon
+      usuReemploi = coupon - amortMensuel + (m === dureeMois ? poche : 0)
       np = m === dureeMois ? valeurNpTerme : 0
-      blendReemploi = coupon - amortMensuel + np + (m === dureeMois ? poche : 0)
     }
-    rows.push({ date: dates[m], usu, np, blend: usu + np, blendReemploi })
+    rows.push({ date: dates[m], usu, usuReemploi, np, blend: usu + np, blendReemploi: usuReemploi + np })
   }
   return rows
 }
@@ -167,7 +169,7 @@ function buildUsuPp(inv: Investment, cleUsu: number): CashflowRow[] {
       }
     }
     const total = usu + np
-    rows.push({ date: dates[m], usu, np, blend: total, blendReemploi: total })
+    rows.push({ date: dates[m], usu, usuReemploi: usu, np, blend: total, blendReemploi: total })
   }
   return rows
 }
@@ -183,19 +185,27 @@ export function compute(inv: Investment): Result {
   let cashflows: CashflowRow[]
   let metrics: Metric[]
 
+  // Chaque jambe n'a de TRI que si elle reçoit une part du ticket
+  const hasUsu = inv.partUsufruit > 0
+  const hasOther = inv.partUsufruit < 1
+  const leg = (on: boolean, m: Metric): Metric[] => (on ? [m] : [])
+
   if (inv.montage === 'usu_np') {
     cashflows = buildUsuNp(inv, cleUsu, cleNp)
     metrics = [
-      { key: 'usu', label: 'TRI usufruit (cash)', value: irr(cashflows, 'usu') },
-      ...(inv.partUsufruit < 1
-        ? [{ key: 'np', label: 'TRI nue-propriété', value: irr(cashflows, 'np') }]
-        : []),
+      ...leg(hasUsu, { key: 'usu', label: 'TRI usufruit (cash)', value: irr(cashflows, 'usu') }),
+      ...leg(hasUsu, { key: 'usuReemploi', label: 'TRI usufruit + réemploi', value: irr(cashflows, 'usuReemploi') }),
+      ...leg(hasOther, { key: 'np', label: 'TRI nue-propriété', value: irr(cashflows, 'np') }),
       { key: 'blend', label: 'TRI blendé', value: irr(cashflows, 'blend') },
       { key: 'blendReemploi', label: 'TRI blendé + réemploi', value: irr(cashflows, 'blendReemploi'), headline: true },
     ]
   } else {
     cashflows = buildUsuPp(inv, cleUsu)
-    metrics = [{ key: 'blend', label: 'TRI blendé (usu + PP)', value: irr(cashflows, 'blend'), headline: true }]
+    metrics = [
+      ...leg(hasUsu, { key: 'usu', label: 'TRI usufruit', value: irr(cashflows, 'usu') }),
+      ...leg(hasOther, { key: 'np', label: 'TRI pleine propriété', value: irr(cashflows, 'np') }),
+      { key: 'blend', label: 'TRI blendé (usu + PP)', value: irr(cashflows, 'blend'), headline: true },
+    ]
   }
 
   const col: keyof CashflowRow = inv.montage === 'usu_np' ? 'blendReemploi' : 'blend'
@@ -256,4 +266,29 @@ export function blankInvestment(index: number): Investment {
     montage: 'usu_np',
     croissancePrixPart: 0,
   }
+}
+
+export interface KeyScenario {
+  duree: number
+  cleUsu: number
+  inv: Investment
+  result: Result
+}
+
+/**
+ * Détail par clé : le même investissement recalculé pour chaque durée du barème
+ * (donc chaque clé). En clé manuelle, sensibilité à la clé autour de la valeur saisie,
+ * à durée constante.
+ */
+export function keyScenarios(inv: Investment): KeyScenario[] {
+  const variants: Investment[] =
+    inv.grille === 'manuel'
+      ? Array.from({ length: 11 }, (_, i) => Math.round((inv.cleUsufruitManuelle + (i - 5) * 0.02) * 1000) / 1000)
+          .filter((k) => k > 0 && k < 1)
+          .map((k) => ({ ...inv, cleUsufruitManuelle: k }))
+      : gridDurations(inv.grille).map((d) => ({ ...inv, dureeAnnees: d }))
+  return variants.map((v) => {
+    const result = compute(v)
+    return { duree: v.dureeAnnees, cleUsu: result.cleUsu, inv: v, result }
+  })
 }
